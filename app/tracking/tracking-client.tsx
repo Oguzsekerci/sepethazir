@@ -1,9 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { products } from "@/data/products";
+import { buildAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 
 const TrackingMap = dynamic(() => import("./tracking-map"), {
@@ -26,6 +29,9 @@ export default function TrackingClient() {
   const order = useMemo(() => {
     return orders.find((item) => item.id === orderId) ?? orders[0];
   }, [orderId, orders]);
+  const recommendations = products
+    .filter((product) => !order?.items.some((item) => item.id === product.id))
+    .slice(0, 6);
 
   if (!order) {
     return (
@@ -54,6 +60,25 @@ export default function TrackingClient() {
           Siparişlere dön
         </Link>
       </div>
+
+      <section className="void-shipping-card">
+        <span className="badge">Sahte lojistik merkezi</span>
+        <h2>Adres doğrulandı: paket hayal gücüne zimmetlendi.</h2>
+        <p>
+          Siparişin gerçek depodan değil, dopaminin arka odasından çıktı. Kurye
+          şu an var olmayan bir sokakta ciddi ciddi yol tarifi alıyor.
+        </p>
+        <div className="shipping-meter" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="shipping-labels">
+          <span>Fiş üretildi</span>
+          <span>Kuryeye anlatıldı</span>
+          <span>Kapına yaklaştı gibi</span>
+        </div>
+      </section>
 
       <div className="tracking-layout">
         <TrackingMap order={order} />
@@ -105,6 +130,71 @@ export default function TrackingClient() {
           </button>
         </aside>
       </div>
+
+      <section className="order-detail-band">
+        <div className="card order-card">
+          <div className="order-top">
+            <div>
+              <h2>Ne sipariş ettin?</h2>
+              <p className="muted">
+                Paket içeriği fiziksel olarak yok, ama liste gayet etkileyici.
+              </p>
+            </div>
+            <strong>{order.total.toLocaleString("tr-TR")} TL</strong>
+          </div>
+          <div className="compact-order-items">
+            {order.items.map((item) => (
+              <div className="compact-order-item" key={item.id}>
+                <span>{item.emoji}</span>
+                <div>
+                  <strong>{item.name}</strong>
+                  <p className="muted">
+                    x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} TL
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="dream-grid-section">
+        <div className="page-head">
+          <div>
+            <h2>Hayal kurmaya devam</h2>
+            <p className="muted">Sepete atınca yine para çekilmeyecek.</p>
+          </div>
+          <Link className="btn ghost" href="/shop">
+            Tüm ürünler
+          </Link>
+        </div>
+        <div className="dream-grid">
+          {recommendations.map((product) => (
+            <a
+              className="dream-card"
+              href={buildAffiliateUrl(product.query)}
+              key={product.id}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <span className="dream-image">
+                {product.image ? (
+                  <Image
+                    src={product.image}
+                    alt={product.imageAlt ?? product.name}
+                    fill
+                    sizes="(max-width: 560px) calc(50vw - 20px), 160px"
+                  />
+                ) : (
+                  <span>{product.emoji}</span>
+                )}
+              </span>
+              <strong>{product.name}</strong>
+              <small>Amazon’da incele</small>
+            </a>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

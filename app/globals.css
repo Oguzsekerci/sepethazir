@@ -524,6 +524,80 @@ a {
   gap: 14px;
 }
 
+.void-shipping-card {
+  background: #171717;
+  border-radius: 8px;
+  color: #fff;
+  display: grid;
+  gap: 14px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  padding: 22px;
+  position: relative;
+}
+
+.void-shipping-card::after {
+  background: radial-gradient(circle, rgb(255 96 0 / 36%), transparent 62%);
+  bottom: -110px;
+  content: "";
+  height: 260px;
+  position: absolute;
+  right: 8%;
+  width: 260px;
+}
+
+.void-shipping-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.void-shipping-card h2 {
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: 1.12;
+  max-width: 680px;
+}
+
+.void-shipping-card p {
+  color: #d6d3d1;
+  line-height: 1.55;
+  max-width: 720px;
+}
+
+.shipping-meter {
+  background: rgb(255 255 255 / 10%);
+  border-radius: 999px;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 620px;
+  padding: 6px;
+}
+
+.shipping-meter span {
+  background: #ff6000;
+  border-radius: 999px;
+  height: 8px;
+}
+
+.shipping-meter span:nth-child(2) {
+  background: #f59e0b;
+}
+
+.shipping-meter span:nth-child(3) {
+  background: #047857;
+}
+
+.shipping-labels {
+  color: #d6d3d1;
+  display: grid;
+  font-size: 12px;
+  font-weight: 800;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 620px;
+}
+
 .map-card {
   height: 430px;
   overflow: hidden;
@@ -561,6 +635,84 @@ a {
   background: #047857;
 }
 
+.order-detail-band {
+  margin-top: 14px;
+}
+
+.compact-order-items {
+  display: grid;
+  gap: 10px;
+}
+
+.compact-order-item {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 34px 1fr;
+}
+
+.compact-order-item span {
+  background: #f4f4f5;
+  border-radius: 8px;
+  display: grid;
+  height: 34px;
+  place-items: center;
+}
+
+.dream-grid-section {
+  margin-top: 22px;
+}
+
+.dream-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.dream-card {
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  min-height: 190px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.dream-image {
+  background: #f4f4f5;
+  border-radius: 8px;
+  display: block;
+  height: 108px;
+  overflow: hidden;
+  position: relative;
+}
+
+.dream-image img {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.dream-image > span {
+  display: grid;
+  font-size: 34px;
+  height: 100%;
+  place-items: center;
+}
+
+.dream-card strong {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.dream-card small {
+  color: #ff6000;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 @media (max-width: 900px) {
   .hero,
   .checkout-layout,
@@ -570,6 +722,10 @@ a {
 
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dream-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -594,6 +750,14 @@ a {
 
   .fake-card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .shipping-labels {
+    grid-template-columns: 1fr;
+  }
+
+  .dream-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .qty {
