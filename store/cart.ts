@@ -10,6 +10,9 @@ export type Product = {
   emoji: string;
   image?: string;
   imageAlt?: string;
+  blurb?: string;
+  status?: string;
+  meme?: string;
   query: string;
   category: string;
 };

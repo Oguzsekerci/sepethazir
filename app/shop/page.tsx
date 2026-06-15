@@ -164,13 +164,17 @@ export default function ShopPage() {
               )}
             </div>
             <span className="badge">{product.category}</span>
+            {product.meme && <span className="meme-chip">{product.meme}</span>}
             <h2 className="product-title">{product.name}</h2>
+            {product.blurb && <p className="product-blurb">{product.blurb}</p>}
             <div className="product-meta">
               <div>
                 <div className="old-price">{formatPrice(product.oldPrice)} TL</div>
                 <div className="price">{formatPrice(product.price)} TL</div>
               </div>
-              <span className="badge">%{discountRate(product.price, product.oldPrice)}</span>
+              <span className="badge">
+                {product.status ?? `%${discountRate(product.price, product.oldPrice)}`}
+              </span>
             </div>
             <div className="actions">
               <button
