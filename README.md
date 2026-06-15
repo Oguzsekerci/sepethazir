@@ -27,6 +27,8 @@ Amazon affiliate suffix example:
 NEXT_PUBLIC_AMAZON_AFFILIATE_SUFFIX=&tag=sepethazir-21
 ```
 
+If this variable is omitted, the app defaults to `&tag=sepethazir-21`.
+
 Supabase is optional at runtime. If it is not configured, fake orders are still saved locally in the browser with Zustand.
 
 ## Supabase Setup
