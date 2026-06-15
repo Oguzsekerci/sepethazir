@@ -60,7 +60,7 @@ type CartState = {
 
 const couriers = [
   { name: "Mert K.", vehicle: "Elektrikli motor", plate: "34 SH 108" },
-  { name: "Ece A.", vehicle: "Kurye motoru", plate: "34 DP 420" },
+  { name: "Melis G.", vehicle: "Kurye motoru", plate: "61 OF 420" },
   { name: "Baran T.", vehicle: "Scooter", plate: "34 HAZ 16" },
   { name: "Deniz Y.", vehicle: "Mini van", plate: "06 SE 777" },
 ];
