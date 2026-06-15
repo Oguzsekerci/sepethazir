@@ -1,108 +1,106 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { products } from "@/data/products";
+import { buildAffiliateUrl } from "@/lib/affiliate";
+import { useCart } from "@/store/cart";
 
-const products = [
-  { id: 1, name: "Kulaklık Pro", price: 1299, emoji: "🎧", q: "kulaklık" },
-  { id: 2, name: "Sneakers", price: 1999, emoji: "👟", q: "ayakkabı" },
-  { id: 3, name: "Mekanik Klavye", price: 1499, emoji: "⌨️", q: "klavye" },
-  { id: 4, name: "Kahve Makinesi", price: 2599, emoji: "☕", q: "kahve makinesi" },
+const categories = [
+  "Tümü",
+  ...Array.from(new Set(products.map((p) => p.category))),
 ];
 
-export default function Shop() {
-  const router = useRouter();
-  const [cart, setCart] = useState<any[]>([]);
+function formatPrice(value: number) {
+  return value.toLocaleString("tr-TR");
+}
 
-  const addToCart = (product: any) => {
-    setCart((prev) => [...prev, product]);
-  };
+export default function ShopPage() {
+  const add = useCart((state) => state.add);
+  const itemCount = useCart((state) =>
+    state.items.reduce((sum, item) => sum + item.qty, 0)
+  );
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("Tümü");
 
-  const totalItems = cart.length;
-  const totalPrice = cart.reduce((a, b) => a + b.price, 0);
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesCategory = category === "Tümü" || product.category === category;
+      const matchesQuery = product.name
+        .toLocaleLowerCase("tr-TR")
+        .includes(query.toLocaleLowerCase("tr-TR"));
+
+      return matchesCategory && matchesQuery;
+    });
+  }, [category, query]);
 
   return (
-    <div style={{ maxWidth: 480, margin: "0 auto", fontFamily: "sans-serif" }}>
-      
-      {/* HEADER */}
-      <div
-        style={{
-          background: "#FF6000",
-          color: "#fff",
-          padding: 14,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <b>🛒 SepetHazır</b>
+    <>
+      <div className="page-head">
+        <div>
+          <h1>Ürünler</h1>
+          <p className="muted">
+            Sepeti abartmak serbest. Buradaki siparişler simüle edilir.
+          </p>
+        </div>
+        <Link className="btn secondary" href="/cart">
+          Sepet ({itemCount})
+        </Link>
+      </div>
 
-        <div
-          onClick={() => alert(`Sepet: ${totalItems} ürün`)}
-          style={{
-            background: "#fff",
-            color: "#FF6000",
-            borderRadius: 20,
-            padding: "4px 10px",
-            cursor: "pointer",
-          }}
-        >
-          {totalItems}
+      <div className="card" style={{ marginBottom: 14 }}>
+        <div className="field" style={{ marginBottom: 10 }}>
+          <label htmlFor="search">Ürün ara</label>
+          <input
+            id="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="kulaklık, kahve makinesi, saat..."
+          />
+        </div>
+        <div className="nav">
+          {categories.map((item) => (
+            <button
+              className={item === category ? "btn" : "btn ghost"}
+              key={item}
+              onClick={() => setCategory(item)}
+              type="button"
+            >
+              {item}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* CART INFO */}
-      <div style={{ padding: 10, fontSize: 14, opacity: 0.7 }}>
-        Toplam: {totalPrice} ₺
-      </div>
-
-      {/* PRODUCTS */}
-      <div style={{ padding: 10 }}>
-        {products.map((p) => (
-          <div
-            key={p.id}
-            style={{
-              border: "1px solid #eee",
-              borderRadius: 10,
-              padding: 12,
-              marginBottom: 10,
-            }}
-          >
-            <div style={{ fontSize: 28 }}>{p.emoji}</div>
-            <b>{p.name}</b>
-            <p>{p.price} ₺</p>
-
-            <button
-              onClick={() => addToCart(p)}
-              style={{
-                background: "#FF6000",
-                color: "#fff",
-                border: "none",
-                padding: "6px 10px",
-                borderRadius: 6,
-                cursor: "pointer",
-              }}
-            >
-              Sepete Ekle
-            </button>
-
-            <button
-              onClick={() => router.push("/checkout")}
-              style={{
-                marginLeft: 8,
-                background: "#111",
-                color: "#fff",
-                border: "none",
-                padding: "6px 10px",
-                borderRadius: 6,
-                cursor: "pointer",
-              }}
-            >
-              Checkout
-            </button>
-          </div>
+      <div className="grid">
+        {filteredProducts.map((product) => (
+          <article className="card product-card" key={product.id}>
+            <div className="product-visual">{product.emoji}</div>
+            <span className="badge">{product.category}</span>
+            <h2 className="product-title">{product.name}</h2>
+            <div className="product-meta">
+              <div>
+                <div className="old-price">{formatPrice(product.oldPrice)} TL</div>
+                <div className="price">{formatPrice(product.price)} TL</div>
+              </div>
+              <span className="badge">Sahte</span>
+            </div>
+            <div className="actions">
+              <button className="btn" onClick={() => add(product)} type="button">
+                Sepete ekle
+              </button>
+              <a
+                className="btn secondary"
+                href={buildAffiliateUrl(product.query)}
+                rel="noreferrer"
+                target="_blank"
+              >
+                Amazon’da incele
+              </a>
+            </div>
+          </article>
         ))}
       </div>
-    </div>
+    </>
   );
 }
