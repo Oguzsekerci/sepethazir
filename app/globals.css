@@ -357,6 +357,37 @@ a {
   justify-items: start;
 }
 
+.toast {
+  align-items: center;
+  background: #171717;
+  border-radius: 8px;
+  bottom: 18px;
+  box-shadow: 0 16px 34px rgb(23 23 23 / 20%);
+  color: #fff;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  left: 50%;
+  max-width: calc(100vw - 24px);
+  min-width: min(420px, calc(100vw - 24px));
+  padding: 12px 14px;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.toast span {
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.toast a {
+  color: #ffb37a;
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .notice {
   background: #fff7ed;
   border: 1px solid #fed7aa;

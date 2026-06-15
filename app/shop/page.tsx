@@ -36,6 +36,7 @@ export default function ShopPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Tümü");
   const [sort, setSort] = useState<SortOption>("Öne çıkan");
+  const [toast, setToast] = useState("");
 
   const filteredProducts = useMemo(() => {
     const matches = products.filter((product) => {
@@ -57,6 +58,12 @@ export default function ShopPage() {
       return a.id - b.id;
     });
   }, [category, query, sort]);
+
+  function handleAdd(product: (typeof products)[number]) {
+    add(product);
+    setToast(`${product.name} sepete eklendi.`);
+    window.setTimeout(() => setToast(""), 2400);
+  }
 
   return (
     <>
@@ -148,7 +155,11 @@ export default function ShopPage() {
               <span className="badge">%{discountRate(product.price, product.oldPrice)}</span>
             </div>
             <div className="actions">
-              <button className="btn" onClick={() => add(product)} type="button">
+              <button
+                className="btn"
+                onClick={() => handleAdd(product)}
+                type="button"
+              >
                 Sepete ekle
               </button>
               <a
@@ -162,6 +173,13 @@ export default function ShopPage() {
             </div>
           </article>
           ))}
+        </div>
+      )}
+
+      {toast && (
+        <div className="toast" role="status">
+          <span>{toast}</span>
+          <Link href="/cart">Sepete git</Link>
         </div>
       )}
     </>
