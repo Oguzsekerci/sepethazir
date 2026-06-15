@@ -9,13 +9,40 @@ function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
 }
 
+const fakeCards = [
+  {
+    name: "Limitsiz Platin Kart",
+    line: "Banka ararsa açma",
+    number: "4242 0000 0000 ∞∞∞∞",
+    theme: "black",
+  },
+  {
+    name: "Babam Görmesin Card",
+    line: "Ekstre görünmez, vicdan görünür",
+    number: "3400 0000 0000 0000",
+    theme: "orange",
+  },
+  {
+    name: "Kendimi Ödüllendiriyorum",
+    line: "Bugün hak ettim limiti",
+    number: "2026 0615 0000 0000",
+    theme: "green",
+  },
+  {
+    name: "Maaş Yatmış Gibi",
+    line: "Bakiye: hayal gücü",
+    number: "0000 0000 0000 0001",
+    theme: "blue",
+  },
+];
+
 export default function CheckoutPage() {
   const router = useRouter();
   const items = useCart((state) => state.items);
   const createFakeOrder = useCart((state) => state.createFakeOrder);
   const [address, setAddress] = useState("İstanbul, Kadıköy");
   const [fantasyNote, setFantasyNote] = useState("");
-  const [cardName, setCardName] = useState("Limitsiz Platin Kart");
+  const [cardName, setCardName] = useState(fakeCards[0].name);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const totals = getCartTotals(items);
@@ -81,12 +108,27 @@ export default function CheckoutPage() {
           </div>
 
           <div className="field">
-            <label htmlFor="cardName">Sahte kart adı</label>
-            <input
-              id="cardName"
-              onChange={(event) => setCardName(event.target.value)}
-              value={cardName}
-            />
+            <label>Sahte kart seç</label>
+            <div className="fake-card-grid">
+              {fakeCards.map((card) => (
+                <button
+                  className={`fake-card-option ${card.theme} ${
+                    card.name === cardName ? "selected" : ""
+                  }`}
+                  key={card.name}
+                  onClick={() => setCardName(card.name)}
+                  type="button"
+                >
+                  <span className="fake-card-top">
+                    <span>SepetHazır</span>
+                    <span>0 TL</span>
+                  </span>
+                  <strong>{card.name}</strong>
+                  <span>{card.number}</span>
+                  <small>{card.line}</small>
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="field">

@@ -361,6 +361,63 @@ a {
   resize: vertical;
 }
 
+.fake-card-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fake-card-option {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  color: #fff;
+  display: grid;
+  gap: 10px;
+  min-height: 150px;
+  padding: 14px;
+  text-align: left;
+}
+
+.fake-card-option.black {
+  background: linear-gradient(135deg, #171717, #44403c);
+}
+
+.fake-card-option.orange {
+  background: linear-gradient(135deg, #c2410c, #ff6000);
+}
+
+.fake-card-option.green {
+  background: linear-gradient(135deg, #047857, #0f766e);
+}
+
+.fake-card-option.blue {
+  background: linear-gradient(135deg, #1d4ed8, #0f172a);
+}
+
+.fake-card-option.selected {
+  border-color: #171717;
+  box-shadow: 0 0 0 3px #fed7aa;
+}
+
+.fake-card-top {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  font-weight: 800;
+  justify-content: space-between;
+  opacity: 0.9;
+}
+
+.fake-card-option strong {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.fake-card-option small {
+  color: rgb(255 255 255 / 78%);
+  line-height: 1.35;
+}
+
 .controls-card {
   display: grid;
   gap: 2px;
@@ -533,6 +590,10 @@ a {
 
   .cart-item {
     grid-template-columns: 48px 1fr;
+  }
+
+  .fake-card-grid {
+    grid-template-columns: 1fr;
   }
 
   .qty {
