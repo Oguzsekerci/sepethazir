@@ -20,18 +20,15 @@ export default function Home() {
         </div>
 
         <div className="dopamine-board">
-          <div className="fake-receipt">
-            <div className="receipt-row">
-              <span>Sipariş</span>
-              <strong>SH-48291</strong>
+          <div className="guarantee-stage" aria-label="Dopamin garantili">
+            <div className="guarantee-stamp">
+              <span>Dopamin</span>
+              <strong>Garantili</strong>
             </div>
-            <div className="receipt-row">
-              <span>Durum</span>
-              <strong>Kuryede</strong>
-            </div>
-            <div className="receipt-row">
-              <span>ETA</span>
-              <strong>11 dk</strong>
+            <div className="guarantee-sparks" aria-hidden="true">
+              <span>0 TL</span>
+              <span>Sahte kargo</span>
+              <span>Gerçek his</span>
             </div>
           </div>
           <div className="card">
