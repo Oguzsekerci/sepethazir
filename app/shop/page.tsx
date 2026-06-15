@@ -151,7 +151,7 @@ export default function ShopPage() {
             }
             key={product.id}
           >
-            <div className="product-visual">
+            <Link className="product-visual" href={`/shop/${product.id}`}>
               {product.image ? (
                 <Image
                   src={product.image}
@@ -162,10 +162,12 @@ export default function ShopPage() {
               ) : (
                 <span>{product.emoji}</span>
               )}
-            </div>
+            </Link>
             <span className="badge">{product.category}</span>
             {product.meme && <span className="meme-chip">{product.meme}</span>}
-            <h2 className="product-title">{product.name}</h2>
+            <h2 className="product-title">
+              <Link href={`/shop/${product.id}`}>{product.name}</Link>
+            </h2>
             {product.blurb && <p className="product-blurb">{product.blurb}</p>}
             <div className="product-meta">
               <div>
