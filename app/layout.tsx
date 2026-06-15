@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import Header from "./header";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -31,18 +31,7 @@ export default function RootLayout({
     >
       <body>
         <div className="app-shell">
-          <header className="topbar">
-            <Link className="brand" href="/">
-              <span className="brand-mark">SH</span>
-              <span>SepetHazır</span>
-            </Link>
-            <nav className="nav" aria-label="Ana navigasyon">
-              <Link href="/shop">Ürünler</Link>
-              <Link href="/cart">Sepet</Link>
-              <Link href="/orders">Siparişler</Link>
-              <Link href="/tracking">Kurye</Link>
-            </nav>
-          </header>
+          <Header />
           {children}
         </div>
       </body>

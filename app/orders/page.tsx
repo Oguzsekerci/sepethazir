@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { products } from "@/data/products";
 import { buildAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 
@@ -16,16 +18,19 @@ function statusLabel(status: FakeOrder["status"]) {
 
 export default function OrdersPage() {
   const orders = useCart((state) => state.orders);
+  const recommendations = products.slice(0, 6);
 
   return (
     <>
       <div className="page-head">
         <div>
-          <h1>Siparişler</h1>
-          <p className="muted">Tamamı sahte, hissi gerçek sipariş geçmişi.</p>
+          <h1>Beklenen hayaller</h1>
+          <p className="muted">
+            {orders.length} sahte sipariş ve sayılmayan kadar dopamin beklentisi.
+          </p>
         </div>
         <Link className="btn" href="/shop">
-          Yeni sepet yap
+          Daha fazla hiçbir şey al
         </Link>
       </div>
 
@@ -83,6 +88,44 @@ export default function OrdersPage() {
           ))}
         </div>
       )}
+
+      <section className="dream-grid-section">
+        <div className="page-head">
+          <div>
+            <h2>Bir de bunlara bak</h2>
+            <p className="muted">Sepeti doldurmak ücretsiz, pişmanlık opsiyonel.</p>
+          </div>
+          <Link className="btn ghost" href="/shop">
+            Ürünlere dön
+          </Link>
+        </div>
+        <div className="dream-grid">
+          {recommendations.map((product) => (
+            <a
+              className="dream-card"
+              href={buildAffiliateUrl(product.query)}
+              key={product.id}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <span className="dream-image">
+                {product.image ? (
+                  <Image
+                    src={product.image}
+                    alt={product.imageAlt ?? product.name}
+                    fill
+                    sizes="(max-width: 560px) calc(50vw - 20px), 160px"
+                  />
+                ) : (
+                  <span>{product.emoji}</span>
+                )}
+              </span>
+              <strong>{product.name}</strong>
+              <small>Amazon’da incele</small>
+            </a>
+          ))}
+        </div>
+      </section>
     </>
   );
 }

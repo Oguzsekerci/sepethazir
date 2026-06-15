@@ -36,6 +36,23 @@ const fakeCards = [
   },
 ];
 
+const deliveryModes = [
+  {
+    name: "Motorlu Hayal Kurye",
+    desc: "Adresini bulamaz ama niyeti iyi.",
+  },
+  {
+    name: "Işınlanmış Paket",
+    desc: "Gelmiş gibi yapma garantili.",
+  },
+  {
+    name: "Kapıya Yaklaşmış Gibi",
+    desc: "Bildirim gelir, paket gelmez.",
+  },
+];
+
+const paymentModes = ["Sahte Kart", "Hayali Cüzdan", "Kapıda Yoklama"] as const;
+
 export default function CheckoutPage() {
   const router = useRouter();
   const items = useCart((state) => state.items);
@@ -43,6 +60,10 @@ export default function CheckoutPage() {
   const [address, setAddress] = useState("İstanbul, Kadıköy");
   const [fantasyNote, setFantasyNote] = useState("");
   const [cardName, setCardName] = useState(fakeCards[0].name);
+  const [deliveryMode, setDeliveryMode] = useState(deliveryModes[0].name);
+  const [paymentMode, setPaymentMode] = useState<(typeof paymentModes)[number]>(
+    "Sahte Kart"
+  );
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const totals = getCartTotals(items);
@@ -66,9 +87,11 @@ export default function CheckoutPage() {
     try {
       const order = await createFakeOrder({
         address: address.trim(),
-        fantasyNote: fantasyNote.trim() || cardName.trim(),
+        fantasyNote:
+          fantasyNote.trim() ||
+          `${cardName.trim()} · ${deliveryMode} · ${paymentMode}`,
       });
-      router.push(`/tracking?order=${order.id}`);
+      router.push(`/success?order=${order.id}`);
     } catch (err) {
       console.error(err);
       setError(
@@ -92,60 +115,106 @@ export default function CheckoutPage() {
       </div>
 
       <div className="checkout-layout">
-        <form className="card" onSubmit={handleSubmit}>
-          <div className="notice" style={{ marginBottom: 14 }}>
-            Gerçek kart numarası girme. Bu alan sadece deneyimin hikayesi için.
-          </div>
-
-          <div className="field">
-            <label htmlFor="address">Sahte teslimat adresi</label>
-            <textarea
-              id="address"
-              onChange={(event) => setAddress(event.target.value)}
-              rows={3}
-              value={address}
-            />
-          </div>
-
-          <div className="field">
-            <label>Sahte kart seç</label>
-            <div className="fake-card-grid">
-              {fakeCards.map((card) => (
-                <button
-                  className={`fake-card-option ${card.theme} ${
-                    card.name === cardName ? "selected" : ""
-                  }`}
-                  key={card.name}
-                  onClick={() => setCardName(card.name)}
-                  type="button"
-                >
-                  <span className="fake-card-top">
-                    <span>SepetHazır</span>
-                    <span>0 TL</span>
-                  </span>
-                  <strong>{card.name}</strong>
-                  <span>{card.number}</span>
-                  <small>{card.line}</small>
-                </button>
-              ))}
+        <form className="checkout-form" id="fake-checkout" onSubmit={handleSubmit}>
+          <section className="card checkout-section">
+            <div className="checkout-step">
+              <span>1</span>
+              <strong>Teslimat</strong>
             </div>
-          </div>
+            <div className="notice" style={{ marginBottom: 14 }}>
+            Gerçek kart numarası girme. Bu alan sadece deneyimin hikayesi için.
+            </div>
 
-          <div className="field">
-            <label htmlFor="note">Sipariş notu</label>
-            <input
-              id="note"
-              onChange={(event) => setFantasyNote(event.target.value)}
-              placeholder="Bugün kendimi zengin hissediyorum"
-              value={fantasyNote}
-            />
-          </div>
+            <div className="field">
+              <label htmlFor="address">Sahte teslimat adresi</label>
+              <textarea
+                id="address"
+                onChange={(event) => setAddress(event.target.value)}
+                rows={3}
+                value={address}
+              />
+            </div>
 
-          {error && <p className="error">{error}</p>}
+            <div className="field">
+              <label>Kurye modu</label>
+              <div className="delivery-mode-grid">
+                {deliveryModes.map((mode) => (
+                  <button
+                    className={mode.name === deliveryMode ? "delivery-mode selected" : "delivery-mode"}
+                    key={mode.name}
+                    onClick={() => setDeliveryMode(mode.name)}
+                    type="button"
+                  >
+                    <strong>{mode.name}</strong>
+                    <span>{mode.desc}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
 
-          <button className="btn" disabled={isSubmitting} type="submit">
-            {isSubmitting ? "Sipariş üretiliyor..." : "Sahte siparişi onayla"}
-          </button>
+          <section className="card checkout-section">
+            <div className="checkout-step">
+              <span>2</span>
+              <strong>Ödeme gibi yap</strong>
+            </div>
+
+            <div className="field">
+              <label>Ödeme modu</label>
+              <div className="segmented-control">
+                {paymentModes.map((mode) => (
+                  <button
+                    className={mode === paymentMode ? "selected" : ""}
+                    key={mode}
+                    onClick={() => setPaymentMode(mode)}
+                    type="button"
+                  >
+                    {mode}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="field">
+              <label>Sahte kart seç</label>
+              <div className="fake-card-grid">
+                {fakeCards.map((card) => (
+                  <button
+                    className={`fake-card-option ${card.theme} ${
+                      card.name === cardName ? "selected" : ""
+                    }`}
+                    key={card.name}
+                    onClick={() => setCardName(card.name)}
+                    type="button"
+                  >
+                    <span className="fake-card-top">
+                      <span>SepetHazır</span>
+                      <span>0 TL</span>
+                    </span>
+                    <strong>{card.name}</strong>
+                    <span>{card.number}</span>
+                    <small>{card.line}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="field">
+              <label htmlFor="note">Sipariş notu</label>
+              <input
+                id="note"
+                onChange={(event) => setFantasyNote(event.target.value)}
+                placeholder="Bugün kendimi zengin hissediyorum"
+                value={fantasyNote}
+              />
+            </div>
+
+            {error && <p className="error">{error}</p>}
+
+            <button className="btn desktop-submit" disabled={isSubmitting} type="submit">
+              {isSubmitting ? "Sipariş üretiliyor..." : "Sahte siparişi onayla"}
+            </button>
+          </section>
         </form>
 
         <aside className="card">
@@ -173,6 +242,17 @@ export default function CheckoutPage() {
             tutarıdır.
           </p>
         </aside>
+      </div>
+
+      <div className="checkout-sticky-bar">
+        <div>
+          <span>Ödenecek</span>
+          <strong>0 TL</strong>
+          <small>{formatPrice(totals.total)} TL sadece ekranda yakışıklı duruyor.</small>
+        </div>
+        <button className="btn" disabled={isSubmitting} form="fake-checkout" type="submit">
+          {isSubmitting ? "Üretiliyor..." : "Sahte siparişi oluştur"}
+        </button>
       </div>
     </>
   );

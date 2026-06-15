@@ -31,9 +31,8 @@ function discountRate(price: number, oldPrice: number) {
 
 export default function ShopPage() {
   const add = useCart((state) => state.add);
-  const itemCount = useCart((state) =>
-    state.items.reduce((sum, item) => sum + item.qty, 0)
-  );
+  const cartItems = useCart((state) => state.items);
+  const itemCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Tümü");
   const [sort, setSort] = useState<SortOption>("Öne çıkan");
@@ -144,7 +143,14 @@ export default function ShopPage() {
       ) : (
         <div className="grid">
           {filteredProducts.map((product) => (
-          <article className="card product-card" key={product.id}>
+          <article
+            className={
+              cartItems.some((item) => item.id === product.id)
+                ? "card product-card in-cart"
+                : "card product-card"
+            }
+            key={product.id}
+          >
             <div className="product-visual">
               {product.image ? (
                 <Image
@@ -172,7 +178,11 @@ export default function ShopPage() {
                 onClick={() => handleAdd(product)}
                 type="button"
               >
-                Sepete ekle
+                {cartItems.find((item) => item.id === product.id)
+                  ? `Sepette ${
+                      cartItems.find((item) => item.id === product.id)?.qty
+                    } · +1 ekle`
+                  : "Sepete ekle"}
               </button>
               <a
                 className="btn secondary"
