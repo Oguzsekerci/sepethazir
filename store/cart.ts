@@ -8,6 +8,8 @@ export type Product = {
   price: number;
   oldPrice: number;
   emoji: string;
+  image?: string;
+  imageAlt?: string;
   query: string;
   category: string;
 };

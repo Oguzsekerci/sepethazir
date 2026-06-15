@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { products } from "@/data/products";
@@ -144,7 +145,18 @@ export default function ShopPage() {
         <div className="grid">
           {filteredProducts.map((product) => (
           <article className="card product-card" key={product.id}>
-            <div className="product-visual">{product.emoji}</div>
+            <div className="product-visual">
+              {product.image ? (
+                <Image
+                  src={product.image}
+                  alt={product.imageAlt ?? product.name}
+                  fill
+                  sizes="(max-width: 560px) calc(100vw - 52px), (max-width: 900px) calc(50vw - 30px), 240px"
+                />
+              ) : (
+                <span>{product.emoji}</span>
+              )}
+            </div>
             <span className="badge">{product.category}</span>
             <h2 className="product-title">{product.name}</h2>
             <div className="product-meta">

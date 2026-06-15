@@ -7,6 +7,9 @@ export const products: Product[] = [
     price: 1299,
     oldPrice: 2199,
     emoji: "🎧",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Siyah kablosuz kulaklık",
     query: "kablosuz kulaklık",
     category: "Teknoloji",
   },
@@ -16,6 +19,9 @@ export const products: Product[] = [
     price: 899,
     oldPrice: 1499,
     emoji: "👟",
+    image:
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Kırmızı spor ayakkabı",
     query: "spor ayakkabı",
     category: "Moda",
   },
@@ -25,6 +31,9 @@ export const products: Product[] = [
     price: 649,
     oldPrice: 999,
     emoji: "⌨️",
+    image:
+      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Mekanik klavye",
     query: "mekanik klavye",
     category: "Teknoloji",
   },
@@ -34,6 +43,9 @@ export const products: Product[] = [
     price: 2199,
     oldPrice: 3499,
     emoji: "⌚",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Akıllı saat",
     query: "akıllı saat",
     category: "Teknoloji",
   },
@@ -43,6 +55,9 @@ export const products: Product[] = [
     price: 1850,
     oldPrice: 2600,
     emoji: "☕",
+    image:
+      "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Kahve makinesi",
     query: "kahve makinesi",
     category: "Ev",
   },
@@ -52,6 +67,9 @@ export const products: Product[] = [
     price: 549,
     oldPrice: 849,
     emoji: "🎒",
+    image:
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Deri sırt çantası",
     query: "deri sırt çantası",
     category: "Moda",
   },
@@ -61,6 +79,9 @@ export const products: Product[] = [
     price: 349,
     oldPrice: 599,
     emoji: "🕶️",
+    image:
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Güneş gözlüğü",
     query: "güneş gözlük",
     category: "Moda",
   },
@@ -70,6 +91,9 @@ export const products: Product[] = [
     price: 780,
     oldPrice: 1100,
     emoji: "🌸",
+    image:
+      "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Parfüm şişesi",
     query: "parfüm seti",
     category: "Kişisel Bakım",
   },
@@ -79,6 +103,9 @@ export const products: Product[] = [
     price: 3299,
     oldPrice: 4899,
     emoji: "📽️",
+    image:
+      "https://images.unsplash.com/photo-1528395874238-34ebe249b3f2?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Projeksiyon cihazı",
     query: "mini projeksiyon",
     category: "Teknoloji",
   },
@@ -88,6 +115,9 @@ export const products: Product[] = [
     price: 2499,
     oldPrice: 3699,
     emoji: "🍟",
+    image:
+      "https://images.unsplash.com/photo-1604909052743-94e838986d24?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Air fryer ve kızarmış patates",
     query: "air fryer",
     category: "Ev",
   },
@@ -97,6 +127,9 @@ export const products: Product[] = [
     price: 429,
     oldPrice: 799,
     emoji: "🧥",
+    image:
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Oversize sweatshirt",
     query: "oversize sweatshirt",
     category: "Moda",
   },
@@ -106,6 +139,9 @@ export const products: Product[] = [
     price: 7999,
     oldPrice: 11999,
     emoji: "🤖",
+    image:
+      "https://images.unsplash.com/photo-1603618090561-412154b4bd1b?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Robot süpürge",
     query: "robot süpürge",
     category: "Ev",
   },
@@ -115,6 +151,9 @@ export const products: Product[] = [
     price: 1190,
     oldPrice: 1750,
     emoji: "🧴",
+    image:
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Cilt bakım ürünleri",
     query: "cilt bakım seti",
     category: "Kişisel Bakım",
   },
@@ -124,6 +163,9 @@ export const products: Product[] = [
     price: 5899,
     oldPrice: 7699,
     emoji: "🖥️",
+    image:
+      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Masaüstü monitör",
     query: "gaming monitor 27",
     category: "Teknoloji",
   },
@@ -133,6 +175,9 @@ export const products: Product[] = [
     price: 1699,
     oldPrice: 2299,
     emoji: "🥤",
+    image:
+      "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Termos şişe",
     query: "termos 1 litre",
     category: "Outdoor",
   },
@@ -142,6 +187,9 @@ export const products: Product[] = [
     price: 2790,
     oldPrice: 3990,
     emoji: "🪑",
+    image:
+      "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Minimal çalışma masası",
     query: "çalışma masası",
     category: "Ev",
   },

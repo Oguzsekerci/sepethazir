@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { buildAffiliateUrl } from "@/lib/affiliate";
 import { getCartTotals, useCart } from "@/store/cart";
@@ -39,7 +40,18 @@ export default function CartPage() {
           <div className="stack">
             {items.map((item) => (
               <article className="card cart-item" key={item.id}>
-                <div className="cart-emoji">{item.emoji}</div>
+                <div className="cart-emoji">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt ?? item.name}
+                      fill
+                      sizes="56px"
+                    />
+                  ) : (
+                    <span>{item.emoji}</span>
+                  )}
+                </div>
                 <div>
                   <h2 className="product-title">{item.name}</h2>
                   <p className="muted">{formatPrice(item.price)} TL</p>

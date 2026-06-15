@@ -184,19 +184,32 @@ a {
 }
 
 .product-card {
-  min-height: 220px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
 .product-visual {
-  display: grid;
-  place-items: center;
-  min-height: 82px;
+  aspect-ratio: 4 / 3;
   border-radius: 8px;
   background: #f4f4f5;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-visual span {
+  display: grid;
   font-size: 42px;
+  height: 100%;
+  place-items: center;
+}
+
+.product-visual img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .product-title {
@@ -288,7 +301,20 @@ a {
   place-items: center;
   border-radius: 8px;
   background: #f4f4f5;
+  overflow: hidden;
+  position: relative;
+  width: 56px;
+}
+
+.cart-emoji span {
   font-size: 28px;
+}
+
+.cart-emoji img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
 }
 
 .qty {
