@@ -241,4 +241,19 @@ export const products: Product[] = [
     query: "çalışma masası",
     category: "Ev",
   },
+  {
+    id: 17,
+    name: "Sepete Sığarsa Alırım F-16",
+    price: 16000000,
+    oldPrice: 24000000,
+    emoji: "✈️",
+    image:
+      "https://images.unsplash.com/photo-1694201862820-afbebbf52d17?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Kalkış yapan F-16 savaş uçağı",
+    blurb: "Mahalle üstünden alçak uçuş yapmaz, sadece sepette havalı durur. Kargo kata teslim değildir.",
+    status: "Milli abartı",
+    meme: "Sepete hava desteği",
+    query: "F-16 maket uçak",
+    category: "Savunma",
+  },
 ];
