@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { products } from "@/data/products";
 import { useCart } from "@/store/cart";
+import ProductImage from "../product-image";
 
 export default function SuccessClient() {
   const searchParams = useSearchParams();
@@ -80,16 +80,12 @@ export default function SuccessClient() {
             {recommendations.map((product) => (
               <Link href={`/shop/${product.id}`} key={product.id}>
                 <span>
-                  {product.image ? (
-                    <Image
-                      src={product.image}
-                      alt={product.imageAlt ?? product.name}
-                      fill
-                      sizes="52px"
-                    />
-                  ) : (
-                    product.emoji
-                  )}
+                  <ProductImage
+                    alt={product.imageAlt ?? product.name}
+                    emoji={product.emoji}
+                    image={product.image}
+                    sizes="52px"
+                  />
                 </span>
                 <strong>{product.name}</strong>
               </Link>

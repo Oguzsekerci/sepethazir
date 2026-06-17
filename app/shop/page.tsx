@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { type Product, useCart } from "@/store/cart";
+import ProductImage from "../product-image";
 
 const categories = [
   "Tümü",
@@ -303,16 +303,12 @@ function ProductCard({
       className={cartQty > 0 ? "card product-card in-cart" : "card product-card"}
     >
       <Link className="product-visual" href={`/shop/${product.id}`}>
-        {product.image ? (
-          <Image
-            src={product.image}
-            alt={product.imageAlt ?? product.name}
-            fill
-            sizes="(max-width: 560px) calc(100vw - 52px), (max-width: 900px) calc(50vw - 30px), 240px"
-          />
-        ) : (
-          <span>{product.emoji}</span>
-        )}
+        <ProductImage
+          alt={product.imageAlt ?? product.name}
+          emoji={product.emoji}
+          image={product.image}
+          sizes="(max-width: 560px) calc(100vw - 52px), (max-width: 900px) calc(50vw - 30px), 240px"
+        />
       </Link>
       <span className="badge">{product.category}</span>
       {product.isTrending && <span className="trend-chip">Trend</span>}

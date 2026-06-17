@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { getCartTotals, useCart } from "@/store/cart";
+import ProductImage from "../product-image";
 
 function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
@@ -41,16 +41,12 @@ export default function CartPage() {
             {items.map((item) => (
               <article className="card cart-item" key={item.id}>
                 <div className="cart-emoji">
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt ?? item.name}
-                      fill
-                      sizes="56px"
-                    />
-                  ) : (
-                    <span>{item.emoji}</span>
-                  )}
+                  <ProductImage
+                    alt={item.imageAlt ?? item.name}
+                    emoji={item.emoji}
+                    image={item.image}
+                    sizes="56px"
+                  />
                 </div>
                 <div>
                   <h2 className="product-title">{item.name}</h2>

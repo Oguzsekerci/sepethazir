@@ -407,7 +407,7 @@ export const products: Product[] = [
     oldPrice: 3490,
     emoji: "🍽️",
     image:
-      "https://images.unsplash.com/photo-1516223498413-84ecf3a1e7fd?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1603199506016-b9a594b593c0?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Seramik tabak takımı",
     blurb: "Kimse gelmeyebilir. Ama dolap açılınca yetişkinlik hissi verir.",
     status: "Ev ciddiyeti",
@@ -711,7 +711,7 @@ export const products: Product[] = [
     oldPrice: 2590,
     emoji: "🌌",
     image:
-      "https://images.unsplash.com/photo-1532978379173-523e16f371f1?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Yıldız projeksiyon ışığı",
     blurb: "Tavan galaksi, telefon sessizde, gerçeklik kısa süreliğine askıda.",
     status: "Mood ışığı",

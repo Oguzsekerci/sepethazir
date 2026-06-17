@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
+import ProductImage from "@/app/product-image";
 import ProductDetailActions from "./product-detail-actions";
 
 function formatPrice(value: number) {
@@ -79,17 +79,13 @@ export default async function ProductDetailPage({
 
       <section className="product-detail">
         <div className="product-detail-media">
-          {product.image ? (
-            <Image
-              src={product.image}
-              alt={product.imageAlt ?? product.name}
-              fill
-              priority
-              sizes="(max-width: 900px) 100vw, 480px"
-            />
-          ) : (
-            <span>{product.emoji}</span>
-          )}
+          <ProductImage
+            alt={product.imageAlt ?? product.name}
+            emoji={product.emoji}
+            image={product.image}
+            priority
+            sizes="(max-width: 900px) 100vw, 480px"
+          />
         </div>
 
         <div className="product-detail-copy">
@@ -178,16 +174,12 @@ export default async function ProductDetailPage({
             {similar.map((item) => (
               <Link className="dream-card" href={`/shop/${item.id}`} key={item.id}>
                 <span className="dream-image">
-                  {item.image ? (
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt ?? item.name}
-                      fill
-                      sizes="180px"
-                    />
-                  ) : (
-                    <span>{item.emoji}</span>
-                  )}
+                  <ProductImage
+                    alt={item.imageAlt ?? item.name}
+                    emoji={item.emoji}
+                    image={item.image}
+                    sizes="180px"
+                  />
                 </span>
                 <strong>{item.name}</strong>
                 <small>Detaya bak</small>

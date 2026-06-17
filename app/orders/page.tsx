@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
+import ProductImage from "../product-image";
 
 function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
@@ -134,16 +134,12 @@ export default function OrdersPage() {
               target="_blank"
             >
               <span className="dream-image">
-                {product.image ? (
-                  <Image
-                    src={product.image}
-                    alt={product.imageAlt ?? product.name}
-                    fill
-                    sizes="(max-width: 560px) calc(50vw - 20px), 160px"
-                  />
-                ) : (
-                  <span>{product.emoji}</span>
-                )}
+                <ProductImage
+                  alt={product.imageAlt ?? product.name}
+                  emoji={product.emoji}
+                  image={product.image}
+                  sizes="(max-width: 560px) calc(50vw - 20px), 160px"
+                />
               </span>
               <strong>{product.name}</strong>
               <small>Amazon’da incele</small>
