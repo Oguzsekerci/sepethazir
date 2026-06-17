@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/data/products";
-import { buildAffiliateUrl } from "@/lib/affiliate";
+import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 
 function formatPrice(value: number) {
@@ -18,7 +18,10 @@ function statusLabel(status: FakeOrder["status"]) {
 
 export default function OrdersPage() {
   const orders = useCart((state) => state.orders);
+  const addMany = useCart((state) => state.addMany);
+  const affiliateClicks = useCart((state) => state.affiliateClicks);
   const recommendations = products.slice(0, 6);
+  const topClicked = affiliateClicks[0];
 
   return (
     <>
@@ -33,6 +36,21 @@ export default function OrdersPage() {
           Daha fazla hiçbir şey al
         </Link>
       </div>
+
+      {affiliateClicks.length > 0 && (
+        <section className="card click-summary">
+          <div>
+            <span className="badge">Affiliate takip</span>
+            <h2>{affiliateClicks.length} Amazon çıkışı</h2>
+            <p className="muted">
+              Son tıklanan: {topClicked?.productName} · {topClicked?.category}
+            </p>
+          </div>
+          <Link className="btn ghost" href="/shop">
+            Yeni ürün keşfet
+          </Link>
+        </section>
+      )}
 
       {orders.length === 0 ? (
         <div className="card">
@@ -66,7 +84,7 @@ export default function OrdersPage() {
                     </span>
                     <a
                       className="badge"
-                      href={buildAffiliateUrl(item.query)}
+                      href={buildTrackedAffiliateUrl(item, "order-item")}
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -84,6 +102,13 @@ export default function OrdersPage() {
               <Link className="btn secondary" href={`/tracking?order=${order.id}`}>
                 Kuryeyi takip et
               </Link>
+              <button
+                className="btn ghost"
+                onClick={() => addMany(order.items)}
+                type="button"
+              >
+                Siparişi tekrar sepete al
+              </button>
             </article>
           ))}
         </div>
@@ -103,7 +128,7 @@ export default function OrdersPage() {
           {recommendations.map((product) => (
             <a
               className="dream-card"
-              href={buildAffiliateUrl(product.query)}
+              href={buildTrackedAffiliateUrl(product, "orders-recommendation")}
               key={product.id}
               rel="noreferrer"
               target="_blank"

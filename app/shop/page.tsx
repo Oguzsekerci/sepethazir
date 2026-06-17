@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
-import { buildAffiliateUrl } from "@/lib/affiliate";
-import { useCart } from "@/store/cart";
+import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
+import { type Product, useCart } from "@/store/cart";
 
 const categories = [
   "Tümü",
@@ -17,9 +17,46 @@ const sortOptions = [
   "Ucuzdan pahalıya",
   "Pahalıdan ucuza",
   "En yüksek indirim",
+  "En popüler",
+  "Dopamin skoru",
 ] as const;
 
 type SortOption = (typeof sortOptions)[number];
+
+const quickFilters = [
+  {
+    id: "all",
+    label: "Tüm ruh halleri",
+    desc: "Kategori ve arama ne diyorsa onu göster.",
+  },
+  {
+    id: "trend",
+    label: "Trend sepet",
+    desc: "Sepete atınca daha güncel hissettirenler.",
+  },
+  {
+    id: "dopamine",
+    label: "Dopamin yüksek",
+    desc: "Puanı yüksek, bahanesi hazır ürünler.",
+  },
+  {
+    id: "setup",
+    label: "Setup kuruyorum",
+    desc: "Masa, ofis ve gaming bahanesine yakın şeyler.",
+  },
+  {
+    id: "home",
+    label: "Ev modu",
+    desc: "Evi toparlıyormuş gibi hissettirenler.",
+  },
+  {
+    id: "escape",
+    label: "Kaçış planı",
+    desc: "Outdoor, seyahat ve hafta sonu fantezileri.",
+  },
+] as const;
+
+type QuickFilterId = (typeof quickFilters)[number]["id"];
 
 function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
@@ -29,6 +66,43 @@ function discountRate(price: number, oldPrice: number) {
   return Math.round(((oldPrice - price) / oldPrice) * 100);
 }
 
+function searchableText(product: Product) {
+  return [
+    product.name,
+    product.category,
+    product.blurb,
+    product.status,
+    product.meme,
+    ...(product.tags ?? []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLocaleLowerCase("tr-TR");
+}
+
+function matchesQuickFilter(product: Product, activeFilter: QuickFilterId) {
+  if (activeFilter === "all") return true;
+  if (activeFilter === "trend") return Boolean(product.isTrending);
+  if (activeFilter === "dopamine") return (product.dopamineScore ?? 0) >= 82;
+  if (activeFilter === "setup") {
+    return [product.category, ...(product.tags ?? [])].some((item) =>
+      ["Teknoloji", "Ofis", "Gaming", "Setup", "Home office"].includes(item)
+    );
+  }
+  if (activeFilter === "home") {
+    return [product.category, ...(product.tags ?? [])].some((item) =>
+      ["Ev", "Mutfak", "Dekor", "Rahatlık", "Kişisel Bakım"].includes(item)
+    );
+  }
+  if (activeFilter === "escape") {
+    return [product.category, ...(product.tags ?? [])].some((item) =>
+      ["Outdoor", "Seyahat", "Kamp", "Hafta sonu"].includes(item)
+    );
+  }
+
+  return true;
+}
+
 export default function ShopPage() {
   const add = useCart((state) => state.add);
   const cartItems = useCart((state) => state.items);
@@ -36,16 +110,27 @@ export default function ShopPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Tümü");
   const [sort, setSort] = useState<SortOption>("Öne çıkan");
+  const [quickFilter, setQuickFilter] = useState<QuickFilterId>("all");
   const [toast, setToast] = useState("");
+  const toastTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) {
+        window.clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
 
   const filteredProducts = useMemo(() => {
     const matches = products.filter((product) => {
       const matchesCategory = category === "Tümü" || product.category === category;
-      const matchesQuery = product.name
-        .toLocaleLowerCase("tr-TR")
-        .includes(query.toLocaleLowerCase("tr-TR"));
+      const matchesQuery = searchableText(product).includes(
+        query.toLocaleLowerCase("tr-TR")
+      );
+      const matchesMood = matchesQuickFilter(product, quickFilter);
 
-      return matchesCategory && matchesQuery;
+      return matchesCategory && matchesQuery && matchesMood;
     });
 
     return [...matches].sort((a, b) => {
@@ -54,15 +139,29 @@ export default function ShopPage() {
       if (sort === "En yüksek indirim") {
         return discountRate(b.price, b.oldPrice) - discountRate(a.price, a.oldPrice);
       }
+      if (sort === "En popüler") {
+        return (b.reviewCount ?? 0) - (a.reviewCount ?? 0);
+      }
+      if (sort === "Dopamin skoru") {
+        return (b.dopamineScore ?? 0) - (a.dopamineScore ?? 0);
+      }
 
-      return a.id - b.id;
+      return Number(Boolean(b.isTrending)) - Number(Boolean(a.isTrending)) || a.id - b.id;
     });
-  }, [category, query, sort]);
+  }, [category, query, quickFilter, sort]);
 
   function handleAdd(product: (typeof products)[number]) {
     add(product);
     setToast(`${product.name} sepete eklendi.`);
-    window.setTimeout(() => setToast(""), 2400);
+
+    if (toastTimerRef.current) {
+      window.clearTimeout(toastTimerRef.current);
+    }
+
+    toastTimerRef.current = window.setTimeout(() => {
+      setToast("");
+      toastTimerRef.current = null;
+    }, 2400);
   }
 
   return (
@@ -103,9 +202,31 @@ export default function ShopPage() {
             ))}
           </select>
         </div>
+        <div className="quick-filter-section">
+          <div className="section-kicker">Hızlı koleksiyon</div>
+          <div className="quick-filter-grid">
+            {quickFilters.map((filter) => (
+              <button
+                aria-pressed={filter.id === quickFilter}
+                className={
+                  filter.id === quickFilter
+                    ? "quick-filter selected"
+                    : "quick-filter"
+                }
+                key={filter.id}
+                onClick={() => setQuickFilter(filter.id)}
+                type="button"
+              >
+                <strong>{filter.label}</strong>
+                <span>{filter.desc}</span>
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="nav">
           {categories.map((item) => (
             <button
+              aria-pressed={item === category}
               className={item === category ? "btn" : "btn ghost"}
               key={item}
               onClick={() => setCategory(item)}
@@ -119,7 +240,9 @@ export default function ShopPage() {
 
       <div className="result-bar">
         <span>{filteredProducts.length} ürün</span>
-        <span>{category}</span>
+        <span>
+          {category} · {quickFilters.find((item) => item.id === quickFilter)?.label}
+        </span>
       </div>
 
       {filteredProducts.length === 0 ? (
@@ -134,6 +257,7 @@ export default function ShopPage() {
               setQuery("");
               setCategory("Tümü");
               setSort("Öne çıkan");
+              setQuickFilter("all");
             }}
             type="button"
           >
@@ -143,63 +267,14 @@ export default function ShopPage() {
       ) : (
         <div className="grid">
           {filteredProducts.map((product) => (
-          <article
-            className={
-              cartItems.some((item) => item.id === product.id)
-                ? "card product-card in-cart"
-                : "card product-card"
-            }
-            key={product.id}
-          >
-            <Link className="product-visual" href={`/shop/${product.id}`}>
-              {product.image ? (
-                <Image
-                  src={product.image}
-                  alt={product.imageAlt ?? product.name}
-                  fill
-                  sizes="(max-width: 560px) calc(100vw - 52px), (max-width: 900px) calc(50vw - 30px), 240px"
-                />
-              ) : (
-                <span>{product.emoji}</span>
-              )}
-            </Link>
-            <span className="badge">{product.category}</span>
-            {product.meme && <span className="meme-chip">{product.meme}</span>}
-            <h2 className="product-title">
-              <Link href={`/shop/${product.id}`}>{product.name}</Link>
-            </h2>
-            {product.blurb && <p className="product-blurb">{product.blurb}</p>}
-            <div className="product-meta">
-              <div>
-                <div className="old-price">{formatPrice(product.oldPrice)} TL</div>
-                <div className="price">{formatPrice(product.price)} TL</div>
-              </div>
-              <span className="badge">
-                {product.status ?? `%${discountRate(product.price, product.oldPrice)}`}
-              </span>
-            </div>
-            <div className="actions">
-              <button
-                className="btn"
-                onClick={() => handleAdd(product)}
-                type="button"
-              >
-                {cartItems.find((item) => item.id === product.id)
-                  ? `Sepette ${
-                      cartItems.find((item) => item.id === product.id)?.qty
-                    } · +1 ekle`
-                  : "Sepete ekle"}
-              </button>
-              <a
-                className="btn secondary"
-                href={buildAffiliateUrl(product.query)}
-                rel="noreferrer"
-                target="_blank"
-              >
-                Amazon’da incele
-              </a>
-            </div>
-          </article>
+            <ProductCard
+              cartQty={
+                cartItems.find((item) => item.id === product.id)?.qty ?? 0
+              }
+              key={product.id}
+              onAdd={handleAdd}
+              product={product}
+            />
           ))}
         </div>
       )}
@@ -211,5 +286,85 @@ export default function ShopPage() {
         </div>
       )}
     </>
+  );
+}
+
+function ProductCard({
+  cartQty,
+  onAdd,
+  product,
+}: {
+  cartQty: number;
+  onAdd: (product: (typeof products)[number]) => void;
+  product: (typeof products)[number];
+}) {
+  return (
+    <article
+      className={cartQty > 0 ? "card product-card in-cart" : "card product-card"}
+    >
+      <Link className="product-visual" href={`/shop/${product.id}`}>
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.imageAlt ?? product.name}
+            fill
+            sizes="(max-width: 560px) calc(100vw - 52px), (max-width: 900px) calc(50vw - 30px), 240px"
+          />
+        ) : (
+          <span>{product.emoji}</span>
+        )}
+      </Link>
+      <span className="badge">{product.category}</span>
+      {product.isTrending && <span className="trend-chip">Trend</span>}
+      {product.meme && <span className="meme-chip">{product.meme}</span>}
+      <h2 className="product-title">
+        <Link href={`/shop/${product.id}`}>{product.name}</Link>
+      </h2>
+      {product.blurb && <p className="product-blurb">{product.blurb}</p>}
+      {(product.rating || product.dopamineScore) && (
+        <div className="product-signals">
+          {product.rating && (
+            <span>
+              ★ {product.rating.toLocaleString("tr-TR")} ·{" "}
+              {(product.reviewCount ?? 0).toLocaleString("tr-TR")}
+            </span>
+          )}
+          {product.dopamineScore && <span>{product.dopamineScore} DP</span>}
+        </div>
+      )}
+      {product.tags && (
+        <div className="tag-row">
+          {product.tags.slice(0, 3).map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+      )}
+      <div className="product-meta">
+        <div>
+          <div className="old-price">{formatPrice(product.oldPrice)} TL</div>
+          <div className="price">{formatPrice(product.price)} TL</div>
+        </div>
+        <span className="badge">
+          {product.status ?? `%${discountRate(product.price, product.oldPrice)}`}
+        </span>
+      </div>
+      <div className="actions">
+        <button
+          className="btn"
+          onClick={() => onAdd(product)}
+          type="button"
+        >
+          {cartQty > 0 ? `Sepette ${cartQty} · +1 ekle` : "Sepete ekle"}
+        </button>
+        <a
+          className="btn secondary"
+          href={buildTrackedAffiliateUrl(product, "shop-card")}
+          rel="noreferrer"
+          target="_blank"
+        >
+          Amazon’da incele
+        </a>
+      </div>
+    </article>
   );
 }

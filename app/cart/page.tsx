@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { buildAffiliateUrl } from "@/lib/affiliate";
+import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { getCartTotals, useCart } from "@/store/cart";
 
 function formatPrice(value: number) {
@@ -57,7 +57,7 @@ export default function CartPage() {
                   <p className="muted">{formatPrice(item.price)} TL</p>
                   <a
                     className="badge"
-                    href={buildAffiliateUrl(item.query)}
+                    href={buildTrackedAffiliateUrl(item, "cart-item")}
                     rel="noreferrer"
                     target="_blank"
                     style={{ marginTop: 8 }}
@@ -66,11 +66,21 @@ export default function CartPage() {
                   </a>
                 </div>
                 <div className="qty">
-                  <button onClick={() => dec(item.id)} type="button">
+                  <button
+                    aria-label={`${item.name} adetini azalt`}
+                    onClick={() => dec(item.id)}
+                    type="button"
+                  >
                     -
                   </button>
-                  <strong>{item.qty}</strong>
-                  <button onClick={() => inc(item.id)} type="button">
+                  <strong aria-label={`${item.name} adedi: ${item.qty}`}>
+                    {item.qty}
+                  </strong>
+                  <button
+                    aria-label={`${item.name} adetini artır`}
+                    onClick={() => inc(item.id)}
+                    type="button"
+                  >
                     +
                   </button>
                 </div>

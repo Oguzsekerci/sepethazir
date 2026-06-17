@@ -43,3 +43,41 @@ on public.orders
 for select
 to authenticated
 using (auth.uid() = user_id);
+
+create table if not exists public.affiliate_clicks (
+  id uuid primary key default gen_random_uuid(),
+  public_id text not null,
+  user_id uuid null references auth.users(id) on delete set null,
+  product_id integer not null,
+  product_name text not null,
+  category text not null,
+  href text not null,
+  source text not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.affiliate_clicks
+  add column if not exists public_id text,
+  add column if not exists user_id uuid null references auth.users(id) on delete set null,
+  add column if not exists product_id integer,
+  add column if not exists product_name text,
+  add column if not exists category text,
+  add column if not exists href text,
+  add column if not exists source text,
+  add column if not exists created_at timestamptz not null default now();
+
+alter table public.affiliate_clicks enable row level security;
+
+drop policy if exists "Allow anonymous affiliate click inserts" on public.affiliate_clicks;
+create policy "Allow anonymous affiliate click inserts"
+on public.affiliate_clicks
+for insert
+to anon
+with check (true);
+
+drop policy if exists "Allow users to read own affiliate clicks" on public.affiliate_clicks;
+create policy "Allow users to read own affiliate clicks"
+on public.affiliate_clicks
+for select
+to authenticated
+using (auth.uid() = user_id);

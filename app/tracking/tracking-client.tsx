@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { products } from "@/data/products";
-import { buildAffiliateUrl } from "@/lib/affiliate";
+import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 
 const TrackingMap = dynamic(() => import("./tracking-map"), {
@@ -172,7 +172,7 @@ export default function TrackingClient() {
           {recommendations.map((product) => (
             <a
               className="dream-card"
-              href={buildAffiliateUrl(product.query)}
+              href={buildTrackedAffiliateUrl(product, "tracking-recommendation")}
               key={product.id}
               rel="noreferrer"
               target="_blank"

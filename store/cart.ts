@@ -13,6 +13,13 @@ export type Product = {
   blurb?: string;
   status?: string;
   meme?: string;
+  rating?: number;
+  reviewCount?: number;
+  tags?: string[];
+  isTrending?: boolean;
+  dopamineScore?: number;
+  reasonToBuy?: string;
+  affiliateUrl?: string;
   query: string;
   category: string;
 };
@@ -42,6 +49,16 @@ export type FakeOrder = {
   };
 };
 
+export type AffiliateClick = {
+  id: string;
+  productId: number;
+  productName: string;
+  category: string;
+  href: string;
+  source: string;
+  createdAt: string;
+};
+
 type CheckoutInput = {
   address: string;
   fantasyNote?: string;
@@ -50,19 +67,24 @@ type CheckoutInput = {
 type CartState = {
   items: CartItem[];
   orders: FakeOrder[];
+  affiliateClicks: AffiliateClick[];
   add: (product: Product) => void;
+  addMany: (items: CartItem[]) => void;
   inc: (id: number) => void;
   dec: (id: number) => void;
   clear: () => void;
   createFakeOrder: (input: CheckoutInput) => Promise<FakeOrder>;
   markDelivered: (id: string) => void;
+  trackAffiliateClick: (
+    click: Omit<AffiliateClick, "id" | "createdAt">
+  ) => void;
 };
 
 const couriers = [
-  { name: "Mert K.", vehicle: "Elektrikli motor", plate: "34 SH 108" },
+  { name: "Kaan Ş.", vehicle: "Elektrikli motor", plate: "34 SH 108" },
   { name: "Melis G.", vehicle: "Kurye motoru", plate: "61 OF 420" },
-  { name: "Baran T.", vehicle: "Scooter", plate: "34 HAZ 16" },
-  { name: "Deniz Y.", vehicle: "Mini van", plate: "06 SE 777" },
+  { name: "Oğuz G.", vehicle: "Scooter", plate: "34 HAZ 16" },
+  { name: "Micheal J.", vehicle: "Mini van", plate: "06 SE 777" },
 ];
 
 function formatOrderId() {
@@ -83,29 +105,62 @@ async function syncOrderToSupabase(order: FakeOrder, fantasyNote?: string) {
     return undefined;
   }
 
-  const { data: userData } = await supabase.auth.getUser();
-  const { error } = await supabase
-    .from("orders")
-    .insert({
-      public_id: order.id,
-      user_id: userData.user?.id ?? null,
-      items: order.items,
-      subtotal: order.subtotal,
-      discount: order.discount,
-      shipping: order.shipping,
-      total: order.total,
-      address: order.address,
-      status: order.status,
-      courier: order.courier,
-      fantasy_note: fantasyNote ?? null,
-    });
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    const { data, error } = await supabase
+      .from("orders")
+      .insert({
+        public_id: order.id,
+        user_id: userData.user?.id ?? null,
+        items: order.items,
+        subtotal: order.subtotal,
+        discount: order.discount,
+        shipping: order.shipping,
+        total: order.total,
+        address: order.address,
+        status: order.status,
+        courier: order.courier,
+        fantasy_note: fantasyNote ?? null,
+      })
+      .select("id")
+      .single();
 
-  if (error) {
+    if (error) {
+      console.warn("Supabase order sync failed", error);
+      return undefined;
+    }
+
+    return data?.id;
+  } catch (error) {
     console.warn("Supabase order sync failed", error);
     return undefined;
   }
+}
 
-  return undefined;
+async function syncAffiliateClickToSupabase(click: AffiliateClick) {
+  if (!isSupabaseConfigured || !supabase) {
+    return;
+  }
+
+  try {
+    const { data: userData } = await supabase.auth.getUser();
+    const { error } = await supabase.from("affiliate_clicks").insert({
+      public_id: click.id,
+      user_id: userData.user?.id ?? null,
+      product_id: click.productId,
+      product_name: click.productName,
+      category: click.category,
+      href: click.href,
+      source: click.source,
+      created_at: click.createdAt,
+    });
+
+    if (error) {
+      console.warn("Supabase affiliate click sync failed", error);
+    }
+  } catch (error) {
+    console.warn("Supabase affiliate click sync failed", error);
+  }
 }
 
 export const useCart = create<CartState>()(
@@ -113,6 +168,7 @@ export const useCart = create<CartState>()(
     (set, get) => ({
       items: [],
       orders: [],
+      affiliateClicks: [],
       add: (product) =>
         set((state) => {
           const existing = state.items.find((item) => item.id === product.id);
@@ -126,6 +182,28 @@ export const useCart = create<CartState>()(
           }
 
           return { items: [...state.items, { ...product, qty: 1 }] };
+        }),
+      addMany: (items) =>
+        set((state) => {
+          const nextItems = [...state.items];
+
+          items.forEach((incomingItem) => {
+            const existingIndex = nextItems.findIndex(
+              (item) => item.id === incomingItem.id
+            );
+
+            if (existingIndex >= 0) {
+              nextItems[existingIndex] = {
+                ...nextItems[existingIndex],
+                qty: nextItems[existingIndex].qty + incomingItem.qty,
+              };
+              return;
+            }
+
+            nextItems.push({ ...incomingItem });
+          });
+
+          return { items: nextItems };
         }),
       inc: (id) =>
         set((state) => ({
@@ -180,6 +258,19 @@ export const useCart = create<CartState>()(
             order.id === id ? { ...order, status: "delivered" } : order
           ),
         })),
+      trackAffiliateClick: (click) => {
+        const savedClick = {
+          ...click,
+          id: `CLK-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
+          createdAt: new Date().toISOString(),
+        };
+
+        set((state) => ({
+          affiliateClicks: [savedClick, ...state.affiliateClicks].slice(0, 100),
+        }));
+
+        void syncAffiliateClickToSupabase(savedClick);
+      },
     }),
     {
       name: "sepethazir-state",

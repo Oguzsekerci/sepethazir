@@ -1,13 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { products } from "@/data/products";
 import { useCart } from "@/store/cart";
 
 export default function SuccessClient() {
   const searchParams = useSearchParams();
   const orders = useCart((state) => state.orders);
+  const addMany = useCart((state) => state.addMany);
   const orderId = searchParams.get("order") ?? "";
   const order = useMemo(() => {
     return orders.find((item) => item.id === orderId) ?? orders[0];
@@ -26,6 +29,14 @@ export default function SuccessClient() {
   }
 
   const dopaminePoints = Math.max(150, Math.round(order.total / 10));
+  const orderedCategories = new Set(order.items.map((item) => item.category));
+  const recommendations = products
+    .filter(
+      (product) =>
+        orderedCategories.has(product.category) &&
+        !order.items.some((item) => item.id === product.id)
+    )
+    .slice(0, 3);
 
   return (
     <main className="success-wrap">
@@ -59,7 +70,32 @@ export default function SuccessClient() {
           <Link className="btn ghost" href="/shop">
             Alışverişe devam et
           </Link>
+          <button className="btn secondary" onClick={() => addMany(order.items)} type="button">
+            Aynı sepeti tekrar kur
+          </button>
         </div>
+
+        {recommendations.length > 0 && (
+          <div className="success-recommendations">
+            {recommendations.map((product) => (
+              <Link href={`/shop/${product.id}`} key={product.id}>
+                <span>
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.imageAlt ?? product.name}
+                      fill
+                      sizes="52px"
+                    />
+                  ) : (
+                    product.emoji
+                  )}
+                </span>
+                <strong>{product.name}</strong>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );
