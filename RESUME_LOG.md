@@ -59,3 +59,11 @@ Siradaki is:
 1. Affiliate cikislari veri uretmeye baslayinca en cok tiklanan urunlerden gercek Amazon urun URL'lerine gecmek.
 2. Daha fazla kategori dengesi istenirse Savunma ve Absurt Luks'u 4+ urune tamamlamak.
 3. Degisiklikleri commit/push etmek.
+
+## 2026-06-19 - Metin duzeltmesi
+
+- Urun adlarinda tekrar eden `gibi / hissi veren / yapan` kaliplari azaltildi.
+- Eski katalogdaki daha iyi esprili isimlerin bir kismi geri birakildi.
+- Altin tepsi urununun bozuk/gorunmeyen gorseli calisan Unsplash CDN gorseliyle degistirildi.
+- `npm run lint` gecti.
+- `npm run build` gecti.

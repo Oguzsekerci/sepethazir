@@ -451,7 +451,7 @@ export const products: Product[] = [
   },
   {
     id: 23,
-    name: "Mutfakta Şef Gibi Tutan Bıçak Seti",
+    name: "Soğan Doğramayı Ciddiye Aldıran Bıçak Seti",
     price: 1399,
     oldPrice: 2099,
     emoji: "🔪",
@@ -492,7 +492,7 @@ export const products: Product[] = [
   },
   {
     id: 25,
-    name: "Misafir Gelirse Var Gibi Tabak Takımı",
+    name: "Dolapta Bekleyen Misafir Tabakları",
     price: 2490,
     oldPrice: 3490,
     emoji: "🍽️",
@@ -633,7 +633,7 @@ export const products: Product[] = [
   },
   {
     id: 32,
-    name: "Odayı Otel Lobisi Yapan Difüzör",
+    name: "Beş Yıldızlı Ev Kokusu Difüzörü",
     price: 899,
     oldPrice: 1299,
     emoji: "🕯️",
@@ -654,7 +654,7 @@ export const products: Product[] = [
   },
   {
     id: 33,
-    name: "Uyku Düzenim Var Gibi Ağırlıklı Battaniye",
+    name: "Alarm Erteleten Ağırlıklı Battaniye",
     price: 1799,
     oldPrice: 2599,
     emoji: "🛌",
@@ -715,7 +715,7 @@ export const products: Product[] = [
   },
   {
     id: 36,
-    name: "Aynaya Bakınca CEO Hissi Veren Blazer",
+    name: "Kamera Açtıran Blazer Ceket",
     price: 1899,
     oldPrice: 2899,
     emoji: "🧥",
@@ -735,7 +735,7 @@ export const products: Product[] = [
   },
   {
     id: 37,
-    name: "Koşuya Başlatmasa da Koşucu Gibi Saat",
+    name: "Yarın Koşarım Akıllı Saati",
     price: 3499,
     oldPrice: 4999,
     emoji: "🏃",
@@ -756,7 +756,7 @@ export const products: Product[] = [
   },
   {
     id: 38,
-    name: "Banyo Rafını Influencer Yapan Saç Bakım Seti",
+    name: "Sponsorlu Raf Saç Bakım Seti",
     price: 890,
     oldPrice: 1390,
     emoji: "🧴",
@@ -776,7 +776,7 @@ export const products: Product[] = [
   },
   {
     id: 39,
-    name: "Masada Küçük Ajans Hissi Veren Not Defteri",
+    name: "Strateji Toplantısı Not Defteri",
     price: 329,
     oldPrice: 549,
     emoji: "📓",
@@ -876,7 +876,7 @@ export const products: Product[] = [
   },
   {
     id: 44,
-    name: "Absürt Lüks: Salona Kraliyet Hissi Veren Satranç Takımı",
+    name: "Absürt Lüks: Sehpa Üstü Satranç Tahtı",
     price: 5999,
     oldPrice: 8999,
     emoji: "♟️",
@@ -897,7 +897,7 @@ export const products: Product[] = [
   },
   {
     id: 45,
-    name: "Masayı Komuta Merkezi Yapan Laptop Standı",
+    name: "Zoom Kadrajı Laptop Standı",
     price: 899,
     oldPrice: 1399,
     emoji: "💻",
@@ -918,7 +918,7 @@ export const products: Product[] = [
   },
   {
     id: 46,
-    name: "Toplantı Notu Alıyormuş Gibi Tablet Kalemi",
+    name: "Stratejik Çizim Tablet Kalemi",
     price: 699,
     oldPrice: 1099,
     emoji: "✍️",
@@ -979,7 +979,7 @@ export const products: Product[] = [
   },
   {
     id: 49,
-    name: "Masayı Final Boss Alanına Çeviren Mouse Pad",
+    name: "Final Boss Mouse Pad",
     price: 499,
     oldPrice: 799,
     emoji: "🖱️",
@@ -1000,7 +1000,7 @@ export const products: Product[] = [
   },
   {
     id: 50,
-    name: "Kaybetmeyi Daha Sinematik Yapan Gaming Headset",
+    name: "Bahaneli Gaming Headset",
     price: 2299,
     oldPrice: 3299,
     emoji: "🎧",
@@ -1020,7 +1020,7 @@ export const products: Product[] = [
   },
   {
     id: 51,
-    name: "Savaş Odası Hissi Veren Taktik Organizer",
+    name: "Operasyon Çantası Organizer",
     price: 799,
     oldPrice: 1199,
     emoji: "🧭",
@@ -1066,7 +1066,7 @@ export const products: Product[] = [
     oldPrice: 2499,
     emoji: "🏺",
     image:
-      "https://images.unsplash.com/photo-1582582494700-85d6c32b72e3?auto=format&fit=crop&w=900&q=80",
+      "https://images.unsplash.com/photo-1713990486514-79f2c3e35d3a?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Dekoratif lüks tepsi",
     blurb: "Üzerinde lokum olmasa bile salonun bütçesi artmış gibi durur.",
     status: "Vitrin hamlesi",
@@ -1081,7 +1081,7 @@ export const products: Product[] = [
   },
   {
     id: 54,
-    name: "Evde Galeri Açtıran Heykelimsi Masa Lambası",
+    name: "Bunu Nereden Aldın Masa Lambası",
     price: 2899,
     oldPrice: 4299,
     emoji: "🗿",
