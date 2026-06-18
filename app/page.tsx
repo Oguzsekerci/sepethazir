@@ -1,4 +1,19 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: siteUrl,
+  },
+  description: siteDescription,
+  openGraph: {
+    title: siteName,
+    description: siteDescription,
+    url: siteUrl,
+  },
+  title: siteName,
+};
 
 export default function Home() {
   return (

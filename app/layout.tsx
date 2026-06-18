@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import Header from "./header";
 import "./globals.css";
 
@@ -14,9 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SepetHazır",
-  description:
-    "Para harcamadan sahte sepet, sahte sipariş ve kurye takip deneyimi.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteName,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  applicationName: siteName,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    url: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
