@@ -105,8 +105,14 @@ function matchesQuickFilter(product: Product, activeFilter: QuickFilterId) {
 
 export default function ShopPage() {
   const add = useCart((state) => state.add);
+  const inc = useCart((state) => state.inc);
+  const dec = useCart((state) => state.dec);
   const cartItems = useCart((state) => state.items);
   const itemCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const cartTotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Tümü");
   const [sort, setSort] = useState<SortOption>("Öne çıkan");
@@ -272,6 +278,8 @@ export default function ShopPage() {
                 cartItems.find((item) => item.id === product.id)?.qty ?? 0
               }
               key={product.id}
+              onDec={dec}
+              onInc={inc}
               onAdd={handleAdd}
               product={product}
             />
@@ -285,16 +293,30 @@ export default function ShopPage() {
           <Link href="/cart">Sepete git</Link>
         </div>
       )}
+
+      {itemCount > 0 && (
+        <Link className="mobile-cart-bar" href="/cart">
+          <span>
+            <strong>{itemCount} ürün</strong>
+            <small>{formatPrice(cartTotal)} TL sahte sepet</small>
+          </span>
+          <b>Sepete git</b>
+        </Link>
+      )}
     </>
   );
 }
 
 function ProductCard({
   cartQty,
+  onDec,
+  onInc,
   onAdd,
   product,
 }: {
   cartQty: number;
+  onDec: (id: number) => void;
+  onInc: (id: number) => void;
   onAdd: (product: (typeof products)[number]) => void;
   product: (typeof products)[number];
 }) {
@@ -345,13 +367,33 @@ function ProductCard({
         </span>
       </div>
       <div className="actions">
-        <button
-          className="btn"
-          onClick={() => onAdd(product)}
-          type="button"
-        >
-          {cartQty > 0 ? `Sepette ${cartQty} · +1 ekle` : "Sepete ekle"}
-        </button>
+        {cartQty > 0 ? (
+          <div className="card-qty-control" aria-label={`${product.name} sepet adedi`}>
+            <button
+              aria-label={`${product.name} adetini azalt`}
+              onClick={() => onDec(product.id)}
+              type="button"
+            >
+              -
+            </button>
+            <strong>{cartQty}</strong>
+            <button
+              aria-label={`${product.name} adetini artır`}
+              onClick={() => onInc(product.id)}
+              type="button"
+            >
+              +
+            </button>
+          </div>
+        ) : (
+          <button
+            className="btn"
+            onClick={() => onAdd(product)}
+            type="button"
+          >
+            Sepete ekle
+          </button>
+        )}
         <a
           className="btn secondary"
           href={buildTrackedAffiliateUrl(product, "shop-card")}
