@@ -802,6 +802,12 @@ a {
   color: #c2410c;
 }
 
+.controls-card > .nav .btn {
+  flex: 0 0 auto;
+  min-width: max-content;
+  white-space: nowrap;
+}
+
 .result-bar {
   align-items: center;
   color: #78716c;
