@@ -8,6 +8,7 @@ type TrackableAffiliateProduct = {
 
 const defaultAmazonTag = "sepethazir-21";
 const defaultAmazonLinkId = "17183d8abbb6f1a60f791b706e1756a1";
+const allowedAmazonHosts = new Set(["amazon.com.tr", "www.amazon.com.tr", "amzn.to"]);
 
 function getAmazonTag() {
   const explicitTag = process.env.NEXT_PUBLIC_AMAZON_AFFILIATE_TAG;
@@ -46,6 +47,16 @@ export function buildAffiliateUrl(query: string, affiliateUrl?: string) {
   });
 
   return `https://www.amazon.com.tr/s?${params.toString()}`;
+}
+
+export function isAllowedAmazonTarget(target: string) {
+  try {
+    const url = new URL(target);
+
+    return url.protocol === "https:" && allowedAmazonHosts.has(url.hostname);
+  } catch {
+    return false;
+  }
 }
 
 export function buildTrackedAffiliateUrl(

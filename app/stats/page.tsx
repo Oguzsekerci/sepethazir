@@ -1,10 +1,15 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import {
+  isStatsSessionValid,
+  statsSessionCookieName,
+} from "@/lib/stats-auth";
 import type { AffiliateClick, CartItem, FakeOrder, OrderStatus } from "@/store/cart";
 import StatsClient, { type StatsRemoteData } from "./stats-client";
 
 type StatsSearchParams = {
-  key?: string;
+  error?: string;
 };
 
 type RemoteOrderRow = {
@@ -36,16 +41,6 @@ type RemoteClickRow = {
   source: string | null;
   created_at: string | null;
 };
-
-function isStatsAuthorized(key?: string) {
-  const configuredKey = process.env.STATS_ACCESS_KEY;
-
-  if (!configuredKey) {
-    return process.env.NODE_ENV !== "production";
-  }
-
-  return key === configuredKey;
-}
 
 function normalizeOrder(row: RemoteOrderRow, index: number): FakeOrder {
   return {
@@ -123,19 +118,20 @@ async function getRemoteStats(): Promise<StatsRemoteData> {
   };
 }
 
-function StatsLocked() {
+function StatsLocked({ invalidKey }: { invalidKey: boolean }) {
   return (
     <div className="card stats-lock">
       <span className="badge">Korumalı ekran</span>
       <h1>Stats erişimi kapalı</h1>
       <p className="muted">
-        Devam etmek için stats anahtarını query parametresi olarak gönder.
+        Devam etmek için stats anahtarını gir. Anahtar URL&apos;de taşınmaz.
       </p>
-      <form action="/stats">
+      <form action="/stats/access" method="post">
         <div className="field">
           <label htmlFor="key">Stats key</label>
           <input id="key" name="key" type="password" />
         </div>
+        {invalidKey && <p className="error">Stats key hatalı.</p>}
         <button className="btn" type="submit">
           Stats ekranına gir
         </button>
@@ -152,10 +148,11 @@ export default async function StatsPage({
 }: {
   searchParams: Promise<StatsSearchParams>;
 }) {
-  const { key } = await searchParams;
+  const [{ error }, cookieStore] = await Promise.all([searchParams, cookies()]);
+  const statsSession = cookieStore.get(statsSessionCookieName)?.value;
 
-  if (!isStatsAuthorized(key)) {
-    return <StatsLocked />;
+  if (!isStatsSessionValid(statsSession)) {
+    return <StatsLocked invalidKey={error === "1"} />;
   }
 
   const remoteData = await getRemoteStats();

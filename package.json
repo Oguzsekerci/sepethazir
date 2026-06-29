@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "smoke": "node scripts/smoke.mjs",
+    "validate:products": "node scripts/validate-products.mjs",
+    "verify": "npm run validate:products && npm run lint && npm run build && npm audit --audit-level=moderate",
+    "check:env": "node scripts/check-env.mjs",
+    "check:env:prod": "node scripts/check-env.mjs --production"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
@@ -27,5 +32,8 @@
     "eslint-config-next": "16.2.9",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "postcss": "8.5.15"
   }
 }

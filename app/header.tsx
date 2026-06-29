@@ -8,7 +8,6 @@ const navItems = [
   { href: "/shop", label: "Ürünler" },
   { href: "/orders", label: "Siparişler" },
   { href: "/tracking", label: "Kurye" },
-  { href: "/stats", label: "Stats" },
 ];
 
 export default function Header() {

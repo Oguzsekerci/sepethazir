@@ -61,7 +61,7 @@ function getCategoryCounts() {
 function getCatalogHealth() {
   const categoryCounts = getCategoryCounts();
   const underfilled = categoryCounts
-    .filter((item) => item.value < 4)
+    .filter((item) => item.value < 5)
     .map((item) => item.label);
   const missingRatings = products.filter((product) => !product.rating).length;
   const missingReasons = products.filter((product) => !product.reasonToBuy).length;
@@ -161,9 +161,16 @@ export default function StatsClient({ remoteData }: { remoteData: StatsRemoteDat
             Remote Supabase verisi uygunsa dahil edilir; tarayıcıdaki yerel veriyle birleştirilir.
           </p>
         </div>
-        <Link className="btn" href="/shop">
-          Ürünlere dön
-        </Link>
+        <div className="actions">
+          <Link className="btn" href="/shop">
+            Ürünlere dön
+          </Link>
+          <form action="/stats/logout" method="post">
+            <button className="btn ghost" type="submit">
+              Çıkış
+            </button>
+          </form>
+        </div>
       </div>
 
       <div className="notice stats-source">{remoteData.status}</div>

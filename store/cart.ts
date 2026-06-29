@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { isSupabaseConfigured, supabase } from "@/lib/supabase";
 
 export type Product = {
   id: number;
@@ -101,65 +100,44 @@ export function getCartTotals(items: CartItem[]) {
 }
 
 async function syncOrderToSupabase(order: FakeOrder, fantasyNote?: string) {
-  if (!isSupabaseConfigured || !supabase) {
-    return undefined;
-  }
-
   try {
-    const { data: userData } = await supabase.auth.getUser();
-    const { data, error } = await supabase
-      .from("orders")
-      .insert({
-        public_id: order.id,
-        user_id: userData.user?.id ?? null,
-        items: order.items,
-        subtotal: order.subtotal,
-        discount: order.discount,
-        shipping: order.shipping,
-        total: order.total,
-        address: order.address,
-        status: order.status,
-        courier: order.courier,
-        fantasy_note: fantasyNote ?? null,
-      })
-      .select("id")
-      .single();
+    const response = await fetch("/api/orders", {
+      body: JSON.stringify({ fantasyNote, order }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
 
-    if (error) {
-      console.warn("Supabase order sync failed", error);
+    if (!response.ok) {
+      console.warn("Order sync failed", await response.text());
       return undefined;
     }
 
-    return data?.id;
+    const data = (await response.json()) as { remoteId?: string | null };
+
+    return data.remoteId ?? undefined;
   } catch (error) {
-    console.warn("Supabase order sync failed", error);
+    console.warn("Order sync failed", error);
     return undefined;
   }
 }
 
 async function syncAffiliateClickToSupabase(click: AffiliateClick) {
-  if (!isSupabaseConfigured || !supabase) {
-    return;
-  }
-
   try {
-    const { data: userData } = await supabase.auth.getUser();
-    const { error } = await supabase.from("affiliate_clicks").insert({
-      public_id: click.id,
-      user_id: userData.user?.id ?? null,
-      product_id: click.productId,
-      product_name: click.productName,
-      category: click.category,
-      href: click.href,
-      source: click.source,
-      created_at: click.createdAt,
+    const response = await fetch("/api/affiliate-clicks", {
+      body: JSON.stringify({ click }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
     });
 
-    if (error) {
-      console.warn("Supabase affiliate click sync failed", error);
+    if (!response.ok) {
+      console.warn("Affiliate click sync failed", await response.text());
     }
   } catch (error) {
-    console.warn("Supabase affiliate click sync failed", error);
+    console.warn("Affiliate click sync failed", error);
   }
 }
 

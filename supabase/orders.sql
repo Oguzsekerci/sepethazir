@@ -31,11 +31,6 @@ alter table public.orders
 alter table public.orders enable row level security;
 
 drop policy if exists "Allow anonymous fake order inserts" on public.orders;
-create policy "Allow anonymous fake order inserts"
-on public.orders
-for insert
-to anon
-with check (true);
 
 drop policy if exists "Allow users to read own orders" on public.orders;
 create policy "Allow users to read own orders"
@@ -69,11 +64,6 @@ alter table public.affiliate_clicks
 alter table public.affiliate_clicks enable row level security;
 
 drop policy if exists "Allow anonymous affiliate click inserts" on public.affiliate_clicks;
-create policy "Allow anonymous affiliate click inserts"
-on public.affiliate_clicks
-for insert
-to anon
-with check (true);
 
 drop policy if exists "Allow users to read own affiliate clicks" on public.affiliate_clicks;
 create policy "Allow users to read own affiliate clicks"

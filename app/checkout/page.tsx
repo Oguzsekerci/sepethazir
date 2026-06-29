@@ -51,13 +51,25 @@ const deliveryModes = [
   },
 ];
 
+const deliveryAreas = [
+  "İstanbul / Kadıköy civarı",
+  "İstanbul / Beşiktaş civarı",
+  "Ankara / Çankaya civarı",
+  "İzmir / Karşıyaka civarı",
+  "Bursa / Nilüfer civarı",
+  "Antalya / Muratpaşa civarı",
+  "Tamamen hayali bir mahalle",
+] as const;
+
 const paymentModes = ["Sahte Kart", "Hayali Cüzdan", "Kapıda Yoklama"] as const;
 
 export default function CheckoutPage() {
   const router = useRouter();
   const items = useCart((state) => state.items);
   const createFakeOrder = useCart((state) => state.createFakeOrder);
-  const [address, setAddress] = useState("İstanbul, Kadıköy");
+  const [deliveryArea, setDeliveryArea] = useState<(typeof deliveryAreas)[number]>(
+    deliveryAreas[0]
+  );
   const [fantasyNote, setFantasyNote] = useState("");
   const [cardName, setCardName] = useState(fakeCards[0].name);
   const [deliveryMode, setDeliveryMode] = useState(deliveryModes[0].name);
@@ -77,16 +89,11 @@ export default function CheckoutPage() {
       return;
     }
 
-    if (!address.trim()) {
-      setError("Sahte teslimat adresi gerekli.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
       const order = await createFakeOrder({
-        address: address.trim(),
+        address: deliveryArea,
         fantasyNote:
           fantasyNote.trim() ||
           `${cardName.trim()} · ${deliveryMode} · ${paymentMode}`,
@@ -126,13 +133,20 @@ export default function CheckoutPage() {
             </div>
 
             <div className="field">
-              <label htmlFor="address">Sahte teslimat adresi</label>
-              <textarea
-                id="address"
-                onChange={(event) => setAddress(event.target.value)}
-                rows={3}
-                value={address}
-              />
+              <label htmlFor="delivery-area">Anonim teslimat bölgesi</label>
+              <select
+                id="delivery-area"
+                onChange={(event) =>
+                  setDeliveryArea(event.target.value as (typeof deliveryAreas)[number])
+                }
+                value={deliveryArea}
+              >
+                {deliveryAreas.map((area) => (
+                  <option key={area} value={area}>
+                    {area}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="field">

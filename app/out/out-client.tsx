@@ -1,42 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useCart } from "@/store/cart";
 
-function isAllowedAmazonTarget(target: string) {
-  try {
-    const url = new URL(target);
+export type OutboundClick = {
+  category: string;
+  productId: number;
+  productName: string;
+  source: string;
+  target: string;
+};
 
-    return url.protocol === "https:" && url.hostname === "www.amazon.com.tr";
-  } catch {
-    return false;
-  }
-}
-
-export default function OutClient() {
-  const searchParams = useSearchParams();
+export default function OutClient({ click }: { click: OutboundClick }) {
   const trackAffiliateClick = useCart((state) => state.trackAffiliateClick);
 
-  const click = useMemo(() => {
-    const target = searchParams.get("target") ?? "";
-
-    return {
-      target,
-      productId: Number(searchParams.get("productId") ?? 0),
-      productName: searchParams.get("productName") ?? "Bilinmeyen ürün",
-      category: searchParams.get("category") ?? "Genel",
-      source: searchParams.get("source") ?? "unknown",
-    };
-  }, [searchParams]);
-  const blocked = !isAllowedAmazonTarget(click.target) || !click.productId;
-
   useEffect(() => {
-    if (blocked) {
-      return;
-    }
-
     trackAffiliateClick({
       productId: click.productId,
       productName: click.productName,
@@ -50,19 +28,7 @@ export default function OutClient() {
     }, 450);
 
     return () => window.clearTimeout(redirectTimer);
-  }, [blocked, click, trackAffiliateClick]);
-
-  if (blocked) {
-    return (
-      <div className="card empty-state">
-        <h1>Link doğrulanamadı</h1>
-        <p className="muted">Amazon hedefi güvenli görünmediği için yönlendirme yapılmadı.</p>
-        <Link className="btn" href="/shop">
-          Ürünlere dön
-        </Link>
-      </div>
-    );
-  }
+  }, [click, trackAffiliateClick]);
 
   return (
     <div className="card outbound-card">

@@ -67,3 +67,39 @@ Siradaki is:
 - Altin tepsi urununun bozuk/gorunmeyen gorseli calisan Unsplash CDN gorseliyle degistirildi.
 - `npm run lint` gecti.
 - `npm run build` gecti.
+
+## 2026-06-29 - Guvenlik ve katalog bakimi
+
+- Google Fonts bagimliligi kaldirildi; build dis font fetch'ine bagli degil.
+- `/stats?key=...` modeli kaldirildi; stats girisi httpOnly cookie ile calisiyor.
+- Stats public nav'dan cikarildi ve logout eklendi.
+- Checkout adres alani anonim teslimat bolgesi secimine cevrildi.
+- Supabase order ve affiliate click yazimlari client'tan server API route'larina tasindi.
+- Anon Supabase insert policy'leri SQL dosyasindan kaldirildi.
+- Amazon hedef dogrulamasi `amazon.com.tr`, `www.amazon.com.tr` ve `amzn.to` icin genisletildi.
+- `/out` hedef dogrulamasi server tarafina tasindi; guvensiz hedef production HTML'de de bloklaniyor.
+- Katalog 60 urune cikarildi; tum kategoriler en az 5 urune tamamlandi.
+- `.env.example` eklendi.
+- Next security header'lari eklendi.
+- `X-Powered-By` header'i kapatildi ve HSTS eklendi.
+- `postcss` override ile `npm audit` uyarilari temizlendi.
+- `npm run smoke` HTTP smoke test script'i eklendi.
+- GitHub Actions CI eklendi; lint, audit, build ve production smoke test calistiriyor.
+- `npm run verify` lokal dogrulama script'i eklendi.
+- `/api/health` endpoint'i eklendi.
+- `npm run check:env` ve `npm run check:env:prod` env kontrol script'leri eklendi.
+- `npm run validate:products` katalog dogrulama script'i eklendi ve CI/verify akisina baglandi.
+- `docs/deployment.md` deployment runbook'u eklendi.
+- `npm run lint` gecti.
+- `npm run build` gecti.
+- `npm audit --audit-level=moderate` 0 vulnerability dondu.
+- `npm run smoke` lokal server'a karsi 9/9 gecti.
+- Production build `next start` ile 3001 portunda smoke test edildi; 9/9 gecti.
+- `/api/health` smoke kapsamina eklendi; lokal ve production smoke 10/10 gecti.
+
+Siradaki is:
+
+1. Canli Vercel env'lerinde `SUPABASE_SERVICE_ROLE_KEY` ve `STATS_ACCESS_KEY` dogrulamak.
+2. Prod'da stats login/logout, checkout, affiliate cikis ve `/api/*` route'larini test etmek.
+3. En cok tiklanan urunlerden baslayarak gercek Amazon affiliate URL'lerini eklemek.
+4. Gercek cihaz/browser ile mobil shop, checkout ve stats ekranlarini gorsel kontrol etmek.
