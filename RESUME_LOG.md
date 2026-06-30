@@ -103,3 +103,22 @@ Siradaki is:
 2. Prod'da stats login/logout, checkout, affiliate cikis ve `/api/*` route'larini test etmek.
 3. En cok tiklanan urunlerden baslayarak gercek Amazon affiliate URL'lerini eklemek.
 4. Gercek cihaz/browser ile mobil shop, checkout ve stats ekranlarini gorsel kontrol etmek.
+
+## 2026-06-30 - Prod dogrulama
+
+- `main` ile `origin/main` esit hale getirildi; son commit `77a5477 Harden app operations and catalog checks`.
+- GitHub Actions CI run `28373044318` success.
+- Vercel production deployment `5239308319` success.
+- Prod `/api/health` 200 dondu: `ok: true`, `productCount: 60`.
+- Prod `/shop` 200 dondu; security header'lari aktif.
+- Prod `/stats` 200 dondu ve kilitli ekran davranisi calisiyor.
+- Production smoke test `SMOKE_BASE_URL=https://sepethazir.vercel.app npm run smoke` 10/10 gecti.
+- Prod order API test kaydi `status: synced` dondu; Supabase order yazimi aktif.
+- Prod affiliate API test kaydi `status: synced` dondu; Supabase affiliate click yazimi aktif.
+- Eski `sepethazir-admin` stats key'i artik gecersiz; `/stats/access` `/stats?error=1` donuyor.
+
+Siradaki is:
+
+1. Gercek production `STATS_ACCESS_KEY` ile stats login/logout akisini dogrulamak.
+2. Gercek cihaz/browser ile mobil shop, checkout ve stats ekranlarini gorsel kontrol etmek.
+3. Stats verisine gore en cok tiklanan urunlerden baslayarak gercek Amazon affiliate URL'lerini eklemek.
