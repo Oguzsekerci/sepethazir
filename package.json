@@ -13,7 +13,8 @@
     "check:env": "node scripts/check-env.mjs",
     "check:env:prod": "node scripts/check-env.mjs --production",
     "amazon:search": "node scripts/amazon-paapi-search.mjs",
-    "amazon:batch": "node scripts/amazon-paapi-search.mjs --batch"
+    "amazon:batch": "node scripts/amazon-paapi-search.mjs --batch",
+    "amazon:link": "node scripts/amazon-link.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
