@@ -12,6 +12,18 @@ const requiredEnv = [
   "AMAZON_PAAPI_SECRET_KEY",
   "AMAZON_PAAPI_PARTNER_TAG",
 ];
+const prioritySearches = [
+  { id: 5, keyword: "kahve makinesi" },
+  { id: 6, keyword: "deri sırt çantası" },
+  { id: 3, keyword: "mekanik klavye" },
+  { id: 2, keyword: "spor ayakkabı" },
+  { id: 1, keyword: "kablosuz kulaklık" },
+  { id: 41, keyword: "kahve terazisi" },
+  { id: 40, keyword: "kumandalı led şerit ışık" },
+  { id: 22, keyword: "oyuncu koltuğu" },
+  { id: 20, keyword: "usb c hub dock" },
+  { id: 45, keyword: "alüminyum laptop standı" },
+];
 
 function loadEnvFile(file) {
   if (!existsSync(file)) {
@@ -73,6 +85,31 @@ function toAmzDate(date) {
 
 function normalizeWhitespace(value) {
   return String(value).replace(/\s+/g, " ").trim();
+}
+
+function getOptionValue(args, optionName, fallback) {
+  const optionIndex = args.indexOf(optionName);
+
+  if (optionIndex === -1) {
+    return fallback;
+  }
+
+  return args[optionIndex + 1] ?? fallback;
+}
+
+function getKeywordArgs(args) {
+  const keywordArgs = [];
+
+  for (let index = 0; index < args.length; index += 1) {
+    if (args[index] === "--count") {
+      index += 1;
+      continue;
+    }
+
+    keywordArgs.push(args[index]);
+  }
+
+  return keywordArgs;
 }
 
 async function searchAmazon(keyword, itemCount = 5) {
@@ -164,14 +201,46 @@ if (requiredEnv.some((name) => !process.env[name])) {
   process.exit(1);
 }
 
-const keyword = process.argv.slice(2).join(" ").trim();
+const args = process.argv.slice(2);
+const count = Number.parseInt(getOptionValue(args, "--count", "3"), 10);
+
+if (args.includes("--batch")) {
+  for (const search of prioritySearches) {
+    const data = await searchAmazon(search.keyword, count);
+    const items = data.SearchResult?.Items ?? [];
+
+    console.log(`\n# productId=${search.id}\tquery=${search.keyword}`);
+
+    if (items.length === 0) {
+      console.log("No items found");
+      continue;
+    }
+
+    for (const item of items) {
+      const title = normalizeWhitespace(
+        item.ItemInfo?.Title?.DisplayValue ?? "-"
+      );
+      const price = item.Offers?.Listings?.[0]?.Price?.DisplayAmount ?? "-";
+
+      console.log(`${item.ASIN}\t${price}\t${title}`);
+      console.log(item.DetailPageURL);
+    }
+  }
+
+  process.exit(0);
+}
+
+const keyword = getKeywordArgs(args).join(" ").trim();
 
 if (!keyword) {
-  console.error("Usage: node scripts/amazon-paapi-search.mjs <keyword>");
+  console.error(
+    "Usage: node scripts/amazon-paapi-search.mjs <keyword> [--count 3]"
+  );
+  console.error("   or: node scripts/amazon-paapi-search.mjs --batch");
   process.exit(1);
 }
 
-const data = await searchAmazon(keyword);
+const data = await searchAmazon(keyword, count);
 const items = data.SearchResult?.Items ?? [];
 
 if (items.length === 0) {

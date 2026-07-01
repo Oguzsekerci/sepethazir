@@ -12,7 +12,8 @@
     "verify": "npm run validate:products && npm run lint && npm run build && npm audit --audit-level=moderate",
     "check:env": "node scripts/check-env.mjs",
     "check:env:prod": "node scripts/check-env.mjs --production",
-    "amazon:search": "node scripts/amazon-paapi-search.mjs"
+    "amazon:search": "node scripts/amazon-paapi-search.mjs",
+    "amazon:batch": "node scripts/amazon-paapi-search.mjs --batch"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.108.2",
