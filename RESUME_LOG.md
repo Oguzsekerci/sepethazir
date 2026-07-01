@@ -122,3 +122,18 @@ Siradaki is:
 1. Gercek production `STATS_ACCESS_KEY` ile stats login/logout akisini dogrulamak.
 2. Gercek cihaz/browser ile mobil shop, checkout ve stats ekranlarini gorsel kontrol etmek.
 3. Stats verisine gore en cok tiklanan urunlerden baslayarak gercek Amazon affiliate URL'lerini eklemek.
+
+## 2026-07-01 - Stats logout duzeltmesi
+
+- Gercek production stats key ile login denendi; `/stats/access` session cookie set edip `/stats` ekranini acti.
+- Logout testinde cookie'nin silinmedigi goruldu; sebep login cookie'sinin `Path=/stats` ile set edilip logout'ta path eslesmeden silinmesiydi.
+- `app/stats/logout/route.ts` logout cookie'sini ayni `path`, `sameSite`, `secure` ve `httpOnly` scope'uyla `maxAge: 0` kullanarak expire edecek sekilde duzeltildi.
+- `npm run lint` gecti.
+- `npm run build` gecti.
+- Lokal production server'da test stats key ile login/logout dogrulandi: login sonrasi stats aciliyor, logout sonrasi kilitli ekrana donuyor.
+
+Siradaki is:
+
+1. Fix deploy olduktan sonra production stats logout akisini tekrar dogrulamak.
+2. Gercek cihaz/browser ile mobil shop, checkout ve stats ekranlarini gorsel kontrol etmek.
+3. Stats verisine gore en cok tiklanan urunlerden baslayarak gercek Amazon affiliate URL'lerini eklemek.
