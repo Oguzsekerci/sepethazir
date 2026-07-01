@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { type Product, useCart } from "@/store/cart";
+import AdSlot from "../ad-slot";
 import ProductImage from "../product-image";
 
 const categories = [
@@ -272,11 +273,12 @@ export default function ShopPage() {
         </div>
       ) : (
         <div className="grid">
-          {filteredProducts.map((product) => (
-            <ProductCard
+          {filteredProducts.map((product, index) => (
+            <FragmentWithAd
               cartQty={
                 cartItems.find((item) => item.id === product.id)?.qty ?? 0
               }
+              index={index}
               key={product.id}
               onDec={dec}
               onInc={inc}
@@ -303,6 +305,41 @@ export default function ShopPage() {
           <b>Sepete git</b>
         </Link>
       )}
+    </>
+  );
+}
+
+function FragmentWithAd({
+  cartQty,
+  index,
+  onDec,
+  onInc,
+  onAdd,
+  product,
+}: {
+  cartQty: number;
+  index: number;
+  onDec: (id: number) => void;
+  onInc: (id: number) => void;
+  onAdd: (product: (typeof products)[number]) => void;
+  product: (typeof products)[number];
+}) {
+  return (
+    <>
+      {index === 8 && (
+        <AdSlot
+          className="shop-ad"
+          label="Sponsorlu alan"
+          slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT}
+        />
+      )}
+      <ProductCard
+        cartQty={cartQty}
+        onDec={onDec}
+        onInc={onInc}
+        onAdd={onAdd}
+        product={product}
+      />
     </>
   );
 }

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
+import AdSlot from "@/app/ad-slot";
 import ProductImage from "@/app/product-image";
 import ProductDetailActions from "./product-detail-actions";
 
@@ -161,6 +162,12 @@ export default async function ProductDetailPage({
           </a>
         </div>
       </section>
+
+      <AdSlot
+        className="detail-ad"
+        label="Sponsorlu alan"
+        slot={process.env.NEXT_PUBLIC_ADSENSE_PRODUCT_SLOT}
+      />
 
       {similar.length > 0 && (
         <section className="dream-grid-section">

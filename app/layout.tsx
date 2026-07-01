@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
+import AdSenseScript from "./adsense";
 import Header from "./header";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
+        <AdSenseScript />
       </body>
     </html>
   );

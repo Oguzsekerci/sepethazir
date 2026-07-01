@@ -824,6 +824,52 @@ a {
   justify-items: start;
 }
 
+.ad-card {
+  background: #fff;
+  border: 1px dashed #d6d3d1;
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  min-height: 120px;
+  padding: 12px;
+}
+
+.ad-card > span {
+  color: #a8a29e;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ad-placeholder {
+  align-content: center;
+  background: #fafaf9;
+  border-radius: 6px;
+  color: #57534e;
+  display: grid;
+  gap: 4px;
+  min-height: 86px;
+  padding: 14px;
+}
+
+.ad-placeholder strong {
+  color: #171717;
+  font-size: 14px;
+}
+
+.ad-placeholder small {
+  color: #78716c;
+  line-height: 1.4;
+}
+
+.shop-ad {
+  grid-column: span 2;
+}
+
+.detail-ad {
+  margin: 22px 0;
+}
+
 .toast {
   align-items: center;
   background: #171717;
@@ -1535,6 +1581,10 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .shop-ad {
+    grid-column: 1 / -1;
+  }
+
   .dream-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1564,6 +1614,10 @@ a {
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .shop-ad {
+    grid-column: auto;
   }
 
   .stats-grid {
