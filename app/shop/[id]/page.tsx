@@ -159,7 +159,7 @@ export default async function ProductDetailPage({
             rel="noreferrer"
             target="_blank"
           >
-            Amazon’da affiliate linkle ara
+            Amazon’da incele
           </a>
         </div>
       </section>

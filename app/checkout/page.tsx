@@ -101,9 +101,7 @@ export default function CheckoutPage() {
       router.push(`/success?order=${order.id}`);
     } catch (err) {
       console.error(err);
-      setError(
-        "Sipariş oluşturulamadı. Supabase ayarı hatalıysa yerel kayıt yine çalışmalı."
-      );
+      setError("Sipariş oluşturulamadı. Lütfen tekrar dene.");
     } finally {
       setIsSubmitting(false);
     }

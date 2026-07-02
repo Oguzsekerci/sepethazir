@@ -33,7 +33,7 @@ export default function OutClient({ click }: { click: OutboundClick }) {
   return (
     <div className="card outbound-card">
       <span className="badge">Amazon TR</span>
-      <h1>Affiliate link hazırlanıyor</h1>
+      <h1>Amazon sayfası hazırlanıyor</h1>
       <p className="muted">
         {click.productName} için Amazon sayfasına yönlendiriliyorsun.
       </p>

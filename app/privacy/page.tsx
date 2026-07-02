@@ -47,9 +47,9 @@ export default function PrivacyPage() {
 
         <h2>Üçüncü taraflar</h2>
         <p>
-          Google, Amazon, Vercel, Supabase ve benzeri altyapı sağlayıcıları
-          kendi hizmetlerini sunmak için veri işleyebilir. Bu tarafların kendi
-          gizlilik politikaları geçerlidir.
+          Google, Amazon ve benzeri hizmet sağlayıcıları kendi hizmetlerini
+          sunmak için veri işleyebilir. Bu tarafların kendi gizlilik
+          politikaları geçerlidir.
         </p>
 
         <h2>Haklarınız</h2>
