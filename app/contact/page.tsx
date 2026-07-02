@@ -24,7 +24,9 @@ export default function ContactPage() {
 
         <div className="contact-box">
           <span>E-posta</span>
-          <a href="mailto:oguzsekerci@gmail.com">oguzsekerci@gmail.com</a>
+          <a href="mailto:iletisim@sepethazir.com.tr">
+            iletisim@sepethazir.com.tr
+          </a>
         </div>
 
         <h2>Not</h2>
