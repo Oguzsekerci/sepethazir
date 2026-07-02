@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { defaultAdSenseClientId } from "@/lib/adsense";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import Header from "./header";
@@ -47,6 +48,14 @@ export default function RootLayout({
         <div className="app-shell">
           <Header />
           {children}
+          <footer className="site-footer">
+            <span>© 2026 SepetHazır</span>
+            <nav aria-label="Yasal bağlantılar">
+              <Link href="/privacy">Gizlilik Politikası</Link>
+              <Link href="/cookies">Çerez Politikası</Link>
+              <Link href="/contact">İletişim</Link>
+            </nav>
+          </footer>
         </div>
       </body>
     </html>

@@ -501,6 +501,75 @@ a {
   gap: 12px;
 }
 
+.site-footer {
+  align-items: center;
+  border-top: 1px solid #e7e5e4;
+  color: #78716c;
+  display: flex;
+  font-size: 13px;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding: 18px 0 4px;
+}
+
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.site-footer a {
+  color: #44403c;
+  font-weight: 700;
+}
+
+.legal-page {
+  display: grid;
+  gap: 12px;
+}
+
+.legal-content {
+  display: grid;
+  gap: 14px;
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+.legal-content h2 {
+  font-size: 18px;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+.legal-content p {
+  color: #57534e;
+}
+
+.contact-box {
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+}
+
+.contact-box span {
+  color: #78716c;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.contact-box a {
+  color: #c2410c;
+  font-size: 18px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
 .cart-item {
   align-items: center;
   display: grid;
@@ -1619,9 +1688,14 @@ a {
 
   .topbar,
   .page-head,
-  .click-summary {
+  .click-summary,
+  .site-footer {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .site-footer nav {
+    justify-content: flex-start;
   }
 
   .grid {
