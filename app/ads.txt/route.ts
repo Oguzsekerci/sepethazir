@@ -1,5 +1,7 @@
+import { defaultAdSenseAccountId } from "@/lib/adsense";
+
 export function GET() {
-  const accountId = process.env.ADSENSE_ACCOUNT_ID;
+  const accountId = process.env.ADSENSE_ACCOUNT_ID ?? defaultAdSenseAccountId;
   const body = accountId
     ? `google.com, ${accountId}, DIRECT, f08c47fec0942fa0\n`
     : "";

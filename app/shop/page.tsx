@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
+import { defaultShopAdSlot } from "@/lib/adsense";
 import { type Product, useCart } from "@/store/cart";
 import AdSlot from "../ad-slot";
 import ProductImage from "../product-image";
@@ -341,7 +342,7 @@ function FragmentWithAd({
             "shop-ad"
           )}
           label="Sponsorlu alan"
-          slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT}
+          slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT ?? defaultShopAdSlot}
           title="Bugünün sepet bahanesi"
         />
       )}

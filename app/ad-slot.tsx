@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { defaultAdSenseClientId } from "@/lib/adsense";
 
 declare global {
   interface Window {
@@ -18,7 +19,8 @@ type AdSlotProps = {
   title?: string;
 };
 
-const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+const clientId =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? defaultAdSenseClientId;
 
 export default function AdSlot({
   body = "Sepete yakışacak fırsatları Amazon'da incele.",
