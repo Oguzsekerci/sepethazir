@@ -19,38 +19,21 @@ function statusLabel(status: FakeOrder["status"]) {
 export default function OrdersPage() {
   const orders = useCart((state) => state.orders);
   const addMany = useCart((state) => state.addMany);
-  const affiliateClicks = useCart((state) => state.affiliateClicks);
   const recommendations = products.slice(0, 6);
-  const topClicked = affiliateClicks[0];
 
   return (
     <>
       <div className="page-head">
         <div>
-          <h1>Beklenen hayaller</h1>
+          <h1>Siparişler</h1>
           <p className="muted">
-            {orders.length} sahte sipariş ve sayılmayan kadar dopamin beklentisi.
+            {orders.length} sahte sipariş ve dopamin beklentisi.
           </p>
         </div>
         <Link className="btn" href="/shop">
-          Daha fazla hiçbir şey al
+          Ürünlere dön
         </Link>
       </div>
-
-      {affiliateClicks.length > 0 && (
-        <section className="card click-summary">
-          <div>
-            <span className="badge">Affiliate takip</span>
-            <h2>{affiliateClicks.length} Amazon çıkışı</h2>
-            <p className="muted">
-              Son tıklanan: {topClicked?.productName} · {topClicked?.category}
-            </p>
-          </div>
-          <Link className="btn ghost" href="/shop">
-            Yeni ürün keşfet
-          </Link>
-        </section>
-      )}
 
       {orders.length === 0 ? (
         <div className="card">
@@ -128,10 +111,8 @@ export default function OrdersPage() {
           {recommendations.map((product) => (
             <a
               className="dream-card"
-              href={buildTrackedAffiliateUrl(product, "orders-recommendation")}
+              href={`/shop/${product.id}`}
               key={product.id}
-              rel="noreferrer"
-              target="_blank"
             >
               <span className="dream-image">
                 <ProductImage
@@ -142,7 +123,7 @@ export default function OrdersPage() {
                 />
               </span>
               <strong>{product.name}</strong>
-              <small>Amazon’da incele</small>
+              <small>Detaya bak</small>
             </a>
           ))}
         </div>
