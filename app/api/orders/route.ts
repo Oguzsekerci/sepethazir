@@ -123,7 +123,8 @@ export async function POST(request: Request) {
     .single();
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 502 });
+    console.error("Order sync failed", error);
+    return NextResponse.json({ error: "Order sync failed" }, { status: 502 });
   }
 
   return NextResponse.json({ remoteId: data?.id ?? null, status: "synced" });

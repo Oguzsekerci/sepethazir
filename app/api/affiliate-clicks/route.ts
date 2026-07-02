@@ -87,7 +87,8 @@ export async function POST(request: Request) {
   });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 502 });
+    console.error("Affiliate click sync failed", error);
+    return NextResponse.json({ error: "Click sync failed" }, { status: 502 });
   }
 
   return NextResponse.json({ status: "synced" });
