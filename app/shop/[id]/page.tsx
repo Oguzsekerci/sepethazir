@@ -164,9 +164,21 @@ export default async function ProductDetailPage({
       </section>
 
       <AdSlot
+        body={`${product.name} bahanesine yakın Amazon sonuçlarını ayrı sekmede aç.`}
         className="detail-ad"
+        cta="Benzerlerini Amazon'da gör"
+        href={buildTrackedAffiliateUrl(
+          {
+            id: 9000 + product.id,
+            name: `${product.name} sponsorlu arama`,
+            category: "Sponsorlu",
+            query: product.query,
+          },
+          "product-ad"
+        )}
         label="Sponsorlu alan"
         slot={process.env.NEXT_PUBLIC_ADSENSE_PRODUCT_SLOT}
+        title="Bu ürüne yakın sponsorlu arama"
       />
 
       {similar.length > 0 && (

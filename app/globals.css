@@ -841,25 +841,37 @@ a {
   text-transform: uppercase;
 }
 
-.ad-placeholder {
+.house-ad {
   align-content: center;
-  background: #fafaf9;
+  background:
+    linear-gradient(135deg, rgb(255 96 0 / 10%), rgb(4 120 87 / 10%)),
+    #fafaf9;
   border-radius: 6px;
   color: #57534e;
   display: grid;
-  gap: 4px;
+  gap: 8px;
   min-height: 86px;
   padding: 14px;
 }
 
-.ad-placeholder strong {
+.house-ad strong {
   color: #171717;
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 1.15;
 }
 
-.ad-placeholder small {
+.house-ad small {
   color: #78716c;
   line-height: 1.4;
+}
+
+.house-ad b {
+  background: #171717;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 12px;
+  justify-self: start;
+  padding: 7px 10px;
 }
 
 .shop-ad {

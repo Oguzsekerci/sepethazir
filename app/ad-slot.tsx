@@ -9,17 +9,25 @@ declare global {
 }
 
 type AdSlotProps = {
+  body?: string;
+  cta?: string;
   className?: string;
+  href?: string;
   label?: string;
   slot?: string;
+  title?: string;
 };
 
 const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
 export default function AdSlot({
+  body = "Sepete yakışacak fırsatları Amazon'da incele.",
+  cta = "İncele",
   className = "",
+  href,
   label = "Reklam",
   slot,
+  title = "SepetHazır seçkisi",
 }: AdSlotProps) {
   const canRenderAd = Boolean(clientId && slot);
 
@@ -48,10 +56,16 @@ export default function AdSlot({
           data-full-width-responsive="true"
           style={{ display: "block" }}
         />
+      ) : href ? (
+        <a className="house-ad" href={href} rel="noreferrer" target="_blank">
+          <strong>{title}</strong>
+          <small>{body}</small>
+          <b>{cta}</b>
+        </a>
       ) : (
-        <div className="ad-placeholder">
-          <strong>AdSense alanı hazır</strong>
-          <small>Client ID ve slot girilince reklam gösterilir.</small>
+        <div className="house-ad">
+          <strong>{title}</strong>
+          <small>{body}</small>
         </div>
       )}
     </aside>

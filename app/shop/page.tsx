@@ -328,9 +328,21 @@ function FragmentWithAd({
     <>
       {index === 8 && (
         <AdSlot
+          body="Sepete bahanesi hazır teknoloji, ev ve ofis fırsatlarını tek aramada gör."
           className="shop-ad"
+          cta="Amazon'da fırsatlara bak"
+          href={buildTrackedAffiliateUrl(
+            {
+              id: 9001,
+              name: "Sponsorlu Amazon Fırsatları",
+              category: "Sponsorlu",
+              query: "amazon fırsatları",
+            },
+            "shop-ad"
+          )}
           label="Sponsorlu alan"
           slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT}
+          title="Bugünün sepet bahanesi"
         />
       )}
       <ProductCard
