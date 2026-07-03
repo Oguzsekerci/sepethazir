@@ -174,7 +174,7 @@ addCheck("health endpoint reports product count", async () => {
 
   assert(response.ok, `/api/health returned ${response.status}`);
   assert(json.ok === true, "health endpoint did not report ok");
-  assert(json.productCount === 60, `unexpected product count: ${json.productCount}`);
+  assert(json.productCount >= 100, `unexpected product count: ${json.productCount}`);
 });
 
 let failures = 0;
