@@ -1215,7 +1215,8 @@ export const products: Product[] = [
     price: 799,
     oldPrice: 1299,
     emoji: "🖱️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Kablosuz bilgisayar mouse'u",
     blurb: "İmleç aynı imleç ama masada verimlilik departmanı kurulmuş gibi.",
     status: "Setup takviyesi",
@@ -1235,7 +1236,8 @@ export const products: Product[] = [
     price: 649,
     oldPrice: 999,
     emoji: "📱",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1510127034890-ba27508e9f1c?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Kamera ve çekim ekipmanı",
     blurb: "Tarif videosu, ürün yorumu, boş duvara konuşma; hepsi daha ciddi.",
     status: "İçerik bahanesi",
@@ -1254,7 +1256,8 @@ export const products: Product[] = [
     price: 799,
     oldPrice: 1299,
     emoji: "☕",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Espresso makinesi ve kahve tamperi",
     blurb: "Kahveyi bastırınca hayat da biraz daha kontrollü görünür.",
     status: "Barista modu",
@@ -1273,7 +1276,8 @@ export const products: Product[] = [
     price: 2999,
     oldPrice: 4499,
     emoji: "🔐",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Telefonla kontrol edilen akıllı kapı kilidi",
     blurb: "Anahtarı unutma stresini teknolojiye devretme hayali.",
     status: "Akıllı kapı",
@@ -1312,7 +1316,8 @@ export const products: Product[] = [
     price: 699,
     oldPrice: 1099,
     emoji: "🛋️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Koltuk üzerinde dekoratif şal ve salon",
     blurb: "Koltuk aynı koltuk ama artık misafir bekliyormuş gibi.",
     status: "Salon toparlandı",
@@ -1331,7 +1336,8 @@ export const products: Product[] = [
     price: 1599,
     oldPrice: 2399,
     emoji: "🛏️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Düzenli yatak ve nevresim",
     blurb: "Uyku kalitesi garanti değil, yatağa bakınca hayat toparlandı hissi garanti.",
     status: "Otel modu",
@@ -1351,7 +1357,8 @@ export const products: Product[] = [
     price: 349,
     oldPrice: 599,
     emoji: "🛋️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Koltuk ve dekoratif kırlentler",
     blurb: "Koltuk aynı koltuk ama artık Pinterest'e hesap açabilir.",
     status: "Dekor dokunuşu",
@@ -1370,7 +1377,8 @@ export const products: Product[] = [
     price: 999,
     oldPrice: 1499,
     emoji: "🛋️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Salon zemininde örgü puf",
     blurb: "Oturmaya kıyılmaz, fotoğrafta pahalı durur.",
     status: "Dekor pufu",
@@ -1389,7 +1397,8 @@ export const products: Product[] = [
     price: 699,
     oldPrice: 1099,
     emoji: "💨",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Aroma difüzör ve buhar",
     blurb: "Buhar çıkınca ortam bilimsel olarak daha huzurlu görünüyor.",
     status: "Spa simülasyonu",
@@ -1408,7 +1417,8 @@ export const products: Product[] = [
     price: 1799,
     oldPrice: 2699,
     emoji: "🍳",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Modern mutfakta tencere ve pişirme alanı",
     blurb: "Yemek aynı yemek ama tezgah ciddi bir plana benzer.",
     status: "Şef seti",
@@ -1427,7 +1437,8 @@ export const products: Product[] = [
     price: 549,
     oldPrice: 899,
     emoji: "☕",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Latte bardakları ve kahve servisi",
     blurb: "Kahve içilirken hayat planı beş dakikalığına çok netleşir.",
     status: "Sabah ritüeli",
@@ -1447,7 +1458,8 @@ export const products: Product[] = [
     price: 629,
     oldPrice: 999,
     emoji: "🥗",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Salata malzemeleri ve hazırlık düzeni",
     blurb: "Üç gün düzenli beslenme hayali için renkli hazırlık yeter.",
     status: "Pazar hazırlığı",
@@ -1466,7 +1478,8 @@ export const products: Product[] = [
     price: 299,
     oldPrice: 499,
     emoji: "🥤",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Smoothie içeceği ve meyveler",
     blurb: "İçine ne koyduğun tartışılır, enerjisi sabah rutini gibi durur.",
     status: "Fit görünüm",
@@ -1485,7 +1498,8 @@ export const products: Product[] = [
     price: 699,
     oldPrice: 1099,
     emoji: "🍰",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Dondurmalı tatlı sunum tabağı",
     blurb: "Tatlı aynı tatlı ama üzerine sos dökülünce final sahnesi olur.",
     status: "Tatlı sunumu",
@@ -1504,7 +1518,8 @@ export const products: Product[] = [
     price: 899,
     oldPrice: 1399,
     emoji: "👔",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Askıda beyaz gömlek",
     blurb: "Kamera açıksa profesyonel, alt taraf eşofman olabilir.",
     status: "Üst taraf resmi",
@@ -1523,7 +1538,8 @@ export const products: Product[] = [
     price: 499,
     oldPrice: 799,
     emoji: "🥿",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Bej ve beyaz sneaker ayakkabı",
     blurb: "Markete çıkma bahanesiyle bile kombin tamamlandı hissi.",
     status: "Günlük stil",
@@ -1542,7 +1558,8 @@ export const products: Product[] = [
     price: 699,
     oldPrice: 1099,
     emoji: "👛",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Minimal deri cüzdan",
     blurb: "Kartlar aynı kartlar ama çıkarırken daha kontrollü görünür.",
     status: "Minimal aksesuar",
@@ -1561,7 +1578,8 @@ export const products: Product[] = [
     price: 999,
     oldPrice: 1599,
     emoji: "🎒",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Sırt çantası",
     blurb: "Spor salonuna gidilmese de çanta niyeti taşır.",
     status: "Yeni rutin",
@@ -1581,7 +1599,8 @@ export const products: Product[] = [
     price: 1399,
     oldPrice: 2199,
     emoji: "🧥",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Askıda kahverengi bomber ceket",
     blurb: "Pasaport yoksa bile yürüyüş rotası operasyon gibi görünür.",
     status: "Geçiş sezonu",
@@ -1600,7 +1619,8 @@ export const products: Product[] = [
     price: 3299,
     oldPrice: 4699,
     emoji: "⛺",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Kamp alanında çadır",
     blurb: "Balkonda otursan bile doğa planı masada.",
     status: "Hafta sonu planı",
@@ -1619,7 +1639,8 @@ export const products: Product[] = [
     price: 399,
     oldPrice: 699,
     emoji: "🥾",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1523362628745-0c100150b504?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Termos şişe",
     blurb: "Su aynı su ama taşıyınca rota daha sportif.",
     status: "Rota hazır",
@@ -1638,7 +1659,8 @@ export const products: Product[] = [
     price: 329,
     oldPrice: 549,
     emoji: "☂️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Yağmurda şemsiye",
     blurb: "Hava uygulamasına güvenmeyenlerin çantadaki özgüveni.",
     status: "Tedbirli alışveriş",
@@ -1695,7 +1717,8 @@ export const products: Product[] = [
     price: 449,
     oldPrice: 699,
     emoji: "📓",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Not defteri ve kalem",
     blurb: "İlk sayfa kusursuz, üçüncü sayfa kaderin insafına kalmış.",
     status: "Yeni sayfa",
@@ -1715,7 +1738,8 @@ export const products: Product[] = [
     price: 299,
     oldPrice: 499,
     emoji: "🖊️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Kalemler ve çalışma masası",
     blurb: "İçinde iki kalem olsa da masa birden daha ciddi.",
     status: "Masa disiplini",
@@ -1734,7 +1758,8 @@ export const products: Product[] = [
     price: 2499,
     oldPrice: 3699,
     emoji: "🪑",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Gri kumaş tasarım sandalye",
     blurb: "Oturmak bahanesi, dekor hissi asıl mesele.",
     status: "Tasarım sandalye",
@@ -1772,7 +1797,8 @@ export const products: Product[] = [
     price: 649,
     oldPrice: 999,
     emoji: "☕",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Termos bardakta kahve",
     blurb: "Kafe havası ofise, ofis bahanesi sokağa taşınır.",
     status: "Mobil kahve",
@@ -1791,7 +1817,8 @@ export const products: Product[] = [
     price: 499,
     oldPrice: 799,
     emoji: "🖥️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Gaming mouse ve masa düzeni",
     blurb: "Aim gelişmeyebilir ama masa motivasyonu bariz artar.",
     status: "Setup genişledi",
@@ -1811,7 +1838,8 @@ export const products: Product[] = [
     price: 999,
     oldPrice: 1499,
     emoji: "🎙️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Masaüstü mikrofon",
     blurb: "Ses kalitesi kadar masadaki yayıncı havası da önemli.",
     status: "Yayın hazırlığı",
@@ -1830,7 +1858,8 @@ export const products: Product[] = [
     price: 3999,
     oldPrice: 5999,
     emoji: "🛋️",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Sarı rahat okuma koltuğu",
     blurb: "Kitap okunur mu bilinmez, köşe çok niyetli durur.",
     status: "Okuma köşesi",
@@ -1849,7 +1878,8 @@ export const products: Product[] = [
     price: 699,
     oldPrice: 1099,
     emoji: "🎮",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Oyun konsolu ve kontrolcü",
     blurb: "Cihaz aynı cihaz ama artık koleksiyon parçası gibi duruyor.",
     status: "Konsol vitrini",
@@ -1868,7 +1898,8 @@ export const products: Product[] = [
     price: 549,
     oldPrice: 899,
     emoji: "🧩",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Puzzle parçaları",
     blurb: "Bitince çerçeveletme ihtimali, bitirme ihtimalinden yüksek olabilir.",
     status: "Sakin aktivite",
@@ -1887,7 +1918,8 @@ export const products: Product[] = [
     price: 899,
     oldPrice: 1399,
     emoji: "🎨",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Boya ve fırçalar",
     blurb: "Renkler hazır, ilham kargo takipte.",
     status: "Yaratıcı kriz",
@@ -1907,7 +1939,8 @@ export const products: Product[] = [
     price: 199,
     oldPrice: 349,
     emoji: "📚",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Kitaplık ve kitaplar",
     blurb: "Okuma hedefi büyür, sayfa sayısı sonra konuşulur.",
     status: "Okuma niyeti",
@@ -1926,7 +1959,8 @@ export const products: Product[] = [
     price: 349,
     oldPrice: 599,
     emoji: "🧼",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Banyo bakım ürünleri",
     blurb: "Lavabo aynı lavabo ama misafir gelirse konsept hazır.",
     status: "Banyo düzeni",
@@ -1945,7 +1979,8 @@ export const products: Product[] = [
     price: 799,
     oldPrice: 1299,
     emoji: "🪒",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Erkek bakım ve tıraş ürünleri",
     blurb: "Bakım rutini iki gün sürse bile raf görüntüsü kalıcı.",
     status: "Bakım düzeni",
@@ -1964,7 +1999,8 @@ export const products: Product[] = [
     price: 1899,
     oldPrice: 2899,
     emoji: "🪞",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=80",
     imageAlt: "Salonda yuvarlak duvar aynası",
     blurb: "Ayna aynı ayna ama duvar artık dekor kararı almış gibi.",
     status: "Dekor aynası",
