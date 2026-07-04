@@ -4,3 +4,5 @@ export const siteName = "SepetHazır";
 
 export const siteDescription =
   "Para harcamadan sahte sepet, sahte sipariş ve kurye takip deneyimi.";
+
+export const securityContactEmail = "iletisim@sepethazir.com.tr";
