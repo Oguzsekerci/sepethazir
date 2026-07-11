@@ -341,7 +341,7 @@ function FragmentWithAd({
             },
             "shop-ad"
           )}
-          label="Sponsorlu alan"
+          label="Advertisements"
           slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT ?? defaultShopAdSlot}
           title="Bugünün sepet bahanesi"
         />

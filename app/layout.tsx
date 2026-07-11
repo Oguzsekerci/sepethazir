@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { defaultAdSenseClientId } from "@/lib/adsense";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import Header from "./header";
 import "./globals.css";
@@ -37,13 +36,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full antialiased">
-      <head>
-        <script
-          async
-          crossOrigin="anonymous"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${defaultAdSenseClientId}`}
-        />
-      </head>
       <body>
         <div className="app-shell">
           <Header />

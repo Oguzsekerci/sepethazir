@@ -177,7 +177,7 @@ export default async function ProductDetailPage({
           },
           "product-ad"
         )}
-        label="Sponsorlu alan"
+        label="Advertisements"
         slot={
           process.env.NEXT_PUBLIC_ADSENSE_PRODUCT_SLOT ?? defaultProductAdSlot
         }

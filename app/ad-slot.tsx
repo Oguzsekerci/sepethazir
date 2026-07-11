@@ -1,5 +1,6 @@
 "use client";
 
+import Script from "next/script";
 import { useEffect } from "react";
 import { defaultAdSenseClientId } from "@/lib/adsense";
 
@@ -50,14 +51,22 @@ export default function AdSlot({
     <aside className={`ad-card ${className}`.trim()} aria-label={label}>
       <span>{label}</span>
       {canRenderAd ? (
-        <ins
-          className="adsbygoogle"
-          data-ad-client={clientId}
-          data-ad-format="auto"
-          data-ad-slot={slot}
-          data-full-width-responsive="true"
-          style={{ display: "block" }}
-        />
+        <>
+          <Script
+            async
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`}
+            strategy="afterInteractive"
+          />
+          <ins
+            className="adsbygoogle"
+            data-ad-client={clientId}
+            data-ad-format="auto"
+            data-ad-slot={slot}
+            data-full-width-responsive="true"
+            style={{ display: "block" }}
+          />
+        </>
       ) : href ? (
         <a className="house-ad" href={href} rel="noreferrer" target="_blank">
           <strong>{title}</strong>
