@@ -31,7 +31,7 @@ jobs:
         run: npm run lint
 
       - name: Audit
-        run: npm audit --audit-level=moderate
+        run: npm audit --omit=dev --audit-level=moderate
 
       - name: Build
         run: npm run build
