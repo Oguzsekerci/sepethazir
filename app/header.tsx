@@ -6,6 +6,7 @@ import { useCart } from "@/store/cart";
 
 const navItems = [
   { href: "/shop", label: "Ürünler" },
+  { href: "/rehber", label: "Rehber" },
   { href: "/orders", label: "Siparişler" },
   { href: "/tracking", label: "Kurye" },
 ];

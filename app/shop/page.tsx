@@ -4,9 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
 import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
-import { defaultShopAdSlot } from "@/lib/adsense";
 import { type Product, useCart } from "@/store/cart";
-import AdSlot from "../ad-slot";
 import ProductImage from "../product-image";
 
 const categories = [
@@ -274,12 +272,11 @@ export default function ShopPage() {
         </div>
       ) : (
         <div className="grid">
-          {filteredProducts.map((product, index) => (
-            <FragmentWithAd
+          {filteredProducts.map((product) => (
+            <ProductCard
               cartQty={
                 cartItems.find((item) => item.id === product.id)?.qty ?? 0
               }
-              index={index}
               key={product.id}
               onDec={dec}
               onInc={inc}
@@ -289,6 +286,27 @@ export default function ShopPage() {
           ))}
         </div>
       )}
+
+      <section className="editorial-section" aria-labelledby="selection-title">
+        <span className="section-kicker">Editoryal not</span>
+        <h2 id="selection-title">Bu seçki nasıl kullanılır?</h2>
+        <p>
+          SepetHazır, alışveriş dürtüsünü güvenli ve eğlenceli bir ortamda
+          düşünmek için hazırlanmış bir simülasyondur. Ürün kartlarındaki
+          fiyat, puan ve indirimler gerçek zamanlı teklif veya inceleme sonucu
+          değildir; yalnızca deneyimin parçasıdır.
+        </p>
+        <p>
+          Gerçek bir ürün araştırıyorsan, karttaki dış bağlantıyı ayrı sekmede
+          açıp güncel fiyatı, teknik özellikleri, kullanıcı yorumlarını ve
+          satıcı koşullarını doğrudan ilgili mağazada kontrol et. Özellikle
+          teknoloji, kişisel bakım ve ev aletlerinde ihtiyaç, uyumluluk,
+          garanti ve iade koşullarını karşılaştırmak iyi bir başlangıçtır.
+        </p>
+        <Link className="text-link" href="/rehber">
+          Alışveriş karar rehberini oku →
+        </Link>
+      </section>
 
       {toast && (
         <div className="toast" role="status">
@@ -306,53 +324,6 @@ export default function ShopPage() {
           <b>Sepete git</b>
         </Link>
       )}
-    </>
-  );
-}
-
-function FragmentWithAd({
-  cartQty,
-  index,
-  onDec,
-  onInc,
-  onAdd,
-  product,
-}: {
-  cartQty: number;
-  index: number;
-  onDec: (id: number) => void;
-  onInc: (id: number) => void;
-  onAdd: (product: (typeof products)[number]) => void;
-  product: (typeof products)[number];
-}) {
-  return (
-    <>
-      {index === 8 && (
-        <AdSlot
-          body="Sepete bahanesi hazır teknoloji, ev ve ofis fırsatlarını tek aramada gör."
-          className="shop-ad"
-          cta="Amazon'da fırsatlara bak"
-          href={buildTrackedAffiliateUrl(
-            {
-              id: 9001,
-              name: "Sponsorlu Amazon Fırsatları",
-              category: "Sponsorlu",
-              query: "amazon fırsatları",
-            },
-            "shop-ad"
-          )}
-          label="Advertisements"
-          slot={process.env.NEXT_PUBLIC_ADSENSE_SHOP_SLOT ?? defaultShopAdSlot}
-          title="Bugünün sepet bahanesi"
-        />
-      )}
-      <ProductCard
-        cartQty={cartQty}
-        onDec={onDec}
-        onInc={onInc}
-        onAdd={onAdd}
-        product={product}
-      />
     </>
   );
 }

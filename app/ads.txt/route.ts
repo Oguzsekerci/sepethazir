@@ -1,14 +1,10 @@
-import { defaultAdSenseAccountId } from "@/lib/adsense";
-
 export function GET() {
-  const accountId = process.env.ADSENSE_ACCOUNT_ID ?? defaultAdSenseAccountId;
-  const body = accountId
-    ? `google.com, ${accountId}, DIRECT, f08c47fec0942fa0\n`
-    : "";
-
-  return new Response(body, {
+  // No Google-served ads are currently published. Do not claim an authorized
+  // AdSense seller until advertising is deliberately reintroduced.
+  return new Response("", {
     headers: {
       "content-type": "text/plain; charset=utf-8",
+      "cache-control": "no-store",
     },
   });
 }

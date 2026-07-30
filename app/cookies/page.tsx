@@ -18,9 +18,8 @@ export default function CookiesPage() {
 
       <section className="card legal-content">
         <p>
-          SepetHazır, site deneyimini çalıştırmak, güvenliği sağlamak, reklam
-          göstermek ve performansı ölçmek için çerezler ve benzer teknolojiler
-          kullanabilir.
+          SepetHazır, site deneyimini çalıştırmak, güvenliği sağlamak ve
+          performansı ölçmek için çerezler ve benzer teknolojiler kullanabilir.
         </p>
 
         <h2>Zorunlu çerezler</h2>
@@ -32,10 +31,10 @@ export default function CookiesPage() {
 
         <h2>Reklam çerezleri</h2>
         <p>
-          Google AdSense reklamların gösterilmesi, sınırlandırılması,
-          kişiselleştirilmesi ve ölçümlenmesi için çerez kullanabilir. Avrupa
-          Ekonomik Alanı, Birleşik Krallık ve İsviçre kullanıcıları için Google
-          onay mesajı üzerinden tercih alınabilir.
+          Google AdSense reklamları şu anda etkin değildir ve bu nedenle site
+          Google reklam çerezleri ayarlamaz. Reklamlar gelecekte etkinleştirilirse,
+          gerekli tercih ve bilgilendirme mekanizmaları reklam yayına alınmadan
+          önce sunulur.
         </p>
 
         <h2>Satış ortaklığı bağlantıları</h2>

@@ -32,17 +32,16 @@ export default function PrivacyPage() {
 
         <h2>Reklam ve analiz</h2>
         <p>
-          Sitede Google AdSense reklamları ve Amazon satış ortaklığı
-          bağlantıları bulunabilir. Bu hizmetler, reklam gösterimi, güvenlik,
-          ölçümleme ve performans amaçlarıyla çerezler veya benzer teknolojiler
-          kullanabilir.
+          Google AdSense reklamları şu anda sitede gösterilmez. İleride reklam
+          hizmeti etkinleştirilirse, yalnızca yeterli özgün içeriğe sahip
+          sayfalarda gösterilir; bu politika ve gerekli kullanıcı tercihleri de
+          buna göre güncellenir. Amazon satış ortaklığı bağlantıları bulunabilir.
         </p>
 
         <h2>Verilerin kullanımı</h2>
         <p>
           Bilgiler site deneyimini çalıştırmak, güvenliği sağlamak, istatistik
-          tutmak, reklam performansını ölçmek ve kullanıcı taleplerine yanıt
-          vermek için kullanılır.
+          tutmak ve kullanıcı taleplerine yanıt vermek için kullanılır.
         </p>
 
         <h2>Üçüncü taraflar</h2>

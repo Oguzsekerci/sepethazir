@@ -1,73 +1,26 @@
-"use client";
-
-import Script from "next/script";
-import { useEffect } from "react";
-import { defaultAdSenseClientId } from "@/lib/adsense";
-
-declare global {
-  interface Window {
-    adsbygoogle?: unknown[];
-  }
-}
-
 type AdSlotProps = {
   body?: string;
   cta?: string;
   className?: string;
   href?: string;
   label?: string;
-  slot?: string;
   title?: string;
 };
 
-const clientId =
-  process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? defaultAdSenseClientId;
-
+// This component intentionally renders only a first-party promotion. Google-served
+// advertising stays off the site while the editorial library is being developed.
 export default function AdSlot({
   body = "Sepete yakışacak fırsatları Amazon'da incele.",
   cta = "İncele",
   className = "",
   href,
   label = "Reklam",
-  slot,
   title = "SepetHazır seçkisi",
 }: AdSlotProps) {
-  const canRenderAd = Boolean(clientId && slot);
-
-  useEffect(() => {
-    if (!canRenderAd) {
-      return;
-    }
-
-    try {
-      window.adsbygoogle = window.adsbygoogle ?? [];
-      window.adsbygoogle.push({});
-    } catch {
-      // Ad blockers or delayed third-party scripts can throw here.
-    }
-  }, [canRenderAd, slot]);
-
   return (
     <aside className={`ad-card ${className}`.trim()} aria-label={label}>
       <span>{label}</span>
-      {canRenderAd ? (
-        <>
-          <Script
-            async
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`}
-            strategy="afterInteractive"
-          />
-          <ins
-            className="adsbygoogle"
-            data-ad-client={clientId}
-            data-ad-format="auto"
-            data-ad-slot={slot}
-            data-full-width-responsive="true"
-            style={{ display: "block" }}
-          />
-        </>
-      ) : href ? (
+      {href ? (
         <a className="house-ad" href={href} rel="noreferrer" target="_blank">
           <strong>{title}</strong>
           <small>{body}</small>

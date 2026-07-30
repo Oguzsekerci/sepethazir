@@ -547,6 +547,64 @@ a {
   color: #57534e;
 }
 
+.editorial-section {
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 8px;
+  margin-top: 24px;
+  max-width: 920px;
+  padding: 24px;
+}
+
+.editorial-section h2 {
+  font-size: clamp(24px, 4vw, 34px);
+  letter-spacing: 0;
+  margin-top: 8px;
+}
+
+.editorial-section > p {
+  color: #57534e;
+  line-height: 1.65;
+  margin-top: 14px;
+  max-width: 760px;
+}
+
+.editorial-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 20px 0;
+}
+
+.editorial-grid > div {
+  background: #fafaf9;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.editorial-grid h3 {
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.editorial-grid p {
+  color: #57534e;
+  font-size: 14px;
+  line-height: 1.55;
+  margin-top: 6px;
+}
+
+.text-link {
+  color: #292524;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guide-page .btn {
+  margin-top: 16px;
+}
+
 .contact-box {
   background: #fafaf9;
   border: 1px solid #e7e5e4;
@@ -1664,6 +1722,10 @@ a {
 
   .shop-ad {
     grid-column: 1 / -1;
+  }
+
+  .editorial-grid {
+    grid-template-columns: 1fr;
   }
 
   .dream-grid {

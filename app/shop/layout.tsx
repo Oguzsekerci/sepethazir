@@ -13,6 +13,10 @@ export const metadata: Metadata = {
       "Sahte sepete atmalık teknoloji, ev, moda, bakım, outdoor ve absürt lüks ürünleri keşfet.",
     url: `${siteUrl}/shop`,
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   title: "Ürünler",
 };
 

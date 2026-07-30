@@ -56,6 +56,32 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section className="editorial-section home-editorial" aria-labelledby="about-title">
+        <span className="section-kicker">SepetHazır nedir?</span>
+        <h2 id="about-title">Alışveriş hissini, satın alma baskısı olmadan keşfet.</h2>
+        <p>
+          SepetHazır bir alışveriş sitesi ya da fiyat karşılaştırma hizmeti
+          değildir. Buradaki sepet, sipariş ve kargo adımları tamamen
+          simülasyondur; ödeme alınmaz, ürün gönderilmez ve ekrandaki rakamlar
+          gerçek kampanya bilgisi sayılmaz.
+        </p>
+        <div className="editorial-grid">
+          <div>
+            <h3>Önce ihtiyacı adlandır</h3>
+            <p>“İşe yarar mı?” sorusunu, “şu an hangi sorunu çözmeye çalışıyorum?” sorusundan sonra sor.</p>
+          </div>
+          <div>
+            <h3>Gerçek teklifi kaynağında doğrula</h3>
+            <p>Dış bağlantıya gittiğinde güncel fiyat, satıcı, teslimat, garanti ve iade koşullarını kontrol et.</p>
+          </div>
+          <div>
+            <h3>Kararı biraz beklet</h3>
+            <p>İstek listesi oluşturup en az bir gün beklemek, dürtüyle ihtiyaç arasındaki farkı görünür kılar.</p>
+          </div>
+        </div>
+        <Link className="text-link" href="/rehber">Bilinçli alışveriş rehberine git →</Link>
+      </section>
     </>
   );
 }
