@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import Header from "./header";
 import "./globals.css";
@@ -37,6 +36,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full antialiased">
+      <head>
+        <script
+          async
+          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7130753532276336"
+        />
+      </head>
       <body>
         <div className="app-shell">
           <Header />
@@ -50,12 +56,6 @@ export default function RootLayout({
             </nav>
           </footer>
         </div>
-        <Script
-          async
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7130753532276336"
-          strategy="beforeInteractive"
-        />
       </body>
     </html>
   );
