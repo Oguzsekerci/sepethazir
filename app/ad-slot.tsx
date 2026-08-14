@@ -14,7 +14,7 @@ export default function AdSlot({
   cta = "İncele",
   className = "",
   href,
-  label = "Reklam",
+  label = "SepetHazır önerisi",
   title = "SepetHazır seçkisi",
 }: AdSlotProps) {
   return (

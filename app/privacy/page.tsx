@@ -32,10 +32,8 @@ export default function PrivacyPage() {
 
         <h2>Reklam ve analiz</h2>
         <p>
-          Google AdSense reklamları şu anda sitede gösterilmez. İleride reklam
-          hizmeti etkinleştirilirse, yalnızca yeterli özgün içeriğe sahip
-          sayfalarda gösterilir; bu politika ve gerekli kullanıcı tercihleri de
-          buna göre güncellenir. Amazon satış ortaklığı bağlantıları bulunabilir.
+          Sitede Google AdSense reklamları gösterilmez ve Google reklam
+          çerezleri kullanılmaz. Amazon satış ortaklığı bağlantıları bulunabilir.
         </p>
 
         <h2>Verilerin kullanımı</h2>
@@ -46,9 +44,9 @@ export default function PrivacyPage() {
 
         <h2>Üçüncü taraflar</h2>
         <p>
-          Google, Amazon ve benzeri hizmet sağlayıcıları kendi hizmetlerini
-          sunmak için veri işleyebilir. Bu tarafların kendi gizlilik
-          politikaları geçerlidir.
+          Amazon ve benzeri üçüncü taraf hizmet sağlayıcıları, kendi
+          hizmetlerini sunmak için veri işleyebilir. Bu tarafların kendi
+          gizlilik politikaları geçerlidir.
         </p>
 
         <h2>Haklarınız</h2>

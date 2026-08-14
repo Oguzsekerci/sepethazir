@@ -31,8 +31,8 @@ export default function CookiesPage() {
 
         <h2>Reklam çerezleri</h2>
         <p>
-          Google AdSense reklamları şu anda etkin değildir ve bu nedenle site
-          Google reklam çerezleri ayarlamaz. Reklamlar gelecekte etkinleştirilirse,
+          Sitede Google AdSense reklamları gösterilmez; bu nedenle Google reklam
+          çerezleri ayarlanmaz. Reklam hizmeti gelecekte etkinleştirilirse,
           gerekli tercih ve bilgilendirme mekanizmaları reklam yayına alınmadan
           önce sunulur.
         </p>
@@ -46,9 +46,8 @@ export default function CookiesPage() {
 
         <h2>Tercihleri yönetme</h2>
         <p>
-          Çerez tercihlerinizi tarayıcı ayarlarınızdan ve Google onay mesajı
-          üzerinden yönetebilirsiniz. Çerezleri kapatmanız bazı özelliklerin
-          performansını etkileyebilir.
+          Çerez tercihlerinizi tarayıcı ayarlarınızdan yönetebilirsiniz.
+          Çerezleri kapatmanız bazı özelliklerin performansını etkileyebilir.
         </p>
 
         <p className="muted">Son güncelleme: 2 Temmuz 2026</p>

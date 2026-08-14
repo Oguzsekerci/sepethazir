@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { guides } from "@/data/guides";
 
 export const metadata: Metadata = {
   title: "Bilinçli Alışveriş Rehberi",
@@ -72,6 +73,27 @@ export default function GuidePage() {
       </article>
 
       <Link className="btn" href="/shop">Seçkiyi keşfet</Link>
+
+      <section className="dream-grid-section" aria-labelledby="more-guides-title">
+        <div className="page-head">
+          <div>
+            <span className="section-kicker">Devam et</span>
+            <h2 id="more-guides-title">Karar vermeye yardımcı rehberler</h2>
+          </div>
+        </div>
+        <div className="dream-grid">
+          {guides.map((guide) => (
+            <article className="dream-card" key={guide.slug}>
+              <small>{guide.readTime}</small>
+              <strong>{guide.title}</strong>
+              <p>{guide.description}</p>
+              <Link className="text-link" href={`/rehber/${guide.slug}`}>
+                Rehberi oku →
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

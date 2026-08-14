@@ -89,3 +89,12 @@ See `docs/deployment.md` for the full deployment runbook.
 7. Run `npm run verify`.
 8. Run `SMOKE_BASE_URL=https://www.sepethazir.com.tr npm run smoke`.
 9. Test the core flow: products, cart, checkout, orders, tracking, stats.
+
+## Advertising policy
+
+Google-served advertising is intentionally disabled. Do not add the AdSense
+loader or Auto ads at the root layout: that would make ads eligible to appear
+on simulation and utility screens such as cart, checkout, order, tracking, and
+outbound redirect pages, which do not contain publisher content. Before any
+future monetization review, build a substantial library of original editorial
+content and limit ad placement to those specific content pages.
