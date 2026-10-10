@@ -5,6 +5,7 @@ import { guides } from "@/data/guides";
 export const metadata: Metadata = {
   title: "Bilinçli Alışveriş Rehberi",
   description: "İhtiyaç belirleme, ürün karşılaştırma ve güvenli alışveriş için pratik rehber.",
+  alternates: { canonical: "/rehber" },
 };
 
 export default function GuidePage() {
@@ -22,7 +23,7 @@ export default function GuidePage() {
         <p>
           SepetHazır rehberleri belirli bir ürünü satın almaya yönlendirmek
           yerine, farklı kategorilerde tekrar kullanılabilecek karar araçları
-          sunar. İçerikler SepetHazır Editörü tarafından özgün olarak hazırlanır,
+          sunar. İçerikler Oğuz Şekerci tarafından özgün olarak hazırlanır,
           anlaşılabilirlik ve uygulanabilirlik açısından gözden geçirilir.
         </p>
 

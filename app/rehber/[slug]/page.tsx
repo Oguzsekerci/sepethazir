@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getGuide, guides } from "@/data/guides";
+import { siteAuthorName, siteAuthorUrl } from "@/lib/site";
 import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
@@ -21,7 +22,7 @@ export async function generateMetadata({
     title: guide.title,
     description: guide.description,
     alternates: { canonical: `/rehber/${guide.slug}` },
-    authors: [{ name: "SepetHazır Editörü" }],
+    authors: [{ name: siteAuthorName, url: siteAuthorUrl }],
   };
 }
 
@@ -42,7 +43,7 @@ export default async function GuideDetailPage({
     description: guide.description,
     datePublished: guide.publishedAt,
     dateModified: guide.updatedAt,
-    author: { "@type": "Person", name: "SepetHazır Editörü" },
+    author: { "@type": "Person", name: siteAuthorName, url: siteAuthorUrl },
     publisher: { "@type": "Organization", name: "SepetHazır" },
   };
 
@@ -57,7 +58,7 @@ export default async function GuideDetailPage({
         <span className="badge">{guide.category} · {guide.readTime}</span>
         <h1>{guide.title}</h1>
         <p className="muted">
-          SepetHazır Editörü · Yayın: {new Date(guide.publishedAt).toLocaleDateString("tr-TR")} ·
+          <Link href="/yazar/oguz-sekerci">{siteAuthorName}</Link> · Yayın: {new Date(guide.publishedAt).toLocaleDateString("tr-TR")} ·
           Güncelleme: {new Date(guide.updatedAt).toLocaleDateString("tr-TR")}
         </p>
         <p>{guide.intro}</p>

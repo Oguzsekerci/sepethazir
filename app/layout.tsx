@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { siteDescription, siteName, siteUrl } from "@/lib/site";
+import { siteAuthorName, siteAuthorUrl, siteDescription, siteName, siteUrl } from "@/lib/site";
 import Header from "./header";
 import "./globals.css";
 
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   applicationName: siteName,
+  authors: [{ name: siteAuthorName, url: siteAuthorUrl }],
+  creator: siteAuthorName,
+  publisher: siteName,
   alternates: {
     canonical: "/",
   },
@@ -44,6 +47,7 @@ export default function RootLayout({
             <span>© 2026 SepetHazır</span>
             <nav aria-label="Yasal bağlantılar">
               <Link href="/hakkimizda">Hakkımızda</Link>
+              <Link href="/yazar/oguz-sekerci">Yazar</Link>
               <Link href="/yayin-ilkeleri">Yayın İlkeleri</Link>
               <Link href="/privacy">Gizlilik Politikası</Link>
               <Link href="/cookies">Çerez Politikası</Link>

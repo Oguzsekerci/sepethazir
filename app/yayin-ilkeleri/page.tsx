@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Yayın İlkeleri",
   description: "SepetHazır içerik hazırlama, kaynak, güncelleme, reklam ve düzeltme ilkeleri.",
+  alternates: { canonical: "/yayin-ilkeleri" },
 };
 
 export default function EditorialPolicyPage() {

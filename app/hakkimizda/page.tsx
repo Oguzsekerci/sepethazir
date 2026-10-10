@@ -4,6 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description: "SepetHazır'ın amacı, editoryal yaklaşımı ve karar simülatörü hakkında bilgi.",
+  alternates: { canonical: "/hakkimizda" },
 };
 
 export default function AboutPage() {
@@ -16,7 +17,7 @@ export default function AboutPage() {
         <h2>SepetHazır neden var?</h2>
         <p>SepetHazır, çevrim içi alışveriş kararlarında ürün listesinden önce doğru soruları görünür kılmak için hazırlanmış bağımsız bir Türkçe yayın ve karar simülasyonudur. Amacımız ziyaretçiye ne alacağını söylemek değil; ihtiyaç, bütçe, toplam maliyet, satıcı ve iade koşullarını kendi ölçütleriyle değerlendirmesine yardımcı olmaktır.</p>
         <h2>İçerikleri kim hazırlıyor?</h2>
-        <p>Rehberler SepetHazır Editörü tarafından araştırılarak ve özgün biçimde yazılır. Metinler yayımlanmadan önce açık amaç, uygulanabilir adımlar, yanıltıcı kesinlikten kaçınma ve güncellik açısından kontrol edilir. Hata veya güncelleme önerileri iletişim adresinden kabul edilir.</p>
+        <p>Rehberler <Link href="/yazar/oguz-sekerci">Oğuz Şekerci</Link> tarafından araştırılarak ve özgün biçimde yazılır. Metinler yayımlanmadan önce açık amaç, uygulanabilir adımlar, yanıltıcı kesinlikten kaçınma ve güncellik açısından kontrol edilir. Hata veya güncelleme önerileri iletişim adresinden kabul edilir.</p>
         <h2>Karar simülatörü nedir?</h2>
         <p>Simülatör, bir ürünü satın almadan sepete ekleme ve bekleme fikrini oyunlaştırır. Ürün adları ve bütçe tutarları kurgusaldır; gerçek fiyat, kampanya, kullanıcı yorumu veya satıcı teklifi değildir. Gerçek ödeme alınmaz, ürün satılmaz ve teslimat yapılmaz.</p>
         <h2>Gelir ve bağımsızlık</h2>

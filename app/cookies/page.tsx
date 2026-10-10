@@ -4,6 +4,7 @@ import { siteName } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Çerez Politikası",
   description: `${siteName} çerez politikası.`,
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {
