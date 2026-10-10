@@ -36,13 +36,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="h-full antialiased">
-      <head>
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7130753532276336"
-        />
-      </head>
       <body>
         <div className="app-shell">
           <Header />
@@ -50,6 +43,8 @@ export default function RootLayout({
           <footer className="site-footer">
             <span>© 2026 SepetHazır</span>
             <nav aria-label="Yasal bağlantılar">
+              <Link href="/hakkimizda">Hakkımızda</Link>
+              <Link href="/yayin-ilkeleri">Yayın İlkeleri</Link>
               <Link href="/privacy">Gizlilik Politikası</Link>
               <Link href="/cookies">Çerez Politikası</Link>
               <Link href="/contact">İletişim</Link>

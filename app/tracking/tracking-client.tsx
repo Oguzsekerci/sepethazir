@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { products } from "@/data/products";
-import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 import ProductImage from "../product-image";
 
@@ -140,7 +139,7 @@ export default function TrackingClient() {
                 Paket içeriği fiziksel olarak yok, ama liste gayet etkileyici.
               </p>
             </div>
-            <strong>{order.total.toLocaleString("tr-TR")} TL</strong>
+            <strong>{order.total.toLocaleString("tr-TR")} birim</strong>
           </div>
           <div className="compact-order-items">
             {order.items.map((item) => (
@@ -149,7 +148,7 @@ export default function TrackingClient() {
                 <div>
                   <strong>{item.name}</strong>
                   <p className="muted">
-                    x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} TL
+                    x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} birim
                   </p>
                 </div>
               </div>
@@ -170,12 +169,10 @@ export default function TrackingClient() {
         </div>
         <div className="dream-grid">
           {recommendations.map((product) => (
-            <a
+            <Link
               className="dream-card"
-              href={buildTrackedAffiliateUrl(product, "tracking-recommendation")}
+              href={`/shop/${product.id}`}
               key={product.id}
-              rel="noreferrer"
-              target="_blank"
             >
               <span className="dream-image">
                 <ProductImage
@@ -186,8 +183,8 @@ export default function TrackingClient() {
                 />
               </span>
               <strong>{product.name}</strong>
-              <small>Amazon’da incele</small>
-            </a>
+              <small>Karar notunu aç</small>
+            </Link>
           ))}
         </div>
       </section>

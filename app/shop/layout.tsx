@@ -6,11 +6,11 @@ export const metadata: Metadata = {
     canonical: `${siteUrl}/shop`,
   },
   description:
-    "Sahte sepete atmalık teknoloji, ev, moda, bakım, outdoor ve absürt lüks ürünleri keşfet.",
+    "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
   openGraph: {
     title: "Ürünler",
     description:
-      "Sahte sepete atmalık teknoloji, ev, moda, bakım, outdoor ve absürt lüks ürünleri keşfet.",
+      "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
     url: `${siteUrl}/shop`,
   },
   robots: {

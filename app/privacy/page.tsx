@@ -32,8 +32,12 @@ export default function PrivacyPage() {
 
         <h2>Reklam ve analiz</h2>
         <p>
-          Sitede Google AdSense reklamları gösterilmez ve Google reklam
-          çerezleri kullanılmaz. Amazon satış ortaklığı bağlantıları bulunabilir.
+          Ana sayfa ve rehber içeriklerinde Google AdSense altyapısı
+          kullanılabilir. Google; reklam sunma, ölçüm, güvenlik ve kötüye
+          kullanımı önleme amaçlarıyla çerezler, IP adresi ve benzer çevrim içi
+          tanımlayıcıları kendi politikalarına göre işleyebilir. Simülasyonun
+          sepet, ödeme, sipariş, takip ve sonuç ekranlarında AdSense kodu
+          çalıştırılmaz.
         </p>
 
         <h2>Verilerin kullanımı</h2>
@@ -44,9 +48,10 @@ export default function PrivacyPage() {
 
         <h2>Üçüncü taraflar</h2>
         <p>
-          Amazon ve benzeri üçüncü taraf hizmet sağlayıcıları, kendi
-          hizmetlerini sunmak için veri işleyebilir. Bu tarafların kendi
-          gizlilik politikaları geçerlidir.
+          Google gibi reklam ve altyapı sağlayıcıları kendi hizmetlerini sunmak
+          için veri işleyebilir. Sitede satış ortaklığı bağlantısı bulunmaz.
+          Üçüncü tarafların veri işleme faaliyetlerinde kendi gizlilik
+          politikaları geçerlidir.
         </p>
 
         <h2>Haklarınız</h2>
@@ -55,7 +60,15 @@ export default function PrivacyPage() {
           için iletişim sayfasındaki kanaldan bize ulaşabilirsiniz.
         </p>
 
-        <p className="muted">Son güncelleme: 2 Temmuz 2026</p>
+        <h2>Reklam tercihleri</h2>
+        <p>
+          Google reklam kişiselleştirme tercihleri Google reklam ayarlarından,
+          tarayıcı çerezleri ise tarayıcı ayarlarından yönetilebilir. Reklamlar
+          etkinleştirilmeden önce uygulanması gereken bölgesel onay mekanizmaları
+          ayrıca devreye alınır.
+        </p>
+
+        <p className="muted">Son güncelleme: 10 Ekim 2026</p>
       </section>
     </main>
   );

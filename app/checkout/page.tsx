@@ -111,8 +111,8 @@ export default function CheckoutPage() {
     <>
       <div className="page-head">
         <div>
-          <h1>Sahte ödeme</h1>
-          <p className="muted">Bu ekranda karttan para çekilmez.</p>
+          <h1>Karar senaryosu</h1>
+          <p className="muted">Bu bir satın alma veya ödeme ekranı değildir.</p>
         </div>
         <Link className="btn ghost" href="/cart">
           Sepete dön
@@ -127,7 +127,7 @@ export default function CheckoutPage() {
               <strong>Teslimat</strong>
             </div>
             <div className="notice" style={{ marginBottom: 14 }}>
-            Gerçek kart numarası girme. Bu alan sadece deneyimin hikayesi için.
+            Kişisel adres veya ödeme bilgisi istenmez. Seçenekler yalnızca simülasyon hikâyesidir.
             </div>
 
             <div className="field">
@@ -168,7 +168,7 @@ export default function CheckoutPage() {
           <section className="card checkout-section">
             <div className="checkout-step">
               <span>2</span>
-              <strong>Ödeme gibi yap</strong>
+              <strong>Karar biçimini seç</strong>
             </div>
 
             <div className="field">
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
             </div>
 
             <div className="field">
-              <label>Sahte kart seç</label>
+              <label>Kurgusal karar kartı seç</label>
               <div className="fake-card-grid">
                 {fakeCards.map((card) => (
                   <button
@@ -237,12 +237,12 @@ export default function CheckoutPage() {
               <strong>{items.reduce((sum, item) => sum + item.qty, 0)}</strong>
             </div>
             <div className="summary-row">
-              <span>Ara toplam</span>
-              <strong>{formatPrice(totals.subtotal)} TL</strong>
+              <span>Bütçe etkisi</span>
+              <strong>{formatPrice(totals.subtotal)} birim</strong>
             </div>
             <div className="summary-row">
-              <span>Dopamin indirimi</span>
-              <strong>-{formatPrice(totals.discount)} TL</strong>
+              <span>Bekleme payı</span>
+              <strong>-{formatPrice(totals.discount)} birim</strong>
             </div>
             <div className="summary-total">
               <span>Ödenecek</span>
@@ -250,8 +250,8 @@ export default function CheckoutPage() {
             </div>
           </div>
           <p className="muted" style={{ marginTop: 12 }}>
-            Ekranda gösterilen {formatPrice(totals.total)} TL sadece simülasyon
-            tutarıdır.
+            Ekranda gösterilen {formatPrice(totals.total)} birim yalnızca
+            kurgusal bütçe etkisidir.
           </p>
         </aside>
       </div>
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
         <div>
           <span>Ödenecek</span>
           <strong>0 TL</strong>
-          <small>{formatPrice(totals.total)} TL sadece ekranda yakışıklı duruyor.</small>
+          <small>{formatPrice(totals.total)} birim kurgusal bütçe etkisi.</small>
         </div>
         <button className="btn" disabled={isSubmitting} form="fake-checkout" type="submit">
           {isSubmitting ? "Üretiliyor..." : "Sahte siparişi oluştur"}

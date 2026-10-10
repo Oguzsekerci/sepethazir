@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { products } from "@/data/products";
-import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { FakeOrder, useCart } from "@/store/cart";
 import ProductImage from "../product-image";
 
@@ -65,21 +64,14 @@ export default function OrdersPage() {
                     <span>
                       {item.emoji} {item.name} x{item.qty}
                     </span>
-                    <a
-                      className="badge"
-                      href={buildTrackedAffiliateUrl(item, "order-item")}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      Amazon’da incele
-                    </a>
+                    <span className="badge">Simülasyon</span>
                   </div>
                 ))}
               </div>
 
               <div className="summary-total">
-                <span>Sahte toplam</span>
-                <span>{formatPrice(order.total)} TL</span>
+                <span>Senaryo toplamı</span>
+                <span>{formatPrice(order.total)} birim</span>
               </div>
 
               <Link className="btn secondary" href={`/tracking?order=${order.id}`}>

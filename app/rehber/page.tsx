@@ -13,18 +13,17 @@ export default function GuidePage() {
       <div className="page-head">
         <div>
           <span className="badge">Özgün rehber</span>
-          <h1>Bilinçli alışveriş için kısa rehber</h1>
-          <p className="muted">Sepete eklemeden önce daha iyi soru sormaya yardımcı olur.</p>
+          <h1>Bilinçli alışveriş rehberleri</h1>
+          <p className="muted">Bütçe, karşılaştırma ve güvenli alışveriş için özgün ve uygulanabilir yöntemler.</p>
         </div>
       </div>
 
       <article className="card legal-content">
         <p>
-          Yeni bir ürün araştırırken en iyi başlangıç fiyat değildir. Önce
-          ürünün hangi işi yapmasını beklediğini ve onu ne kadar sık
-          kullanacağını yazmak, gereksiz özellikler için fazla ödeme riskini
-          azaltır. Bu sayfa genel bilgi sunar; ürün özellikleri ve teklifler
-          her zaman satıcının güncel sayfasından doğrulanmalıdır.
+          SepetHazır rehberleri belirli bir ürünü satın almaya yönlendirmek
+          yerine, farklı kategorilerde tekrar kullanılabilecek karar araçları
+          sunar. İçerikler SepetHazır Editörü tarafından özgün olarak hazırlanır,
+          anlaşılabilirlik ve uygulanabilirlik açısından gözden geçirilir.
         </p>
 
         <h2>1. İhtiyaç listesi oluştur</h2>
@@ -62,13 +61,12 @@ export default function GuidePage() {
           karşılaştır.
         </p>
 
-        <h2>SepetHazır&apos;daki ürün kartları hakkında</h2>
+        <h2>Karar simülatörü hakkında</h2>
         <p>
-          SepetHazır&apos;daki ürün adları, puanları, fiyatları ve sipariş akışı
-          eğlence amaçlı kurgulanmıştır. Gerçek ürün satın almak istersen dış
-          bağlantı seni ilgili mağazanın arama sonucuna götürür; güncel bilgiyi
-          orada incelemelisin. Bazı dış bağlantılar satış ortaklığı bağlantısı
-          olabilir.
+          Simülatördeki ürün adları ve bütçe tutarları yalnızca karar egzersizi
+          için oluşturulmuş kurgusal senaryolardır. Gerçek fiyat, kampanya,
+          değerlendirme veya satıcı tavsiyesi değildir; sitede ürün satışı ve
+          satış ortaklığı yönlendirmesi yapılmaz.
         </p>
       </article>
 
@@ -84,7 +82,7 @@ export default function GuidePage() {
         <div className="dream-grid">
           {guides.map((guide) => (
             <article className="dream-card" key={guide.slug}>
-              <small>{guide.readTime}</small>
+              <small>{guide.category} · {guide.readTime}</small>
               <strong>{guide.title}</strong>
               <p>{guide.description}</p>
               <Link className="text-link" href={`/rehber/${guide.slug}`}>

@@ -5,10 +5,9 @@ import { usePathname } from "next/navigation";
 import { useCart } from "@/store/cart";
 
 const navItems = [
-  { href: "/shop", label: "Ürünler" },
   { href: "/rehber", label: "Rehber" },
-  { href: "/orders", label: "Siparişler" },
-  { href: "/tracking", label: "Kurye" },
+  { href: "/shop", label: "Karar Simülatörü" },
+  { href: "/hakkimizda", label: "Hakkımızda" },
 ];
 
 export default function Header() {
@@ -29,7 +28,7 @@ export default function Header() {
         <span>SepetHazır</span>
       </Link>
       <nav className="nav" aria-label="Ana navigasyon">
-        {navItems.slice(0, 1).map((item) => (
+        {navItems.map((item) => (
           <Link
             aria-current={isActive(item.href) ? "page" : undefined}
             className={isActive(item.href) ? "active" : undefined}
@@ -53,16 +52,6 @@ export default function Header() {
           Sepet
           {itemCount > 0 && <span>{itemCount}</span>}
         </Link>
-        {navItems.slice(1).map((item) => (
-          <Link
-            aria-current={isActive(item.href) ? "page" : undefined}
-            className={isActive(item.href) ? "active" : undefined}
-            href={item.href}
-            key={item.href}
-          >
-            {item.label}
-          </Link>
-        ))}
       </nav>
     </header>
   );

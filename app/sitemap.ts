@@ -12,16 +12,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${siteUrl}/shop`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
       url: `${siteUrl}/rehber`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/hakkimizda`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
+      url: `${siteUrl}/yayin-ilkeleri`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.5,
     },
     {
       url: `${siteUrl}/privacy`,

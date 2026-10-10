@@ -2,16 +2,11 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
-import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import ProductImage from "@/app/product-image";
 import ProductDetailActions from "./product-detail-actions";
 
 function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
-}
-
-function discountRate(price: number, oldPrice: number) {
-  return Math.round(((oldPrice - price) / oldPrice) * 100);
 }
 
 export function generateStaticParams() {
@@ -91,7 +86,6 @@ export default async function ProductDetailPage({
         <div className="product-detail-copy">
           <div className="detail-badges">
             <span className="badge">{product.category}</span>
-            {product.isTrending && <span className="trend-chip">Trend</span>}
             {product.meme && <span className="meme-chip">{product.meme}</span>}
           </div>
           <h1>{product.name}</h1>
@@ -106,11 +100,11 @@ export default async function ProductDetailPage({
 
           <div className="detail-price-row">
             <div>
-              <span className="old-price">{formatPrice(product.oldPrice)} TL</span>
-              <strong>{formatPrice(product.price)} TL</strong>
-              <small>Ödenecek gerçek tutar: 0 TL. Hissetmesi serbest.</small>
+              <small>Kurgusal bütçe senaryosu</small>
+              <strong>{formatPrice(product.price)} birim</strong>
+              <small>Gerçek fiyat veya teklif değildir; ödeme alınmaz.</small>
             </div>
-            <span className="badge">%{discountRate(product.price, product.oldPrice)}</span>
+            <span className="badge">Karar egzersizi</span>
           </div>
 
           <div className="detail-specs">
@@ -120,45 +114,29 @@ export default async function ProductDetailPage({
                 <strong>{product.reasonToBuy}</strong>
               </div>
             )}
-            {product.rating && (
-              <div>
-                <span>Sahte popülerlik</span>
-                <strong>
-                  ★ {product.rating.toLocaleString("tr-TR")} ·{" "}
-                  {(product.reviewCount ?? 0).toLocaleString("tr-TR")} yorum
-                </strong>
-              </div>
-            )}
             {product.dopamineScore && (
               <div>
-                <span>Dopamin skoru</span>
+                <span>Kurgusal dürtü skoru</span>
                 <strong>{product.dopamineScore}/100</strong>
               </div>
             )}
             <div>
-              <span>Tahmini pişmanlık</span>
-              <strong>3 dakika</strong>
+              <span>İlk karar sorusu</span>
+              <strong>Hangi sorunu çözüyor?</strong>
             </div>
             <div>
-              <span>Dopamin garantisi</span>
-              <strong>Kargo bildirimine kadar</strong>
+              <span>İkinci karar sorusu</span>
+              <strong>Ne sıklıkla kullanılacak?</strong>
             </div>
             <div>
-              <span>İade politikası</span>
-              <strong>Hiç gelmeyeni iade etmiyoruz</strong>
+              <span>Bekleme önerisi</span>
+              <strong>En az 24 saat</strong>
             </div>
           </div>
 
           <ProductDetailActions product={product} />
 
-          <a
-            className="btn ghost"
-            href={buildTrackedAffiliateUrl(product, "product-detail")}
-            rel="noreferrer"
-            target="_blank"
-          >
-            Amazon’da incele
-          </a>
+          <Link className="btn ghost" href="/rehber/ihtiyac-listesi-ve-butce">Karar yöntemini oku</Link>
         </div>
       </section>
 

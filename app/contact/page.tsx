@@ -32,8 +32,8 @@ export default function ContactPage() {
         <h2>Not</h2>
         <p>
           SepetHazır sanal sepet ve sahte sipariş simülasyonu sunar. Sitedeki
-          ürün bağlantıları üçüncü taraf alışveriş sitelerine yönlendirebilir;
-          satın alma, ödeme ve teslimat süreçleri ilgili platformda yürütülür.
+          ürün kartları kurgusal karar senaryolarıdır. Sitede gerçek ürün satışı,
+          ödeme, teslimat veya satış ortaklığı yönlendirmesi yapılmaz.
         </p>
       </section>
     </main>

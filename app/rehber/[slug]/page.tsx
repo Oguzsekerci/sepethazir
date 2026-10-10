@@ -21,6 +21,7 @@ export async function generateMetadata({
     title: guide.title,
     description: guide.description,
     alternates: { canonical: `/rehber/${guide.slug}` },
+    authors: [{ name: "SepetHazır Editörü" }],
   };
 }
 
@@ -34,12 +35,31 @@ export default async function GuideDetailPage({
 
   if (!guide) notFound();
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.description,
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt,
+    author: { "@type": "Person", name: "SepetHazır Editörü" },
+    publisher: { "@type": "Organization", name: "SepetHazır" },
+  };
+
   return (
     <main className="legal-page guide-page">
       <Link className="back-link" href="/rehber">← Tüm rehberler</Link>
       <article className="card legal-content">
-        <span className="badge">{guide.readTime}</span>
+        <script
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd).replace(/</g, "\\u003c") }}
+          type="application/ld+json"
+        />
+        <span className="badge">{guide.category} · {guide.readTime}</span>
         <h1>{guide.title}</h1>
+        <p className="muted">
+          SepetHazır Editörü · Yayın: {new Date(guide.publishedAt).toLocaleDateString("tr-TR")} ·
+          Güncelleme: {new Date(guide.updatedAt).toLocaleDateString("tr-TR")}
+        </p>
         <p>{guide.intro}</p>
 
         {guide.sections.map((section) => (
@@ -55,9 +75,12 @@ export default async function GuideDetailPage({
         </ul>
 
         <p>
-          Bu rehber genel bilgi verir. Güncel ürün bilgisi, teklif, satıcı,
-          teslimat ve iade koşulları için her zaman ilgili mağazanın sayfasını
-          kontrol et.
+          Bu rehber genel bilgilendirme sunar ve kişisel mali veya hukuki
+          danışmanlık yerine geçmez. Güncel ürün, satıcı, teslimat, garanti ve
+          iade koşullarını işlemi yapacağın platformdan doğrula.
+        </p>
+        <p className="muted">
+          İçeriğin nasıl hazırlandığını öğrenmek için <Link href="/yayin-ilkeleri">yayın ilkelerimizi</Link> inceleyebilirsin.
         </p>
       </article>
       <Link className="btn" href="/shop">Seçkiyi keşfet</Link>

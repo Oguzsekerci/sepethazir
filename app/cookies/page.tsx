@@ -31,17 +31,18 @@ export default function CookiesPage() {
 
         <h2>Reklam çerezleri</h2>
         <p>
-          Sitede Google AdSense reklamları gösterilmez; bu nedenle Google reklam
-          çerezleri ayarlanmaz. Reklam hizmeti gelecekte etkinleştirilirse,
-          gerekli tercih ve bilgilendirme mekanizmaları reklam yayına alınmadan
-          önce sunulur.
+          Ana sayfa ve rehber içeriklerinde Google AdSense kodu bulunabilir.
+          Google bu sayfalarda reklam sunumu, sıklık sınırı, ölçüm, güvenlik ve
+          kötüye kullanımı önleme amaçlarıyla çerez veya benzer tanımlayıcılar
+          kullanabilir. Reklam kişiselleştirme durumu kullanıcının bölgesi ve
+          tercihleri doğrultusunda belirlenir.
         </p>
 
-        <h2>Satış ortaklığı bağlantıları</h2>
+        <h2>İçeriksiz işlem sayfaları</h2>
         <p>
-          Amazon bağlantılarına tıkladığınızda, Amazon tıklama ve satın alma
-          davranışını kendi çerezleriyle takip edebilir. Bu işlem Amazon
-          platformunda gerçekleşir.
+          AdSense kodu sepet, ödeme, sipariş, takip, yönlendirme ve sonuç
+          ekranlarında çalıştırılmaz. Sepet ve simülasyon durumu yalnızca temel
+          işlevi sağlamak amacıyla cihazın yerel depolama alanında tutulabilir.
         </p>
 
         <h2>Tercihleri yönetme</h2>
@@ -50,7 +51,7 @@ export default function CookiesPage() {
           Çerezleri kapatmanız bazı özelliklerin performansını etkileyebilir.
         </p>
 
-        <p className="muted">Son güncelleme: 2 Temmuz 2026</p>
+        <p className="muted">Son güncelleme: 10 Ekim 2026</p>
       </section>
     </main>
   );

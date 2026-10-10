@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { getCartTotals, useCart } from "@/store/cart";
 import ProductImage from "../product-image";
 
@@ -50,16 +49,7 @@ export default function CartPage() {
                 </div>
                 <div>
                   <h2 className="product-title">{item.name}</h2>
-                  <p className="muted">{formatPrice(item.price)} TL</p>
-                  <a
-                    className="badge"
-                    href={buildTrackedAffiliateUrl(item, "cart-item")}
-                    rel="noreferrer"
-                    target="_blank"
-                    style={{ marginTop: 8 }}
-                  >
-                    Amazon’da incele
-                  </a>
+                  <p className="muted">Örnek bütçe etkisi: {formatPrice(item.price)} birim</p>
                 </div>
                 <div className="qty">
                   <button
@@ -85,25 +75,23 @@ export default function CartPage() {
           </div>
 
           <aside className="card">
-            <h2>Sahte fis</h2>
+            <h2>Karar özeti</h2>
             <div style={{ marginTop: 12 }}>
               <div className="summary-row">
-                <span>Ara toplam</span>
-                <strong>{formatPrice(totals.subtotal)} TL</strong>
+                <span>Toplam bütçe etkisi</span>
+                <strong>{formatPrice(totals.subtotal)} birim</strong>
               </div>
               <div className="summary-row">
-                <span>Dopamin indirimi</span>
-                <strong>-{formatPrice(totals.discount)} TL</strong>
+                <span>Bekleme payı</span>
+                <strong>-{formatPrice(totals.discount)} birim</strong>
               </div>
               <div className="summary-row">
-                <span>Kargo</span>
-                <strong>
-                  {totals.shipping === 0 ? "Ücretsiz" : `${totals.shipping} TL`}
-                </strong>
+                <span>Ek karar yükü</span>
+                <strong>{totals.shipping} birim</strong>
               </div>
               <div className="summary-total">
                 <span>Toplam</span>
-                <span>{formatPrice(totals.total)} TL</span>
+                <span>{formatPrice(totals.total)} birim</span>
               </div>
             </div>
             <div className="actions" style={{ marginTop: 14 }}>

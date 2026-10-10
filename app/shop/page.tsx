@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { products } from "@/data/products";
-import { buildTrackedAffiliateUrl } from "@/lib/affiliate";
 import { type Product, useCart } from "@/store/cart";
 import ProductImage from "../product-image";
 
@@ -16,9 +15,7 @@ const sortOptions = [
   "Öne çıkan",
   "Ucuzdan pahalıya",
   "Pahalıdan ucuza",
-  "En yüksek indirim",
-  "En popüler",
-  "Dopamin skoru",
+  "Dürtü skoru",
 ] as const;
 
 type SortOption = (typeof sortOptions)[number];
@@ -28,11 +25,6 @@ const quickFilters = [
     id: "all",
     label: "Tüm ruh halleri",
     desc: "Kategori ve arama ne diyorsa onu göster.",
-  },
-  {
-    id: "trend",
-    label: "Trend sepet",
-    desc: "Sepete atınca daha güncel hissettirenler.",
   },
   {
     id: "dopamine",
@@ -62,10 +54,6 @@ function formatPrice(value: number) {
   return value.toLocaleString("tr-TR");
 }
 
-function discountRate(price: number, oldPrice: number) {
-  return Math.round(((oldPrice - price) / oldPrice) * 100);
-}
-
 function searchableText(product: Product) {
   return [
     product.name,
@@ -82,7 +70,6 @@ function searchableText(product: Product) {
 
 function matchesQuickFilter(product: Product, activeFilter: QuickFilterId) {
   if (activeFilter === "all") return true;
-  if (activeFilter === "trend") return Boolean(product.isTrending);
   if (activeFilter === "dopamine") return (product.dopamineScore ?? 0) >= 82;
   if (activeFilter === "setup") {
     return [product.category, ...(product.tags ?? [])].some((item) =>
@@ -142,17 +129,11 @@ export default function ShopPage() {
     return [...matches].sort((a, b) => {
       if (sort === "Ucuzdan pahalıya") return a.price - b.price;
       if (sort === "Pahalıdan ucuza") return b.price - a.price;
-      if (sort === "En yüksek indirim") {
-        return discountRate(b.price, b.oldPrice) - discountRate(a.price, a.oldPrice);
-      }
-      if (sort === "En popüler") {
-        return (b.reviewCount ?? 0) - (a.reviewCount ?? 0);
-      }
-      if (sort === "Dopamin skoru") {
+      if (sort === "Dürtü skoru") {
         return (b.dopamineScore ?? 0) - (a.dopamineScore ?? 0);
       }
 
-      return Number(Boolean(b.isTrending)) - Number(Boolean(a.isTrending)) || a.id - b.id;
+      return (b.dopamineScore ?? 0) - (a.dopamineScore ?? 0) || a.id - b.id;
     });
   }, [category, query, quickFilter, sort]);
 
@@ -176,7 +157,7 @@ export default function ShopPage() {
         <div>
           <h1>Ürünler</h1>
           <p className="muted">
-            Sepeti abartmak serbest. Buradaki siparişler simüle edilir.
+            Satın alma dürtüsünü ödeme yapmadan gözlemleyen karar egzersizi.
           </p>
         </div>
         <Link className="btn secondary" href="/cart">
@@ -291,17 +272,16 @@ export default function ShopPage() {
         <span className="section-kicker">Editoryal not</span>
         <h2 id="selection-title">Bu seçki nasıl kullanılır?</h2>
         <p>
-          SepetHazır, alışveriş dürtüsünü güvenli ve eğlenceli bir ortamda
-          düşünmek için hazırlanmış bir simülasyondur. Ürün kartlarındaki
-          fiyat, puan ve indirimler gerçek zamanlı teklif veya inceleme sonucu
-          değildir; yalnızca deneyimin parçasıdır.
+          SepetHazır, alışveriş dürtüsünü ödeme yapmadan düşünmek için
+          hazırlanmış bir karar simülasyonudur. Kartlardaki tutarlar yalnızca
+          bütçe etkisini canlandıran örnek değerlerdir; gerçek fiyat, teklif,
+          indirim veya satıcı bilgisi değildir.
         </p>
         <p>
-          Gerçek bir ürün araştırıyorsan, karttaki dış bağlantıyı ayrı sekmede
-          açıp güncel fiyatı, teknik özellikleri, kullanıcı yorumlarını ve
-          satıcı koşullarını doğrudan ilgili mağazada kontrol et. Özellikle
-          teknoloji, kişisel bakım ve ev aletlerinde ihtiyaç, uyumluluk,
-          garanti ve iade koşullarını karşılaştırmak iyi bir başlangıçtır.
+          Burada gerçek mağaza bağlantısı veya satış ortaklığı yönlendirmesi
+          bulunmaz. Gerçek bir ürün araştırırken teknik özellikleri, güncel
+          fiyatı, satıcıyı, garantiyi ve iade koşullarını bağımsız olarak
+          doğrula.
         </p>
         <Link className="text-link" href="/rehber">
           Alışveriş karar rehberini oku →
@@ -319,7 +299,7 @@ export default function ShopPage() {
         <Link className="mobile-cart-bar" href="/cart">
           <span>
             <strong>{itemCount} ürün</strong>
-            <small>{formatPrice(cartTotal)} TL sahte sepet</small>
+            <small>{formatPrice(cartTotal)} bütçe birimi · karar sepeti</small>
           </span>
           <b>Sepete git</b>
         </Link>
@@ -354,21 +334,14 @@ function ProductCard({
         />
       </Link>
       <span className="badge">{product.category}</span>
-      {product.isTrending && <span className="trend-chip">Trend</span>}
       {product.meme && <span className="meme-chip">{product.meme}</span>}
       <h2 className="product-title">
         <Link href={`/shop/${product.id}`}>{product.name}</Link>
       </h2>
       {product.blurb && <p className="product-blurb">{product.blurb}</p>}
-      {(product.rating || product.dopamineScore) && (
+      {product.dopamineScore && (
         <div className="product-signals">
-          {product.rating && (
-            <span>
-              ★ {product.rating.toLocaleString("tr-TR")} ·{" "}
-              {(product.reviewCount ?? 0).toLocaleString("tr-TR")}
-            </span>
-          )}
-          {product.dopamineScore && <span>{product.dopamineScore} DP</span>}
+          <span>Kurgusal dürtü skoru: {product.dopamineScore}/100</span>
         </div>
       )}
       {product.tags && (
@@ -380,12 +353,10 @@ function ProductCard({
       )}
       <div className="product-meta">
         <div>
-          <div className="old-price">{formatPrice(product.oldPrice)} TL</div>
-          <div className="price">{formatPrice(product.price)} TL</div>
+          <small>Örnek bütçe etkisi</small>
+          <div className="price">{formatPrice(product.price)} birim</div>
         </div>
-        <span className="badge">
-          {product.status ?? `%${discountRate(product.price, product.oldPrice)}`}
-        </span>
+        <span className="badge">{product.status}</span>
       </div>
       <div className="actions">
         {cartQty > 0 ? (
@@ -415,14 +386,7 @@ function ProductCard({
             Sepete ekle
           </button>
         )}
-        <a
-          className="btn secondary"
-          href={buildTrackedAffiliateUrl(product, "shop-card")}
-          rel="noreferrer"
-          target="_blank"
-        >
-          Amazon’da incele
-        </a>
+        <Link className="btn secondary" href={`/shop/${product.id}`}>Karar notunu aç</Link>
       </div>
     </article>
   );
