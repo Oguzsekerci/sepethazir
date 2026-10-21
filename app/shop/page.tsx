@@ -155,15 +155,19 @@ export default function ShopPage() {
     <>
       <div className="page-head">
         <div>
-          <h1>Ürünler</h1>
+          <h1>Kurgusal alışveriş egzersizi</h1>
           <p className="muted">
-            Satın alma dürtüsünü ödeme yapmadan gözlemleyen karar egzersizi.
+            Bu bir mağaza değil. Ürün adları ve tutarlar örnektir; gerçek sipariş veya ödeme alınmaz.
           </p>
         </div>
         <Link className="btn secondary" href="/cart">
-          Sepet ({itemCount})
+          Senaryo sepeti ({itemCount})
         </Link>
       </div>
+
+      <aside className="simulation-notice" aria-label="Simülasyon bilgilendirmesi">
+        <p><strong>Gerçek ürün arıyorsanız:</strong> Buradaki ürün, fiyat, yorum ve stok bilgileri kurgusaldır. Güncel ürünleri kendiniz girerek <Link href="/araclar/urun-karsilastir">karşılaştırma aracını</Link> kullanın.</p>
+      </aside>
 
       <div className="card controls-card">
         <div className="field" style={{ marginBottom: 10 }}>
@@ -291,7 +295,7 @@ export default function ShopPage() {
       {toast && (
         <div className="toast" role="status">
           <span>{toast}</span>
-          <Link href="/cart">Sepete git</Link>
+          <Link href="/cart">Senaryo sepetini gör</Link>
         </div>
       )}
 
@@ -301,7 +305,7 @@ export default function ShopPage() {
             <strong>{itemCount} ürün</strong>
             <small>{formatPrice(cartTotal)} bütçe birimi · karar sepeti</small>
           </span>
-          <b>Sepete git</b>
+          <b>Senaryo sepetini gör</b>
         </Link>
       )}
     </>
@@ -383,7 +387,7 @@ function ProductCard({
             onClick={() => onAdd(product)}
             type="button"
           >
-            Sepete ekle
+            Egzersize ekle
           </button>
         )}
         <Link className="btn secondary" href={`/shop/${product.id}`}>Karar notunu aç</Link>

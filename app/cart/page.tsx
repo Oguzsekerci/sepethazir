@@ -16,11 +16,11 @@ export default function CartPage() {
     <>
       <div className="page-head">
         <div>
-          <h1>Sepet</h1>
-          <p className="muted">Bu sepet sadece dopamin için. Ödeme alınmaz.</p>
+          <h1>Senaryo sepeti</h1>
+          <p className="muted">Bu kurgusal egzersizin parçasıdır. Gerçek ürün veya sipariş içermez; ödeme alınmaz.</p>
         </div>
         <Link className="btn ghost" href="/shop">
-          Alışverişe dön
+          Egzersize dön
         </Link>
       </div>
 

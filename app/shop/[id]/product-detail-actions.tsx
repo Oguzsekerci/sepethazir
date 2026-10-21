@@ -12,10 +12,10 @@ export default function ProductDetailActions({ product }: { product: Product }) 
   return (
     <div className="detail-actions">
       <button className="btn" onClick={() => add(product)} type="button">
-        {qty > 0 ? `Sepette ${qty} · +1 ekle` : "Sepete ekle"}
+        {qty > 0 ? `Egzersizde ${qty} · +1 ekle` : "Egzersize ekle"}
       </button>
       <Link className="btn secondary" href="/cart">
-        Sepete git
+        Senaryo sepetini gör
       </Link>
     </div>
   );

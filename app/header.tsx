@@ -2,22 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useCart } from "@/store/cart";
 
 const navItems = [
   { href: "/rehber", label: "Rehber" },
   { href: "/araclar/urun-karsilastir", label: "Karşılaştırma aracı" },
-  { href: "/shop", label: "Karar Simülatörü" },
+  { href: "/shop", label: "Kurgusal karar egzersizi" },
   { href: "/hakkimizda", label: "Hakkımızda" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  const itemCount = useCart((state) =>
-    state.items.reduce((sum, item) => sum + item.qty, 0)
-  );
-  const cartIsActive = pathname === "/cart" || pathname === "/checkout";
-
   function isActive(href: string) {
     return pathname === href || pathname.startsWith(`${href}/`);
   }
@@ -39,20 +33,6 @@ export default function Header() {
             {item.label}
           </Link>
         ))}
-        <Link
-          aria-current={cartIsActive ? "page" : undefined}
-          className={[
-            "nav-cart",
-            itemCount > 0 ? "has-items" : "",
-            cartIsActive ? "active" : "",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          href="/cart"
-        >
-          Sepet
-          {itemCount > 0 && <span>{itemCount}</span>}
-        </Link>
       </nav>
     </header>
   );

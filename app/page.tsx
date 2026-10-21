@@ -39,7 +39,7 @@ export default function Home() {
               Gerçek seçenekleri karşılaştır
             </Link>
             <Link className="btn secondary" href="/shop">
-              Karar simülatörünü dene
+              Kurgusal karar egzersizini dene
             </Link>
           </div>
         </div>

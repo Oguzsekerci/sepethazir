@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
   openGraph: {
-    title: "Ürünler",
+    title: "Kurgusal alışveriş egzersizi",
     description:
       "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
     url: `${siteUrl}/shop`,
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     index: false,
     follow: true,
   },
-  title: "Ürünler",
+  title: "Kurgusal alışveriş egzersizi",
 };
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
