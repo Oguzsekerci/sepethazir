@@ -32,8 +32,8 @@ export default function ContactPage() {
 
         <h2>Not</h2>
         <p>
-          SepetHazır sanal sepet ve sahte sipariş simülasyonu sunar. Sitedeki
-          ürün kartları kurgusal karar senaryolarıdır. Sitede gerçek ürün satışı,
+          SepetHazır kurgusal mağaza kartları, sanal sepet ve örnek sipariş akışı sunar. Sitedeki
+          ürün kartları örnektir. Sitede gerçek ürün satışı,
           ödeme, teslimat veya satış ortaklığı yönlendirmesi yapılmaz.
         </p>
       </section>

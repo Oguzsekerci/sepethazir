@@ -6,18 +6,18 @@ export const metadata: Metadata = {
     canonical: `${siteUrl}/shop`,
   },
   description:
-    "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
+    "Alışveriş kararlarını düşünmek için kurgusal ürün kartları ve bütçe örnekleri içeren SepetHazır mağazası.",
   openGraph: {
-    title: "Kurgusal alışveriş egzersizi",
+    title: "Mağaza | SepetHazır",
     description:
-      "Kurgusal ürün senaryolarıyla alışveriş dürtüsünü ve bütçe etkisini ödeme yapmadan değerlendirin.",
+      "Kurgusal ürün kartlarıyla alışveriş kararlarını ve bütçe etkisini düşünün. Gerçek ürün satışı veya ödeme yapılmaz.",
     url: `${siteUrl}/shop`,
   },
   robots: {
     index: false,
     follow: true,
   },
-  title: "Kurgusal alışveriş egzersizi",
+  title: "Mağaza | SepetHazır",
 };
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {

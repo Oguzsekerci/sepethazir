@@ -5,8 +5,7 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { href: "/rehber", label: "Rehber" },
-  { href: "/araclar/urun-karsilastir", label: "Karşılaştırma aracı" },
-  { href: "/shop", label: "Kurgusal karar egzersizi" },
+  { href: "/shop", label: "Mağaza" },
   { href: "/hakkimizda", label: "Hakkımızda" },
 ];
 

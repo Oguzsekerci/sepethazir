@@ -17,7 +17,7 @@ export default function EditorialPolicyPage() {
         <p>Metinler SepetHazır için özgün olarak yazılır. Dış kaynaklardan alınan iddialar kendi anlatımımızın yerine geçirilmez. Hukuk, platform koşulları ve teknik standartlar değişebileceği için okuru güncel resmi kaynağı kontrol etmeye yönlendiririz.</p>
         <p>Bir rehber mevzuat, tüketici hakkı veya teknik gereklilik aktarıyorsa, ilgili resmi kaynak bağlantısını ve kaynağın yazıdaki kapsamını belirtiriz. Kaynak bağlantısı; ürünün, satıcının veya kullanıcı yorumlarının tarafımızdan test edildiği ya da doğrulandığı anlamına gelmez. Ürün deneyimi iddiasında bulunmayız.</p>
         <h2>Ticari bağımsızlık</h2>
-        <p>Ürün satmıyor ve satış ortaklığı bağlantısı kullanmıyoruz. Reklam bulunması bir ürünün seçilmesini veya yazının sonucunu etkilemez. Reklamlar yayıncı içeriğinden açıkça ayrılmalı ve simülasyonun işlem, sonuç veya navigasyon ekranlarında gösterilmemelidir.</p>
+        <p>Ürün satmıyor ve satış ortaklığı bağlantısı kullanmıyoruz. Reklam bulunması bir ürünün seçilmesini veya yazının sonucunu etkilemez. Reklamlar yayıncı içeriğinden açıkça ayrılmalı ve kurgusal mağazanın sepet, sipariş veya sonuç ekranlarında gösterilmemelidir.</p>
         <h2>Güncelleme ve düzeltme</h2>
         <p>Yazılarda yayın ve güncelleme tarihi gösterilir. Maddi hata bildirildiğinde içerik yeniden incelenir ve gerekli düzeltme yapılır. Okurlar iletisim@sepethazir.com.tr adresinden başlık, bağlantı ve gerekçeyle geri bildirim gönderebilir.</p>
         <p>Tarih, yalnızca içeriğin gerçekten gözden geçirildiği veya değiştirildiği zaman güncellenir. Herhangi bir sayfanın yayında olması, düzenli olarak güncellendiği anlamına gelmez.</p>

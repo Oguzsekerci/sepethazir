@@ -19,14 +19,14 @@ export default function PrivacyPage() {
 
       <section className="card legal-content">
         <p>
-          SepetHazır, kullanıcılarına sanal alışveriş, sahte sepet ve sipariş
-          simülasyonu deneyimi sunar. Gerçek ödeme alınmaz ve fiziksel ürün
+          SepetHazır, kullanıcılarına kurgusal mağaza, sepet ve örnek sipariş
+          deneyimi sunar. Gerçek ödeme alınmaz ve fiziksel ürün
           gönderimi yapılmaz.
         </p>
 
         <h2>Toplanan bilgiler</h2>
         <p>
-          Siteyi kullanırken sepet, sipariş simülasyonu ve ziyaret bilgileri
+          Siteyi kullanırken kurgusal mağaza sepeti, örnek sipariş ve ziyaret bilgileri
           gibi teknik veriler işlenebilir. İletişim kurmanız halinde adınız,
           e-posta adresiniz ve mesaj içeriğiniz değerlendirilebilir.
         </p>

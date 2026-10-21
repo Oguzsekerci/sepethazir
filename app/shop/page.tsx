@@ -155,18 +155,18 @@ export default function ShopPage() {
     <>
       <div className="page-head">
         <div>
-          <h1>Kurgusal alışveriş egzersizi</h1>
+          <h1>Mağaza</h1>
           <p className="muted">
-            Bu bir mağaza değil. Ürün adları ve tutarlar örnektir; gerçek sipariş veya ödeme alınmaz.
+            Bu kurgusal mağaza, alışveriş kararlarını düşünmek için örnek ürün kartları sunar. Gerçek ürün, sipariş veya ödeme yoktur.
           </p>
         </div>
         <Link className="btn secondary" href="/cart">
-          Senaryo sepeti ({itemCount})
+          Sepet ({itemCount})
         </Link>
       </div>
 
       <aside className="simulation-notice" aria-label="Simülasyon bilgilendirmesi">
-        <p><strong>Gerçek ürün arıyorsanız:</strong> Buradaki ürün, fiyat, yorum ve stok bilgileri kurgusaldır. Güncel ürünleri kendiniz girerek <Link href="/araclar/urun-karsilastir">karşılaştırma aracını</Link> kullanın.</p>
+        <p><strong>Bilgi:</strong> Buradaki ürün, fiyat, yorum ve stok bilgileri kurgusaldır; gerçek ürün veya satıcı bilgisi olarak kullanılmamalıdır. Satın alma kararınız için ilgili satıcının güncel ürün sayfasını ve koşullarını kontrol edin.</p>
       </aside>
 
       <div className="card controls-card">
@@ -276,8 +276,8 @@ export default function ShopPage() {
         <span className="section-kicker">Editoryal not</span>
         <h2 id="selection-title">Bu seçki nasıl kullanılır?</h2>
         <p>
-          SepetHazır, alışveriş dürtüsünü ödeme yapmadan düşünmek için
-          hazırlanmış bir karar simülasyonudur. Kartlardaki tutarlar yalnızca
+          SepetHazır mağazası, alışveriş dürtüsünü ödeme yapmadan düşünmek için
+          hazırlanmış kurgusal bir ürün seçkisidir. Kartlardaki tutarlar yalnızca
           bütçe etkisini canlandıran örnek değerlerdir; gerçek fiyat, teklif,
           indirim veya satıcı bilgisi değildir.
         </p>
@@ -295,7 +295,7 @@ export default function ShopPage() {
       {toast && (
         <div className="toast" role="status">
           <span>{toast}</span>
-          <Link href="/cart">Senaryo sepetini gör</Link>
+          <Link href="/cart">Sepeti gör</Link>
         </div>
       )}
 
@@ -305,7 +305,7 @@ export default function ShopPage() {
             <strong>{itemCount} ürün</strong>
             <small>{formatPrice(cartTotal)} bütçe birimi · karar sepeti</small>
           </span>
-          <b>Senaryo sepetini gör</b>
+          <b>Sepeti gör</b>
         </Link>
       )}
     </>

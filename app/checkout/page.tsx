@@ -111,8 +111,8 @@ export default function CheckoutPage() {
     <>
       <div className="page-head">
         <div>
-          <h1>Karar senaryosu</h1>
-          <p className="muted">Bu bir satın alma veya ödeme ekranı değildir.</p>
+          <h1>Örnek sipariş özeti</h1>
+          <p className="muted">Bu, kurgusal mağaza akışının parçasıdır; satın alma veya ödeme yapılmaz.</p>
         </div>
         <Link className="btn ghost" href="/cart">
           Sepete dön
@@ -127,7 +127,7 @@ export default function CheckoutPage() {
               <strong>Teslimat</strong>
             </div>
             <div className="notice" style={{ marginBottom: 14 }}>
-            Kişisel adres veya ödeme bilgisi istenmez. Seçenekler yalnızca simülasyon hikâyesidir.
+            Kişisel adres veya ödeme bilgisi istenmez. Bu mağazadaki ürünler ve sipariş akışı kurgusaldır.
             </div>
 
             <div className="field">

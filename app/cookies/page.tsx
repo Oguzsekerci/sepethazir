@@ -42,7 +42,7 @@ export default function CookiesPage() {
         <h2>İçeriksiz işlem sayfaları</h2>
         <p>
           AdSense kodu sepet, ödeme, sipariş, takip, yönlendirme ve sonuç
-          ekranlarında çalıştırılmaz. Sepet ve simülasyon durumu yalnızca temel
+          ekranlarında çalıştırılmaz. Mağaza sepeti ve örnek sipariş durumu yalnızca temel
           işlevi sağlamak amacıyla cihazın yerel depolama alanında tutulabilir.
         </p>
 

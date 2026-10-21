@@ -99,7 +99,7 @@ export default async function GuideDetailPage({
           İçeriğin nasıl hazırlandığını öğrenmek için <Link href="/yayin-ilkeleri">yayın ilkelerimizi</Link> inceleyebilirsin.
         </p>
       </article>
-      <Link className="btn" href="/araclar/urun-karsilastir">Kendi seçeneklerini karşılaştır</Link>
+      <Link className="btn" href="/shop">Mağazadaki örnekleri incele</Link>
     </main>
   );
 }

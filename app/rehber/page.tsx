@@ -62,17 +62,16 @@ export default function GuidePage() {
           karşılaştır.
         </p>
 
-        <h2>Karar simülatörü hakkında</h2>
+        <h2>Mağazadaki örnek ürünler hakkında</h2>
         <p>
-          Simülatördeki ürün adları ve bütçe tutarları yalnızca karar egzersizi
-          için oluşturulmuş kurgusal senaryolardır. Gerçek fiyat, kampanya,
-          değerlendirme veya satıcı tavsiyesi değildir; sitede ürün satışı ve
-          satış ortaklığı yönlendirmesi yapılmaz.
+          Mağazadaki ürün adları, fiyatlar ve bütçe tutarları alışveriş kararını
+          düşünmeye yardımcı olmak için hazırlanmış kurgusal örneklerdir. Gerçek
+          fiyat, kampanya, değerlendirme veya satıcı tavsiyesi değildir; sitede
+          gerçek ürün satışı ve ödeme yapılmaz.
         </p>
       </article>
 
-      <Link className="btn" href="/shop">Kurgusal karar egzersizini dene</Link>
-      <Link className="btn secondary" href="/araclar/urun-karsilastir">Ürün karşılaştırma aracını kullan</Link>
+      <Link className="btn" href="/shop">Mağazadaki örnekleri incele</Link>
 
       <section className="dream-grid-section" aria-labelledby="more-guides-title">
         <div className="page-head">

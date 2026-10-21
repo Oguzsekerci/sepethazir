@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/araclar/urun-karsilastir",
+        destination: "/rehber/urun-karsilastirma-notlari",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

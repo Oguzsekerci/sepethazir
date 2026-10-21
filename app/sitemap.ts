@@ -56,12 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
-    {
-      url: `${siteUrl}/araclar/urun-karsilastir`,
-      lastModified: new Date("2026-10-21"),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
     ...guides.map((guide) => ({
       url: `${siteUrl}/rehber/${guide.slug}`,
       lastModified: getGuide(guide.slug)?.updatedAt,

@@ -15,7 +15,7 @@ export default function ProductDetailActions({ product }: { product: Product }) 
         {qty > 0 ? `Egzersizde ${qty} · +1 ekle` : "Egzersize ekle"}
       </button>
       <Link className="btn secondary" href="/cart">
-        Senaryo sepetini gör
+        Sepeti gör
       </Link>
     </div>
   );

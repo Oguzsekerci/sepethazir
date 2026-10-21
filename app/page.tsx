@@ -28,18 +28,15 @@ export default function Home() {
             <p>
               SepetHazır; ürün seçimi, toplam maliyet, satıcı güvenilirliği,
               iade koşulları ve dürtüsel alışveriş üzerine bağımsız rehberler
-              sunar. Karar simülatörü ödeme almaz ve gerçek ürün satmaz.
+              sunar. Mağazamız, ürün ve bütçe kararlarını düşünmek için hazırlanmış kurgusal bir örnektir; gerçek ürün satışı veya ödeme yoktur.
             </p>
           </div>
           <div className="actions">
             <Link className="btn" href="/rehber">
               Rehberleri oku
             </Link>
-            <Link className="btn secondary" href="/araclar/urun-karsilastir">
-              Gerçek seçenekleri karşılaştır
-            </Link>
             <Link className="btn secondary" href="/shop">
-              Kurgusal karar egzersizini dene
+              Mağazayı gez
             </Link>
           </div>
         </div>
@@ -61,7 +58,7 @@ export default function Home() {
             <h2 style={{ marginTop: 10 }}>Önce ölçüt, sonra ürün.</h2>
             <p className="muted" style={{ marginTop: 8 }}>
               İçeriklerimiz ürün satmak için değil, karşılaştırılabilir ölçütler
-              kurmak için hazırlanır. Kurgusal simülasyon verileri gerçek fiyat,
+              kurmak için hazırlanır. Mağazadaki kurgusal veriler gerçek fiyat,
               yorum veya kampanya değildir.
             </p>
           </div>
