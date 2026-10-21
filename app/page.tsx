@@ -35,6 +35,9 @@ export default function Home() {
             <Link className="btn" href="/rehber">
               Rehberleri oku
             </Link>
+            <Link className="btn secondary" href="/araclar/urun-karsilastir">
+              Gerçek seçenekleri karşılaştır
+            </Link>
             <Link className="btn secondary" href="/shop">
               Karar simülatörünü dene
             </Link>

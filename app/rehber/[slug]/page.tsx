@@ -75,6 +75,21 @@ export default async function GuideDetailPage({
           {guide.checklist.map((item) => <li key={item}>{item}</li>)}
         </ul>
 
+        {guide.sources?.length ? (
+          <section aria-labelledby="guide-sources-title">
+            <h2 id="guide-sources-title">Resmî kaynaklar ve ileri okuma</h2>
+            <p>Bu bağlantılar yalnızca yanlarında belirtilen konuları destekler. Ürün özelliklerini, satıcı beyanlarını veya kullanıcı yorumlarını bizim adımıza doğrulamaz. Mevzuat ve koşullar değişebileceği için güncel metni kaynağında kontrol edin.</p>
+            <ul>
+              {guide.sources.map((source) => (
+                <li key={source.url}>
+                  <a href={source.url} rel="noreferrer" target="_blank">{source.title}</a>
+                  <p className="muted">{source.context}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         <p>
           Bu rehber genel bilgilendirme sunar ve kişisel mali veya hukuki
           danışmanlık yerine geçmez. Güncel ürün, satıcı, teslimat, garanti ve

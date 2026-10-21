@@ -72,6 +72,7 @@ export default function GuidePage() {
       </article>
 
       <Link className="btn" href="/shop">Seçkiyi keşfet</Link>
+      <Link className="btn secondary" href="/araclar/urun-karsilastir">Ürün karşılaştırma aracını kullan</Link>
 
       <section className="dream-grid-section" aria-labelledby="more-guides-title">
         <div className="page-head">

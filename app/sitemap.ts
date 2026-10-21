@@ -1,55 +1,54 @@
 import type { MetadataRoute } from "next";
-import { guides } from "@/data/guides";
+import { getGuide, guides } from "@/data/guides";
 import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: siteUrl,
-      lastModified: now,
+      lastModified: new Date("2026-10-21"),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${siteUrl}/rehber`,
-      lastModified: now,
+      lastModified: new Date("2026-10-21"),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${siteUrl}/hakkimizda`,
-      lastModified: now,
+      lastModified: new Date("2026-10-10"),
       changeFrequency: "yearly",
       priority: 0.6,
     },
     {
       url: `${siteUrl}/yayin-ilkeleri`,
-      lastModified: now,
+      lastModified: new Date("2026-10-21"),
       changeFrequency: "yearly",
       priority: 0.5,
     },
     {
       url: `${siteUrl}/yazar/oguz-sekerci`,
-      lastModified: now,
+      lastModified: new Date("2026-10-10"),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${siteUrl}/privacy`,
-      lastModified: now,
+      lastModified: new Date("2026-10-10"),
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
       url: `${siteUrl}/cookies`,
-      lastModified: now,
+      lastModified: new Date("2026-10-10"),
       changeFrequency: "yearly",
       priority: 0.4,
     },
     {
       url: `${siteUrl}/contact`,
-      lastModified: now,
+      lastModified: new Date("2026-10-10"),
       changeFrequency: "yearly",
       priority: 0.4,
     },
@@ -57,9 +56,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    {
+      url: `${siteUrl}/araclar/urun-karsilastir`,
+      lastModified: new Date("2026-10-21"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...guides.map((guide) => ({
       url: `${siteUrl}/rehber/${guide.slug}`,
-      lastModified: now,
+      lastModified: getGuide(guide.slug)?.updatedAt,
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),

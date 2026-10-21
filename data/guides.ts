@@ -12,6 +12,7 @@ export type Guide = {
     paragraphs: string[];
   }>;
   checklist: string[];
+  sources?: Array<{ title: string; url: string; context: string }>;
 };
 
 const common = {
@@ -236,5 +237,111 @@ export const guides: Guide[] = [
 ];
 
 export function getGuide(slug: string) {
-  return guides.find((guide) => guide.slug === slug);
+  const guide = guides.find((item) => item.slug === slug);
+  if (!guide) return undefined;
+
+  const sources = guideSources[slug] ?? [];
+  return {
+    ...guide,
+    sources,
+    updatedAt: sources.length ? "2026-10-21" : guide.updatedAt,
+  };
 }
+
+const guideSources: Record<string, NonNullable<Guide["sources"]>> = {
+  "ihtiyac-listesi-ve-butce": [
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Çevrim içi alışveriş öncesi satıcı, toplam fiyat, teslimat ve sözleşme bilgilerinin kontrolü için resmi tüketici kaynağı.",
+    },
+    {
+      title: "Ticaret Bakanlığı: Fiyat etiketleri hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/fiyat-etiketleri-hakkinda-bilgilendirme",
+      context: "Fiyat etiketi ve indirim öncesi fiyat sunumu hakkında güncel resmi açıklama.",
+    },
+  ],
+  "urun-karsilastirma-notlari": [
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Satıcı kimliği, toplam fiyat, teslimat ve cayma hakkı gibi satın alma öncesi kontrol başlıkları.",
+    },
+    {
+      title: "Ticaret Bakanlığı: Tanıtma ve kullanma kılavuzları hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/tanitma-ve-kullanma-kilavuzlari-hakkinda-bilgilendirme",
+      context: "Ürünün kullanım, kurulum ve bakım bilgilerinin üretici belgelerinden doğrulanması için.",
+    },
+  ],
+  "indirim-gercek-mi": [
+    {
+      title: "Ticaret Bakanlığı: Fiyat etiketleri hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/fiyat-etiketleri-hakkinda-bilgilendirme",
+      context: "İndirim öncesi fiyatın nasıl belirlenmesi gerektiğine ilişkin Bakanlık açıklaması.",
+    },
+    {
+      title: "Ticaret Bakanlığı: Ticari reklamlar ve haksız ticari uygulamalar",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/ticari-reklamlar-ve-haksiz-ticari-uygulamalar-hakkinda-bilgilendirme",
+      context: "Reklam ve kampanya beyanları hakkında resmi tüketici rehberi.",
+    },
+  ],
+  "satici-guvenilirligi-kontrolu": [
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Satıcının ticari unvanı, adresi ve iletişim bilgilerinin alışveriş öncesi kontrolü için resmi kaynak.",
+    },
+  ],
+  "iade-ve-garanti-kosullari": [
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Mesafeli sözleşme ve cayma hakkı bilgisini güncel mevzuatla birlikte kontrol edin.",
+    },
+    {
+      title: "Ticaret Bakanlığı: Garanti belgeleri hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/garanti-belgeleri-hakkinda-bilgilendirme",
+      context: "Garanti belgesi ve ürün arızasındaki tüketici hakları için resmi kaynak.",
+    },
+  ],
+  "kullanici-yorumlarini-okumak": [
+    {
+      title: "Ticaret Bakanlığı: Tüketici değerlendirmeleri hakkında kılavuz (PDF)",
+      url: "https://tuketici.ticaret.gov.tr/data/65089fd113b8769d9861719f/T%C3%BCketici%20De%C4%9Ferlendirmeleri%20Hakk%C4%B1nda%20K%C4%B1lavuz%20-%20kurul%20karar%C4%B1.pdf",
+      context: "Çevrim içi tüketici değerlendirmelerinin yayımlanması ve doğrulanmasına ilişkin resmi çerçeve; bu yazı belirli ürün yorumlarını doğrulamaz.",
+    },
+  ],
+  "elektronik-uyumluluk-kontrolu": [
+    {
+      title: "Ticaret Bakanlığı: Tanıtma ve kullanma kılavuzları hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/tanitma-ve-kullanma-kilavuzlari-hakkinda-bilgilendirme",
+      context: "Uyumluluk ve kullanım şartlarını modelin üretici kılavuzundan doğrulama yaklaşımını destekler.",
+    },
+  ],
+  "abonelik-ve-ucretsiz-deneme": [
+    {
+      title: "Ticaret Bakanlığı: Abonelik sözleşmeleri hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/abonelik-sozlesmeleri-hakkinda-bilgilendirme",
+      context: "Abonelik sözleşmesi, bilgilendirme ve fesih başlıkları için resmi tüketici rehberi.",
+    },
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Çevrim içi kurulan hizmet sözleşmelerinin kapsamını ve ilgili istisnaları kontrol edin.",
+    },
+  ],
+  "ikinci-el-urun-kontrol-listesi": [
+    {
+      title: "Ticaret Bakanlığı: Yenilenmiş ürünler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/yenilenmis-urunler-hakkinda-bilgilendirme",
+      context: "Yalnızca Bakanlıkça yetkilendirilmiş yenileme merkezlerinden satılan yenilenmiş ürünlerin kuralları için; tüm ikinci el satışlara genellenmemelidir.",
+    },
+  ],
+  "teslimat-paket-kontrolu": [
+    {
+      title: "Ticaret Bakanlığı: Mesafeli sözleşmeler hakkında bilgilendirme",
+      url: "https://tuketici.ticaret.gov.tr/yayinlar/tuketici-bilgi-rehberi/mesafeli-sozlesmeler-hakkinda-bilgilendirme",
+      context: "Teslimat ve sözleşme yükümlülükleri için resmi kaynak; uyuşmazlıkta güncel metni kontrol edin.",
+    },
+  ],
+};
