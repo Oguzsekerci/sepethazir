@@ -598,6 +598,33 @@ a {
   font-size: 1.1rem;
 }
 
+.comparison-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.comparison-status {
+  color: #166534;
+  font-size: 0.92rem;
+}
+
+@media print {
+  .comparison-actions,
+  .comparison-remove,
+  .site-header,
+  .site-footer {
+    display: none !important;
+  }
+
+  .comparison-option,
+  .comparison-result {
+    break-inside: avoid;
+  }
+}
+
 .comparison-note,
 .comparison-method {
   max-width: 900px;

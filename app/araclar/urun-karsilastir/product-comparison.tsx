@@ -45,6 +45,7 @@ function numeric(value: string) {
 
 export default function ProductComparison() {
   const [options, setOptions] = useState<Option[]>([createOption(1), createOption(2)]);
+  const [status, setStatus] = useState("");
   const nextId = useMemo(() => Math.max(...options.map((option) => option.id)) + 1, [options]);
 
   function update(id: number, patch: Partial<Option>) {
@@ -59,9 +60,42 @@ export default function ProductComparison() {
     if (options.length > 2) setOptions((current) => current.filter((option) => option.id !== id));
   }
 
+  function fillExample() {
+    setOptions([
+      { ...createOption(1), name: "Örnek A (kurgu)", price: "8000", annualCosts: "1800", years: "4", usesPerWeek: "3", meetsNeeds: true, compatible: true, checkedSellerTerms: true },
+      { ...createOption(2), name: "Örnek B (kurgu)", price: "10500", initialCosts: "500", annualCosts: "1000", years: "4", usesPerWeek: "3", meetsNeeds: true, compatible: true, checkedSellerTerms: true },
+    ]);
+    setStatus("Kurgusal örnek yüklendi. Gerçek ürün bilgisi değildir.");
+  }
+
+  function clearOptions() {
+    setOptions([createOption(1), createOption(2)]);
+    setStatus("Alanlar temizlendi.");
+  }
+
+  async function copySummary() {
+    const lines = options.map((option) => {
+      const total = numeric(option.price) + numeric(option.initialCosts) + numeric(option.annualCosts) * numeric(option.years);
+      const uses = Math.floor(numeric(option.years) * numeric(option.usesPerWeek) * 52);
+      const checks = [option.meetsNeeds, option.compatible, option.checkedSellerTerms].map((checked) => checked ? "Evet" : "Kontrol edilmedi");
+      return `${option.name}: ${total > 0 ? `${money(total)} tahmini toplam (${option.years} yıl), ${uses.toLocaleString("tr-TR")} kullanım varsayımı` : "maliyet bilgisi girilmedi"}. İhtiyaca uygunluk / uyum / satıcı koşulları: ${checks.join(" / ")}.`;
+    });
+    const summary = `SepetHazır ürün karşılaştırma notu\n${lines.join("\n")}\nBu hesaplama girilen tahminlere dayanır; otomatik ürün önerisi değildir.`;
+    try {
+      await navigator.clipboard.writeText(summary);
+      setStatus("Karşılaştırma özeti panoya kopyalandı.");
+    } catch {
+      setStatus("Pano erişimi kullanılamadı. Tarayıcı izinlerini kontrol edin.");
+    }
+  }
+
   return (
     <section className="card comparison-tool" aria-label="Ürün seçeneklerini karşılaştırın">
       <p className="muted">Fiyat ve kullanım tahminlerini ürün sayfalarından kontrol ederek girin. En fazla üç seçeneği karşılaştırabilirsiniz.</p>
+      <div className="comparison-actions">
+        <button className="btn secondary" onClick={fillExample} type="button">Kurgusal örneği doldur</button>
+        <button className="btn ghost" onClick={clearOptions} type="button">Alanları temizle</button>
+      </div>
       <div className="comparison-grid">
         {options.map((option) => {
           const price = numeric(option.price);
@@ -115,6 +149,12 @@ export default function ProductComparison() {
         })}
       </div>
       {options.length < 3 && <button className="btn secondary" onClick={addOption} type="button">Bir seçenek daha ekle</button>}
+      <div className="comparison-actions comparison-share">
+        <button className="btn primary" onClick={copySummary} type="button">Özeti kopyala</button>
+        <button className="btn ghost" onClick={() => window.print()} type="button">Yazdır / PDF kaydet</button>
+        <span className="comparison-status" role="status" aria-live="polite">{status}</span>
+      </div>
+      <p className="comparison-note">Bilgiler bu sayfada, tarayıcınızda hesaplanır ve kaydedilmez. Kopyalama ve yazdırma işlemleri sizin cihazınızda yapılır.</p>
       <p className="comparison-note">İşaret kutuları sizin değerlendirmenizdir; ürün bilgisi veya bağımsız doğrulama anlamına gelmez. Araç otomatik kazanan seçmez. Daha düşük maliyet, ihtiyacınıza daha uygun olduğu anlamına tek başına gelmez.</p>
     </section>
   );
