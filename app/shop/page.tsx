@@ -303,7 +303,7 @@ export default function ShopPage() {
         <Link className="mobile-cart-bar" href="/cart">
           <span>
             <strong>{itemCount} ürün</strong>
-            <small>{formatPrice(cartTotal)} bütçe birimi · karar sepeti</small>
+            <small>{formatPrice(cartTotal)} TL · sepet toplamı</small>
           </span>
           <b>Sepeti gör</b>
         </Link>
@@ -357,8 +357,8 @@ function ProductCard({
       )}
       <div className="product-meta">
         <div>
-          <small>Örnek bütçe etkisi</small>
-          <div className="price">{formatPrice(product.price)} birim</div>
+          <small>Kurgusal örnek fiyat</small>
+          <div className="price">{formatPrice(product.price)} TL</div>
         </div>
         <span className="badge">{product.status}</span>
       </div>
@@ -387,7 +387,7 @@ function ProductCard({
             onClick={() => onAdd(product)}
             type="button"
           >
-            Egzersize ekle
+            Sepete ekle
           </button>
         )}
         <Link className="btn secondary" href={`/shop/${product.id}`}>Karar notunu aç</Link>

@@ -238,11 +238,11 @@ export default function CheckoutPage() {
             </div>
             <div className="summary-row">
               <span>Bütçe etkisi</span>
-              <strong>{formatPrice(totals.subtotal)} birim</strong>
+              <strong>{formatPrice(totals.subtotal)} TL</strong>
             </div>
             <div className="summary-row">
               <span>Bekleme payı</span>
-              <strong>-{formatPrice(totals.discount)} birim</strong>
+              <strong>-{formatPrice(totals.discount)} TL</strong>
             </div>
             <div className="summary-total">
               <span>Ödenecek</span>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
             </div>
           </div>
           <p className="muted" style={{ marginTop: 12 }}>
-            Ekranda gösterilen {formatPrice(totals.total)} birim yalnızca
+            Ekranda gösterilen {formatPrice(totals.total)} TL yalnızca
             kurgusal bütçe etkisidir.
           </p>
         </aside>
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
         <div>
           <span>Ödenecek</span>
           <strong>0 TL</strong>
-          <small>{formatPrice(totals.total)} birim kurgusal bütçe etkisi.</small>
+          <small>{formatPrice(totals.total)} TL kurgusal sepet tutarı.</small>
         </div>
         <button className="btn" disabled={isSubmitting} form="fake-checkout" type="submit">
           {isSubmitting ? "Üretiliyor..." : "Sahte siparişi oluştur"}

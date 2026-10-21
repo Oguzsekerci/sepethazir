@@ -71,7 +71,7 @@ export default function OrdersPage() {
 
               <div className="summary-total">
                 <span>Senaryo toplamı</span>
-                <span>{formatPrice(order.total)} birim</span>
+                <span>{formatPrice(order.total)} TL</span>
               </div>
 
               <Link className="btn secondary" href={`/tracking?order=${order.id}`}>

@@ -101,7 +101,7 @@ export default async function ProductDetailPage({
           <div className="detail-price-row">
             <div>
               <small>Kurgusal mağaza örneği</small>
-              <strong>{formatPrice(product.price)} birim</strong>
+              <strong>{formatPrice(product.price)} TL</strong>
               <small>Gerçek fiyat veya teklif değildir; ödeme alınmaz.</small>
             </div>
             <span className="badge">Mağaza örneği</span>

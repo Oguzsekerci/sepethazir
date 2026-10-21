@@ -49,7 +49,7 @@ export default function CartPage() {
                 </div>
                 <div>
                   <h2 className="product-title">{item.name}</h2>
-                  <p className="muted">Örnek bütçe etkisi: {formatPrice(item.price)} birim</p>
+                  <p className="muted">Kurgusal örnek fiyat: {formatPrice(item.price)} TL</p>
                 </div>
                 <div className="qty">
                   <button
@@ -79,19 +79,19 @@ export default function CartPage() {
             <div style={{ marginTop: 12 }}>
               <div className="summary-row">
                 <span>Toplam bütçe etkisi</span>
-                <strong>{formatPrice(totals.subtotal)} birim</strong>
+                <strong>{formatPrice(totals.subtotal)} TL</strong>
               </div>
               <div className="summary-row">
                 <span>Bekleme payı</span>
-                <strong>-{formatPrice(totals.discount)} birim</strong>
+                <strong>-{formatPrice(totals.discount)} TL</strong>
               </div>
               <div className="summary-row">
                 <span>Ek karar yükü</span>
-                <strong>{totals.shipping} birim</strong>
+                <strong>{totals.shipping} TL</strong>
               </div>
               <div className="summary-total">
                 <span>Toplam</span>
-                <span>{formatPrice(totals.total)} birim</span>
+                <span>{formatPrice(totals.total)} TL</span>
               </div>
             </div>
             <div className="actions" style={{ marginTop: 14 }}>

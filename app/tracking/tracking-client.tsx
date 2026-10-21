@@ -139,7 +139,7 @@ export default function TrackingClient() {
                 Paket içeriği fiziksel olarak yok, ama liste gayet etkileyici.
               </p>
             </div>
-            <strong>{order.total.toLocaleString("tr-TR")} birim</strong>
+            <strong>{order.total.toLocaleString("tr-TR")} TL</strong>
           </div>
           <div className="compact-order-items">
             {order.items.map((item) => (
@@ -148,7 +148,7 @@ export default function TrackingClient() {
                 <div>
                   <strong>{item.name}</strong>
                   <p className="muted">
-                    x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} birim
+                    x{item.qty} · {(item.price * item.qty).toLocaleString("tr-TR")} TL
                   </p>
                 </div>
               </div>
